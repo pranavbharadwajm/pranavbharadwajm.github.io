@@ -112,14 +112,17 @@
 
         .intro-text { flex: 1; }
 
+        /* Profile Image Styling */
         .profile-img {
             width: 450px;
             height: auto;
             flex-shrink: 0;
-            /* This combo pushes the grey background to pure white, then makes white transparent */
-            filter: grayscale(100%) contrast(1.6) brightness(1.1); 
-            mix-blend-mode: multiply;
+            border: none;
+            border-radius: 0;
+            /* We removed the harsh filters and are just using the blend mode */
+            mix-blend-mode: darken; 
         }
+        
 
         /* Continuous Scrolling Marquee */
         .marquee-wrapper {
@@ -267,7 +270,7 @@
                 <p>Based in Dublin, Ireland. I bridge the gap between technical systems and high-level commercial strategy to drive tangible business outcomes.</p>
                 <a href="#contact" class="button">Let's Connect</a>
             </div>
-            <img src="profile.png" alt="Profile Sketch" class="profile-img">
+            <img src="profileplain.jpeg" alt="Profile Sketch" class="profile-img">
         </div>
     </section>
 
