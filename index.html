@@ -231,10 +231,13 @@
         }
 
         .carousel-item h3 {
-            font-size: 2rem;
+            font-size: 1.8rem; /* Dropped slightly from 2rem to give long titles more room */
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.3; /* Adds breathing room when it drops to a second line */
+            white-space: normal; /* Forces it to wrap down instead of cutting off */
+            overflow-wrap: break-word; /* Ensures long words don't break the container */
         }
 
         .carousel-item h4 {
@@ -381,7 +384,7 @@
             <!-- Writing Section (Black - Rotating Carousel) -->
             <section id="writing" class="content-section section-black">
                 <div class="fade-in">
-                    <h2>Writing & Insights</h2>
+                    <h2>Writing</h2>
                     
                     <div class="carousel-viewport">
                         <div class="carousel-track" id="writing-track">
