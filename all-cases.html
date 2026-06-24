@@ -39,6 +39,40 @@
             min-height: 100vh;
         }
 
+        /* Filter Menu Styles */
+        .filter-menu {
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: transparent;
+            border: 2px solid var(--pure-black);
+            color: var(--gray-text);
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            color: var(--pure-black);
+        }
+
+        .filter-btn.active {
+            background-color: var(--pure-black);
+            color: var(--pure-white);
+        }
+
+        /* The class JavaScript will use to hide items */
+        .hide-case {
+            display: none !important;
+        }
+
         /* LEFT SIDE */
         .left-anchor {
             position: sticky;
@@ -233,8 +267,15 @@
             
             <h1 class="page-header">Case Archive</h1>
 
-            <!-- CASE STUDY 1 -->
-            <div class="case-block">
+            <!-- THE FILTER MENU -->
+            <div class="filter-menu">
+                <button class="filter-btn active" onclick="filterSelection('all')">All</button>
+                <button class="filter-btn" onclick="filterSelection('product')">Product Management</button>
+                <button class="filter-btn" onclick="filterSelection('finance')">Financial Analysis</button>
+            </div>
+
+            <!-- CASE STUDY 1: Notice the data-category attribute -->
+            <div class="case-block" data-category="product">
                 <h2 class="case-title">Accredian EdTech Dashboard</h2>
                 <div class="case-skills">Skills Applied: Product Management • User Experience • Data Structuring</div>
                 
@@ -249,20 +290,16 @@
                     <p>I applied a systems-thinking framework to map the exact user journey. By restructuring the data hierarchy, I prioritized immediate actionable items like upcoming deadlines at the top level.</p>
                 </div>
 
-                <!-- Placeholder for a supporting image -->
-                <img src="dashboard-wireframe.png" alt="Dashboard Wireframe" class="case-image">
-
                 <div class="case-analysis">
                     <h4>The Outcome</h4>
                     <p>The revised structural plan significantly reduced navigational friction, providing a clear blueprint for the engineering team to execute the build.</p>
                 </div>
 
-                <!-- PDF Download Link -->
                 <a href="accredian-case.pdf" target="_blank" class="pdf-button">Download Full Brief (PDF) &darr;</a>
             </div>
 
-            <!-- CASE STUDY 2 -->
-            <div class="case-block">
+            <!-- CASE STUDY 2: Notice the data-category attribute -->
+            <div class="case-block" data-category="finance">
                 <h2 class="case-title">Corporate Financial Teardown</h2>
                 <div class="case-skills">Skills Applied: Financial Analysis • Market Research • Cost Optimization</div>
                 
@@ -277,7 +314,6 @@
                     <p>Starting with zero prior assumptions, I modeled the core revenue streams against operating expenses to isolate the most profitable segments of the organization.</p>
                 </div>
 
-                <!-- PDF Download Link -->
                 <a href="financial-teardown.pdf" target="_blank" class="pdf-button">Download Full Analysis (PDF) &darr;</a>
             </div>
 
