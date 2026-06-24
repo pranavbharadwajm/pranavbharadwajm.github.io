@@ -7,8 +7,9 @@
     <style>
         /* Typography & Core Theme */
         :root {
-            --pure-white: #ffffff;
+            --bg-grey: #ebebeb; /* Premium, soft concrete grey */
             --pure-black: #000000;
+            --pure-white: #ffffff; /* Kept strictly for text inside black sections to maintain contrast */
             --gray-text: #555555;
             --light-gray: #cccccc;
         }
@@ -22,7 +23,7 @@
         }
 
         body {
-            background-color: var(--pure-white);
+            background-color: var(--bg-grey);
             color: var(--pure-black);
             line-height: 1.6;
         }
@@ -47,7 +48,7 @@
             flex-direction: column;
             justify-content: center;
             border-right: 2px solid var(--pure-black);
-            background-color: var(--pure-white);
+            background-color: var(--bg-grey);
             scrollbar-width: none; 
             -ms-overflow-style: none;
         }
@@ -58,7 +59,7 @@
             width: 100%;
             max-width: 250px;
             height: auto;
-            margin: 0 auto 2rem auto; /* Centers the image */
+            margin: 0 auto 2rem auto; 
             display: block;
         }
 
@@ -69,7 +70,7 @@
             text-transform: uppercase;
             letter-spacing: -2px;
             margin-bottom: 0.5rem;
-            text-align: center; /* Centers the name */
+            text-align: center; 
         }
 
         .location {
@@ -78,7 +79,7 @@
             text-transform: uppercase;
             color: var(--gray-text);
             margin-bottom: 3rem;
-            text-align: center; /* Centers the location */
+            text-align: center; 
         }
 
         .bluf-list {
@@ -91,7 +92,7 @@
             margin-bottom: 1rem;
             display: flex;
             align-items: flex-start;
-            text-align: left; /* Keeps text readable */
+            text-align: left; 
         }
 
         .bluf-list li::before {
@@ -117,7 +118,7 @@
         }
 
         .btn-resume:hover {
-            background-color: var(--pure-white);
+            background-color: var(--bg-grey);
             color: var(--pure-black);
         }
 
@@ -137,7 +138,7 @@
             flex-direction: column;
             justify-content: center;
             padding: 4rem;
-            background-color: var(--pure-white);
+            background-color: var(--bg-grey);
         }
 
         .menu-links {
@@ -176,8 +177,8 @@
             color: var(--pure-white);
         }
 
-        .section-white {
-            background-color: var(--pure-white);
+        .section-grey {
+            background-color: var(--bg-grey);
             color: var(--pure-black);
         }
 
@@ -215,7 +216,7 @@
         }
 
         .carousel-item {
-            min-width: 100%; /* Shows exactly 1 item at a time */
+            min-width: 100%; 
             box-sizing: border-box;
             flex-shrink: 0;
             display: flex;
@@ -294,6 +295,7 @@
 
     <div class="layout-grid">
         
+        <!-- THE LEFT ANCHOR -->
         <div class="left-anchor">
             <img src="profile.png" alt="Profile Sketch" class="profile-img">
             <h1 class="name-title">[FIRST]<br>[LAST].</h1>
@@ -308,8 +310,10 @@
             <a href="resume.pdf" class="btn-resume" target="_blank">Download Exec Summary &darr;</a>
         </div>
 
+        <!-- THE RIGHT SCROLL -->
         <div class="right-scroll">
             
+            <!-- Initial View: Just the Menu -->
             <div class="hero-menu">
                 <nav class="menu-links fade-in">
                     <a href="#about">About.</a>
@@ -319,6 +323,7 @@
                 </nav>
             </div>
 
+            <!-- About Section (Black) -->
             <section id="about" class="content-section section-black">
                 <div class="fade-in">
                     <h2>About Me</h2>
@@ -327,7 +332,8 @@
                 </div>
             </section>
 
-            <section id="work" class="content-section section-white">
+            <!-- Work Section (Grey - Rotating Carousel) -->
+            <section id="work" class="content-section section-grey">
                 <div class="fade-in">
                     <h2>Selected Work</h2>
                     
@@ -365,6 +371,7 @@
                 </div>
             </section>
 
+            <!-- Writing Section (Black - Rotating Carousel) -->
             <section id="writing" class="content-section section-black">
                 <div class="fade-in">
                     <h2>Writing & Insights</h2>
@@ -387,18 +394,19 @@
                         </div>
                     </div>
 
-                    <a href="https://medium.com/@pranavbharadwajm" target="_blank" class="btn-resume" style="width: auto;">Read All on Medium &rarr;</a>
+                    <a href="https://medium.com/@yourprofile" target="_blank" class="btn-resume" style="width: auto;">Read All on Medium &rarr;</a>
                 </div>
             </section>
 
-            <section id="contact" class="content-section section-white">
+            <!-- Contact Section (Grey) -->
+            <section id="contact" class="content-section section-grey">
                 <div class="fade-in">
                     <h2>Let's Talk</h2>
                     <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Currently open for roles in Dublin or remote.</p>
                     <p style="font-size: 1.2rem; margin-bottom: 2rem;">If you are looking for someone who understands both the technical groundwork and the high-level strategy, let's connect.</p>
                     
-                    <a href="mailto:pranavbharadwajm@gmail.com" class="btn-resume" style="width: auto; margin-right: 1rem;">Email Me Directly</a>
-                    <a href="https://linkedin.com/in/pranavbharadwajm" target="_blank" class="btn-resume" style="width: auto; margin-top: 1rem;">Connect on LinkedIn</a>
+                    <a href="mailto:your.email@example.com" class="btn-resume" style="width: auto; margin-right: 1rem;">Email Me Directly</a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn-resume" style="width: auto; margin-top: 1rem;">Connect on LinkedIn</a>
                 </div>
             </section>
 
@@ -430,7 +438,6 @@
                 const items = track.children;
                 if (items.length <= 1) return;
                 
-                // Item takes up exactly 100% of the viewport width now
                 const itemWidth = items[0].getBoundingClientRect().width;
                 
                 track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
@@ -442,7 +449,7 @@
                     track.style.transform = 'translateX(0)';
                 }, 600);
                 
-            }, 4500); // Rotates every 4.5 seconds to give plenty of reading time
+            }, 4500); 
         }
 
         setupCarousel('work-track');
