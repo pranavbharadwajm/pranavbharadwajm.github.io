@@ -38,12 +38,20 @@
             position: sticky;
             top: 0;
             height: 100vh;
-            padding: 4rem;
+            overflow-y: auto; /* Fixes the cut-off button issue */
+            padding: 3rem; 
             display: flex;
             flex-direction: column;
             justify-content: center;
             border-right: 2px solid var(--pure-black);
             background-color: var(--pure-white);
+            /* Hides the scrollbar for a clean aesthetic */
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+        }
+
+        .left-anchor::-webkit-scrollbar {
+            display: none;
         }
 
         .profile-img {
@@ -71,7 +79,7 @@
             margin-bottom: 2rem;
         }
 
-        /* BLUF Summary (Bottom Line Up Front) */
+        /* BLUF Summary */
         .bluf-list {
             list-style: none;
             margin-bottom: 2rem;
@@ -103,6 +111,7 @@
             transition: all 0.3s ease;
             width: fit-content;
             border: 2px solid transparent;
+            margin-top: auto; /* Pushes button to bottom if space allows */
         }
 
         .btn-resume:hover {
@@ -117,6 +126,7 @@
             display: flex;
             flex-direction: column;
             gap: 6rem;
+            overflow-x: hidden;
         }
 
         /* Massive Menu */
@@ -124,11 +134,11 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
         }
 
         .menu-links a {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--pure-black);
             text-decoration: none;
@@ -154,45 +164,58 @@
             padding-bottom: 0.5rem;
         }
 
-        .case-study {
-            margin-bottom: 3rem;
+        .about-text {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 1.5rem;
         }
 
-        .case-study h3 {
-            font-size: 1.8rem;
+        /* Carousel Layout */
+        .carousel-viewport {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .carousel-track {
+            display: flex;
+            /* The transition is applied dynamically via JavaScript */
+        }
+
+        .carousel-item {
+            min-width: 50%; /* Shows 2 items at a time */
+            padding-right: 2rem;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .carousel-item h3 {
+            font-size: 1.5rem;
             font-weight: bold;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
         }
 
-        .case-study h4 {
-            font-size: 1rem;
+        .carousel-item h4 {
+            font-size: 0.9rem;
             color: var(--gray-text);
             text-transform: uppercase;
             margin-bottom: 1rem;
         }
 
-        .case-study p {
-            font-size: 1.2rem;
+        .carousel-item p {
+            font-size: 1.1rem;
             margin-bottom: 1rem;
-            max-width: 600px;
         }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            border: 2px solid var(--pure-black);
-            padding: 2rem;
-        }
-
-        .card a {
+        
+        .carousel-item a {
             color: var(--pure-black);
             font-weight: bold;
             text-transform: uppercase;
+            margin-top: auto;
         }
 
         /* Fade Animation for Scrolling */
@@ -221,6 +244,7 @@
                 padding: 3rem 2rem;
                 align-items: center;
                 text-align: center;
+                overflow-y: visible;
             }
 
             .bluf-list li {
@@ -234,6 +258,11 @@
             .menu-links a {
                 font-size: 2.5rem;
             }
+
+            .carousel-item {
+                min-width: 100%; /* Shows 1 item at a time on mobile */
+                padding-right: 0;
+            }
         }
     </style>
 </head>
@@ -241,9 +270,9 @@
 
     <div class="layout-grid">
         
-        <!-- THE LEFT ANCHOR (Never Moves) -->
+        <!-- THE LEFT ANCHOR -->
         <div class="left-anchor">
-            <img src="profilenobg.png" alt="Profile Sketch" class="profile-img">
+            <img src="profile.png" alt="Profile Sketch" class="profile-img">
             <h1 class="name-title">[FIRST]<br>[LAST].</h1>
             <div class="location">Dublin, Ireland</div>
             
@@ -256,45 +285,106 @@
             <a href="resume.pdf" class="btn-resume" target="_blank">Download Exec Summary &darr;</a>
         </div>
 
-        <!-- THE RIGHT SCROLL (The Content) -->
+        <!-- THE RIGHT SCROLL -->
         <div class="right-scroll">
             
-            <!-- Massive Menu -->
+            <!-- Navigation -->
             <nav class="menu-links fade-in">
+                <a href="#about">About.</a>
                 <a href="#work">Case Studies.</a>
                 <a href="#writing">Writing.</a>
                 <a href="#contact">Contact.</a>
             </nav>
 
-            <!-- Work Section -->
+            <!-- About Section -->
+            <section id="about" class="fade-in">
+                <h2>About Me</h2>
+                <p class="about-text">I combine a rigorous, analytical foundation built over two years as a test automation engineer with a strategic mindset geared toward business and management.</p>
+                <p class="about-text">This unique hybrid of systems-thinking and commercial awareness allows me to break down complex problems and design scalable solutions. I am driven by the challenge of translating raw data and technical constraints into clear, actionable business strategies.</p>
+            </section>
+
+            <!-- Work Section (Rotating Carousel) -->
             <section id="work" class="fade-in">
                 <h2>Selected Work</h2>
                 
-                <div class="case-study">
-                    <h3>[Project Name 1]</h3>
-                    <h4>[Core Skill 1] • [Core Skill 2]</h4>
-                    <p><strong>Situation:</strong> [Describe the core problem or challenge the business was facing in one sentence.]</p>
-                    <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
-                    <p><strong>Result:</strong> [State the tangible outcome, using numbers or key deliverables where possible.]</p>
-                </div>
+                <div class="carousel-viewport">
+                    <div class="carousel-track" id="work-track">
+                        
+                        <!-- Case 1 -->
+                        <div class="carousel-item">
+                            <h3>[Project 1: EdTech Dashboard]</h3>
+                            <h4>Product Strategy • UX Alignment</h4>
+                            <p><strong>Situation:</strong> [Describe the core problem or challenge in one sentence.]</p>
+                            <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
+                            <p><strong>Result:</strong> [State the tangible outcome or key deliverables.]</p>
+                        </div>
 
-                <div class="case-study">
-                    <h3>[Project Name 2]</h3>
-                    <h4>[Core Skill 1] • [Core Skill 2]</h4>
-                    <p><strong>Situation:</strong> [Describe the core problem or challenge the business was facing in one sentence.]</p>
-                    <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
-                    <p><strong>Result:</strong> [State the tangible outcome, using numbers or key deliverables where possible.]</p>
+                        <!-- Case 2 -->
+                        <div class="carousel-item">
+                            <h3>[Project 2: Financial Teardown]</h3>
+                            <h4>Data Analysis • Cost Optimization</h4>
+                            <p><strong>Situation:</strong> [Describe the core problem or challenge in one sentence.]</p>
+                            <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
+                            <p><strong>Result:</strong> [State the tangible outcome or key deliverables.]</p>
+                        </div>
+
+                        <!-- Case 3 -->
+                        <div class="carousel-item">
+                            <h3>[Project 3: Placeholder]</h3>
+                            <h4>[Skill 1] • [Skill 2]</h4>
+                            <p><strong>Situation:</strong> [Describe the core problem or challenge in one sentence.]</p>
+                            <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
+                            <p><strong>Result:</strong> [State the tangible outcome or key deliverables.]</p>
+                        </div>
+
+                        <!-- Case 4 -->
+                        <div class="carousel-item">
+                            <h3>[Project 4: Placeholder]</h3>
+                            <h4>[Skill 1] • [Skill 2]</h4>
+                            <p><strong>Situation:</strong> [Describe the core problem or challenge in one sentence.]</p>
+                            <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
+                            <p><strong>Result:</strong> [State the tangible outcome or key deliverables.]</p>
+                        </div>
+
+                    </div>
                 </div>
             </section>
 
-            <!-- Writing Section -->
+            <!-- Writing Section (Rotating Carousel) -->
             <section id="writing" class="fade-in">
                 <h2>Writing & Insights</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3 style="margin-bottom: 1rem;">[Article Title Here]</h3>
-                        <p>[One-sentence summary of the core argument or takeaway from your article.]</p>
-                        <a href="https://medium.com/" target="_blank">Read Article &rarr;</a>
+                
+                <div class="carousel-viewport">
+                    <div class="carousel-track" id="writing-track">
+                        
+                        <!-- Article 1 -->
+                        <div class="carousel-item">
+                            <h3>[Article 1 Title]</h3>
+                            <p>[One-sentence summary of the core argument or takeaway from your article.]</p>
+                            <a href="https://medium.com/" target="_blank">Read Article &rarr;</a>
+                        </div>
+
+                        <!-- Article 2 -->
+                        <div class="carousel-item">
+                            <h3>[Article 2 Title]</h3>
+                            <p>[One-sentence summary of the core argument or takeaway from your article.]</p>
+                            <a href="https://medium.com/" target="_blank">Read Article &rarr;</a>
+                        </div>
+
+                        <!-- Article 3 -->
+                        <div class="carousel-item">
+                            <h3>[Article 3 Title]</h3>
+                            <p>[One-sentence summary of the core argument or takeaway from your article.]</p>
+                            <a href="https://medium.com/" target="_blank">Read Article &rarr;</a>
+                        </div>
+
+                        <!-- Article 4 -->
+                        <div class="carousel-item">
+                            <h3>[Article 4 Title]</h3>
+                            <p>[One-sentence summary of the core argument or takeaway from your article.]</p>
+                            <a href="https://medium.com/" target="_blank">Read Article &rarr;</a>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -303,7 +393,7 @@
             <section id="contact" class="fade-in" style="padding-bottom: 10rem;">
                 <h2>Let's Talk</h2>
                 <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Currently open for roles in Dublin or remote.</p>
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">[Short closing statement: e.g., If you are looking for someone who understands both the data and the strategy, let's connect.]</p>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">If you are looking for someone who understands both the technical groundwork and the high-level strategy, let's connect.</p>
                 
                 <a href="mailto:pranavbharadwajm@gmail.com" class="btn-resume" style="margin-right: 1rem;">Email Me</a>
                 <a href="https://linkedin.com/in/pranavbharadwajm" class="btn-resume" target="_blank">LinkedIn</a>
@@ -313,7 +403,7 @@
     </div>
 
     <script>
-        // Smooth fade-in animations for scrolling
+        // 1. Smooth fade-in animations for scrolling
         document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -327,6 +417,36 @@
                 observer.observe(element);
             });
         });
+
+        // 2. Carousel Rotation Logic
+        function setupCarousel(trackId) {
+            const track = document.getElementById(trackId);
+            if (!track) return;
+            
+            setInterval(() => {
+                const items = track.children;
+                if (items.length <= 1) return; // Don't rotate if there's only 1 item
+                
+                // Get the exact width of one item so we know how far to slide
+                const itemWidth = items[0].getBoundingClientRect().width;
+                
+                // Slide the track to the left
+                track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+                track.style.transform = `translateX(-${itemWidth}px)`;
+
+                // Wait for the slide animation to finish (600ms), then move the first item to the back
+                setTimeout(() => {
+                    track.style.transition = 'none'; // Turn off animation instantly
+                    track.appendChild(track.firstElementChild); // Move first item to end
+                    track.style.transform = 'translateX(0)'; // Snap track back to center invisibly
+                }, 600);
+                
+            }, 4000); // Rotates every 4 seconds
+        }
+
+        // Activate carousels
+        setupCarousel('work-track');
+        setupCarousel('writing-track');
     </script>
 </body>
 </html>
