@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Consulting & Strategy</title>
+    <title>[Your Name] | Strategy & Consulting</title>
     <style>
-        /* Typography & Minimalist Theme */
+        /* Typography & Core Theme */
         :root {
             --pure-white: #ffffff;
             --pure-black: #000000;
+            --gray-text: #555555;
         }
 
         * {
@@ -16,218 +17,189 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
+            background-color: var(--pure-white);
+            color: var(--pure-black);
             line-height: 1.6;
-            overflow-x: hidden;
-            background-color: var(--pure-white);
         }
 
-        /* Section Color Alternation */
-        .section-white {
-            background-color: var(--pure-white);
-            color: var(--pure-black);
+        /* The Anchor Layout */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            min-height: 100vh;
         }
 
-        .section-black {
-            background-color: var(--pure-black);
-            color: var(--pure-white);
-        }
-
-        .section-black h2 { border-bottom-color: var(--pure-white); }
-        .section-black a { color: var(--pure-white); }
-        .section-black .card { border-color: var(--pure-white); }
-        
-        .section-black a.button {
-            background-color: var(--pure-white);
-            color: var(--pure-black);
-        }
-        .section-black a.button:hover { background-color: #cccccc; }
-
-        /* Layout & Spacing */
-        header {
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Left Side: Fixed Identity */
+        .left-anchor {
             position: sticky;
             top: 0;
-            z-index: 100;
-            background-color: var(--pure-white);
-            border-bottom: 2px solid var(--pure-black);
-        }
-
-        nav a {
-            color: var(--pure-black);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        section {
-            padding: 8rem 5%;
+            height: 100vh;
+            padding: 4rem;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            justify-content: center;
+            border-right: 2px solid var(--pure-black);
+            background-color: var(--pure-white);
         }
 
-        .container {
+        .profile-img {
             width: 100%;
-            max-width: 1200px;
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 2rem;
+            display: block;
         }
 
-        h1 { font-size: 4.5rem; font-weight: 800; line-height: 1; margin-bottom: 1.5rem; letter-spacing: -2px; text-transform: uppercase; }
-        h2 { font-size: 3rem; font-weight: 800; margin-bottom: 3rem; text-transform: uppercase; border-bottom: 4px solid var(--pure-black); padding-bottom: 0.5rem; display: inline-block; letter-spacing: -1px; }
-        h3 { font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem; }
-        p { font-size: 1.2rem; margin-bottom: 1.5rem; max-width: 800px; }
-        
-        a.button {
+        .name-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+        }
+
+        .location {
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--gray-text);
+            margin-bottom: 2rem;
+        }
+
+        /* BLUF Summary (Bottom Line Up Front) */
+        .bluf-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .bluf-list li {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .bluf-list li::before {
+            content: '→';
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .btn-resume {
             display: inline-block;
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
             background-color: var(--pure-black);
             color: var(--pure-white);
             text-decoration: none;
             font-weight: bold;
             text-transform: uppercase;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            width: fit-content;
             border: 2px solid transparent;
         }
 
-        a.button:hover {
-            transform: translateY(-3px);
+        .btn-resume:hover {
+            background-color: var(--pure-white);
+            color: var(--pure-black);
+            border: 2px solid var(--pure-black);
         }
 
-        /* Intro Layout & Image Blending */
-        .intro-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            width: 100%;
-        }
-
-        .intro-text { flex: 1; }
-
-        /* Profile Image Styling */
-        .profile-img {
-            width: 450px;
-            height: auto;
-            flex-shrink: 0;
-            border: none;
-            border-radius: 0;
-            /* We removed the harsh filters and are just using the blend mode */
-            mix-blend-mode: darken; 
-        }
-        
-
-        /* Continuous Scrolling Marquee */
-        .marquee-wrapper {
-            width: 100%;
-            background-color: var(--pure-black);
-            color: var(--pure-white);
-            padding: 1.5rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-            border-top: 2px solid var(--pure-white);
-            border-bottom: 2px solid var(--pure-white);
-        }
-
-        .marquee-content {
-            display: inline-block;
-            font-size: 2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            animation: scroll 20s linear infinite;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Innovative Interactive Showcase */
-        .work-list {
-            width: 100%;
+        /* Right Side: Scrolling Content */
+        .right-scroll {
+            padding: 4rem;
             display: flex;
             flex-direction: column;
+            gap: 6rem;
         }
 
-        .work-item {
-            border-bottom: 2px solid var(--pure-black);
-            padding: 2.5rem 0;
+        /* Massive Menu */
+        .menu-links {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: padding 0.4s ease, background-color 0.4s ease;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 4rem;
         }
 
-        .section-black .work-item {
-            border-bottom-color: var(--pure-white);
-        }
-
-        .work-item:first-child { border-top: 2px solid var(--pure-black); }
-        .section-black .work-item:first-child { border-top-color: var(--pure-white); }
-
-        .work-item:hover {
-            padding: 4rem 2rem;
-            background-color: #f5f5f5;
-        }
-
-        .section-black .work-item:hover { background-color: #111111; }
-
-        .work-title {
-            font-size: 3.5rem;
+        .menu-links a {
+            font-size: 4rem;
             font-weight: 800;
-            margin: 0;
+            color: var(--pure-black);
+            text-decoration: none;
             text-transform: uppercase;
-            transition: transform 0.4s ease;
-            line-height: 1;
             letter-spacing: -1px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            line-height: 1;
         }
 
-        .work-item:hover .work-title { transform: translateX(20px); }
-
-        .work-desc {
-            max-width: 400px;
-            opacity: 0;
-            text-align: right;
-            transform: translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            font-size: 1.1rem;
+        .menu-links a:hover {
+            color: #aaaaaa;
+            transform: translateX(20px);
         }
 
-        .work-item:hover .work-desc {
-            opacity: 1;
-            transform: translateY(0);
+        /* Content Sections */
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--pure-black);
+            display: inline-block;
+            padding-bottom: 0.5rem;
         }
 
-        /* Grids for other sections */
+        .case-study {
+            margin-bottom: 3rem;
+        }
+
+        .case-study h3 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-study h4 {
+            font-size: 1rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .case-study p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            max-width: 600px;
+        }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            width: 100%;
         }
 
         .card {
             border: 2px solid var(--pure-black);
-            padding: 3rem 2rem;
-            transition: transform 0.3s ease;
+            padding: 2rem;
         }
 
-        .card:hover { transform: translateY(-5px); }
-        .card a { font-weight: bold; text-decoration: underline; text-transform: uppercase; font-size: 0.9rem;}
+        .card a {
+            color: var(--pure-black);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-        /* Fade-in Animation */
+        /* Fade Animation for Scrolling */
         .fade-in {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
         .fade-in.visible {
@@ -235,147 +207,121 @@
             transform: translateY(0);
         }
 
-        /* Responsive adjustments */
+        /* Mobile Adjustments */
         @media (max-width: 900px) {
-            h1 { font-size: 3rem; }
-            .work-title { font-size: 2rem; }
-            .work-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            .work-desc { text-align: left; max-width: 100%; opacity: 1; transform: none; display: none;}
-            .work-item:hover .work-desc { display: block; }
-            .work-item:hover .work-title { transform: none; }
-            .intro-container { flex-direction: column-reverse; text-align: center; }
-            nav { display: none; }
-            .profile-img { width: 100%; max-width: 350px; }
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .left-anchor {
+                position: relative;
+                height: auto;
+                border-right: none;
+                border-bottom: 2px solid var(--pure-black);
+                padding: 3rem 2rem;
+                align-items: center;
+                text-align: center;
+            }
+
+            .bluf-list li {
+                text-align: left;
+            }
+
+            .right-scroll {
+                padding: 3rem 2rem;
+            }
+
+            .menu-links a {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div style="font-weight: 800; font-size: 1.5rem; text-transform: uppercase; letter-spacing: -1px;">Portfolio.</div>
-        <nav>
-            <a href="#about">Background</a>
-            <a href="#case-studies">Work</a>
-            <a href="#writing">Writing</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-
-    <!-- Section 1: White Background -->
-    <section id="intro" class="section-white">
-        <div class="container intro-container fade-in">
-            <div class="intro-text">
-                <h1>Strategy.<br>Consulting.<br>Growth.</h1>
-                <p>Based in Dublin, Ireland. I bridge the gap between technical systems and high-level commercial strategy to drive tangible business outcomes.</p>
-                <a href="#contact" class="button">Let's Connect</a>
-            </div>
+    <div class="layout-grid">
+        
+        <!-- THE LEFT ANCHOR (Never Moves) -->
+        <div class="left-anchor">
             <img src="profilenobg.png" alt="Profile Sketch" class="profile-img">
-        </div>
-    </section>
+            <h1 class="name-title">[FIRST]<br>[LAST].</h1>
+            <div class="location">Dublin, Ireland</div>
+            
+            <ul class="bluf-list">
+                <li>[Value Proposition 1: e.g., Bridging technical execution with high-level strategy.]</li>
+                <li>[Value Proposition 2: e.g., Leveraging analytical frameworks to optimize business processes.]</li>
+                <li>[Value Proposition 3: e.g., Targeting impactful roles in strategy and consulting.]</li>
+            </ul>
 
-    <!-- Animated Marquee Divider -->
-    <div class="marquee-wrapper">
-        <div class="marquee-content">
-            STRATEGY • CONSULTING • BUSINESS GROWTH • MANAGEMENT • STRATEGY • CONSULTING • BUSINESS GROWTH • MANAGEMENT • 
+            <a href="resume.pdf" class="btn-resume" target="_blank">Download Exec Summary &darr;</a>
+        </div>
+
+        <!-- THE RIGHT SCROLL (The Content) -->
+        <div class="right-scroll">
+            
+            <!-- Massive Menu -->
+            <nav class="menu-links fade-in">
+                <a href="#work">Case Studies.</a>
+                <a href="#writing">Writing.</a>
+                <a href="#contact">Contact.</a>
+            </nav>
+
+            <!-- Work Section -->
+            <section id="work" class="fade-in">
+                <h2>Selected Work</h2>
+                
+                <div class="case-study">
+                    <h3>[Project Name 1]</h3>
+                    <h4>[Core Skill 1] • [Core Skill 2]</h4>
+                    <p><strong>Situation:</strong> [Describe the core problem or challenge the business was facing in one sentence.]</p>
+                    <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
+                    <p><strong>Result:</strong> [State the tangible outcome, using numbers or key deliverables where possible.]</p>
+                </div>
+
+                <div class="case-study">
+                    <h3>[Project Name 2]</h3>
+                    <h4>[Core Skill 1] • [Core Skill 2]</h4>
+                    <p><strong>Situation:</strong> [Describe the core problem or challenge the business was facing in one sentence.]</p>
+                    <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
+                    <p><strong>Result:</strong> [State the tangible outcome, using numbers or key deliverables where possible.]</p>
+                </div>
+            </section>
+
+            <!-- Writing Section -->
+            <section id="writing" class="fade-in">
+                <h2>Writing & Insights</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3 style="margin-bottom: 1rem;">[Article Title Here]</h3>
+                        <p>[One-sentence summary of the core argument or takeaway from your article.]</p>
+                        <a href="https://medium.com/" target="_blank">Read Article &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="fade-in" style="padding-bottom: 10rem;">
+                <h2>Let's Talk</h2>
+                <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Currently open for roles in Dublin or remote.</p>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">[Short closing statement: e.g., If you are looking for someone who understands both the data and the strategy, let's connect.]</p>
+                
+                <a href="mailto:pranavbharadwajm@gmail.com" class="btn-resume" style="margin-right: 1rem;">Email Me</a>
+                <a href="https://linkedin.com/in/pranavbharadwajm" class="btn-resume" target="_blank">LinkedIn</a>
+            </section>
+
         </div>
     </div>
 
-    <!-- Section 2: Black Background -->
-    <section id="about" class="section-black">
-        <div class="container fade-in">
-            <h2>My Background</h2>
-            <p>I combine a rigorous, analytical foundation built over two years as a test automation engineer with a strategic mindset geared toward business and management. This unique hybrid of systems-thinking and commercial awareness allows me to break down complex problems and design scalable solutions.</p>
-        </div>
-    </section>
-
-    <!-- Section 3: White Background -->
-    <section id="case-studies" class="section-white">
-        <div class="container fade-in">
-            <h2>Case Studies</h2>
-            <div class="work-list">
-                <div class="work-item">
-                    <h3 class="work-title">EdTech Dashboard</h3>
-                    <div class="work-desc">
-                        <p>Designed and scoped a comprehensive student dashboard feature for Accredian to improve retention and user engagement, driving cross-functional product alignment.</p>
-                    </div>
-                </div>
-                <div class="work-item">
-                    <h3 class="work-title">Financial Strategy</h3>
-                    <div class="work-desc">
-                        <p>Conducted an in-depth teardown of corporate financials to identify cost-saving opportunities and revenue drivers, translating raw data into actionable strategic advice.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4: Black Background -->
-    <section id="writing" class="section-black">
-        <div class="container fade-in">
-            <h2>My Writing</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>The Intersection of Tech & Strategy</h3>
-                    <p>An exploration of how automation principles can streamline high-level management consulting workflows.</p>
-                    <br>
-                    <a href="https://medium.com/" target="_blank">Read Article &rarr;</a>
-                </div>
-                <div class="card">
-                    <h3>Evaluating Financial Health</h3>
-                    <p>A breakdown of the metrics that actually matter when assessing a company's strategic position.</p>
-                    <br>
-                    <a href="https://medium.com/" target="_blank">Read Article &rarr;</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 5: White Background -->
-    <section id="services" class="section-white">
-        <div class="container fade-in">
-            <h2>Services</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Strategic Consulting</h3>
-                    <p>Market research, competitor analysis, and go-to-market strategies for emerging businesses.</p>
-                </div>
-                <div class="card">
-                    <h3>Process Optimization</h3>
-                    <p>Identifying operational bottlenecks and designing efficient, scalable workflows.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 6: Black Background -->
-    <section id="contact" class="section-black">
-        <div class="container fade-in" style="text-align: center;">
-            <h2>Contact</h2>
-            <p style="margin: 0 auto 2rem auto;">Currently open for roles in consulting, strategy, and business in Dublin or remote. Let's discuss how I can bring value to your team.</p>
-            <a href="mailto:pranavbharadwajm@gmail.com" class="button" style="font-size: 1.5rem;">Email Me Directly</a>
-            <br><br>
-            <a href="https://linkedin.com/in/pranavbharadwajm" style="color: var(--pure-white); text-decoration: underline;">Connect on LinkedIn</a>
-        </div>
-    </section>
-
     <script>
-        // Scroll Animations Setup
+        // Smooth fade-in animations for scrolling
         document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.1 });
 
             document.querySelectorAll('.fade-in').forEach(element => {
                 observer.observe(element);
