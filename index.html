@@ -87,15 +87,14 @@
         }
 
         /* Profile Image Styling */
+        /* Profile Image Styling */
         .profile-img {
-            width: 250px;
-            height: 250px;
-            object-fit: cover; /* This stops the image from stretching */
-            border-radius: 50%; /* Makes it a perfect circle */
-            border: 4px solid var(--text-color);
+            width: 450px; /* Bumps up the size significantly */
+            height: auto;
             flex-shrink: 0;
-            filter: grayscale(100%); /* Makes the image black and white to match the theme */
-            transition: filter 0.3s ease;
+            border: none; /* Removes the border entirely */
+            border-radius: 0; /* Removes the circle shape */
+            mix-blend-mode: multiply; /* This magically blends the image background with the page */
         }
 
         /* Optional: Image turns to color when you hover over it */
@@ -143,9 +142,13 @@
             h1 { font-size: 2.5rem; }
             nav { display: none; }
             .intro-container {
-                flex-direction: column;
+                flex-direction: column-reverse; /* Puts your image on top for mobile */
                 text-align: center;
                 gap: 2rem;
+            }
+            .profile-img {
+                width: 100%; /* Prevents the image from overflowing the screen on small phones */
+                max-width: 350px;
             }
         }
     </style>
@@ -165,12 +168,12 @@
 
     <section id="intro" class="fade-in">
         <div class="intro-container">
-            <img src="profile.png" alt="Profile Picture" class="profile-img">
             <div class="intro-text">
                 <h1>STRATEGY. CONSULTING.<br>BUSINESS GROWTH.</h1>
                 <p>Based in Dublin, Ireland. I bridge the gap between technical execution and high-level business strategy to drive meaningful outcomes.</p>
                 <a href="#contact" class="button">Let's Connect</a>
             </div>
+            <img src="profile.png" alt="Profile Sketch" class="profile-img">
         </div>
     </section>
 
