@@ -19,7 +19,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         /* Typography & Core Theme */
@@ -35,7 +35,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Lora', Georgia, serif;
             scroll-behavior: smooth;
         }
 
@@ -81,7 +81,7 @@
         }
 
         .name-title {
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: 'Lora', Georgia, serif;
             font-size: 2.2rem;
             font-weight: 800;
             line-height: 1;
@@ -235,12 +235,12 @@
 
         .carousel-item {
             min-width: 100%; 
-            max-width: 100%; /* This is the critical fix. It stops the box from expanding off-screen */
+            max-width: 100%; /* Stops the box from expanding off-screen */
             box-sizing: border-box;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            padding-right: 1rem; /* Adds a safety buffer on the right side */
+            padding-right: 1rem; /* Safety buffer */
         }
 
         .carousel-item h3 {
@@ -319,6 +319,79 @@
             text-decoration: underline;
         }
 
+        /* Editorial Writing Rows */
+        .writing-container {
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            border-top: 1px solid var(--gray-text);
+            max-height: 380px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gray-text) transparent;
+            padding-right: 1rem;
+        }
+
+        .writing-container::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .writing-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .writing-container::-webkit-scrollbar-thumb {
+            background-color: var(--gray-text);
+            border-radius: 10px;
+        }
+
+        .writing-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.8rem 0;
+            border-bottom: 1px solid var(--gray-text);
+            text-decoration: none;
+            color: var(--pure-white);
+            transition: all 0.3s ease;
+        }
+
+        .writing-row:hover {
+            border-bottom-color: var(--pure-white);
+        }
+
+        .writing-row:hover .writing-title {
+            color: #cccccc;
+        }
+
+        .writing-row:hover .writing-arrow {
+            transform: translateX(8px);
+            color: var(--pure-white);
+        }
+
+        .writing-meta {
+            max-width: 85%;
+        }
+
+        .writing-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--pure-white);
+            transition: color 0.3s ease;
+            text-transform: none; /* Keep natural case for titles */
+        }
+
+        .writing-desc {
+            font-size: 1.05rem;
+            color: var(--light-gray);
+        }
+
+        .writing-arrow {
+            font-size: 1.6rem;
+            color: var(--gray-text);
+            transition: all 0.3s ease;
+        }
+
         /* Mobile Adjustments */
         @media (max-width: 900px) {
             .layout-grid { grid-template-columns: 1fr; }
@@ -332,6 +405,7 @@
             .hero-menu { min-height: 50vh; padding: 4rem 2rem; }
             .menu-links a { font-size: 2.5rem; }
             .content-section { padding: 4rem 2rem; }
+            .dna-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
         }
     </style>
 </head>
@@ -347,8 +421,8 @@
             
             <ul class="bluf-list">
                 <li>MSc Management Candidate | UCD Michael Smurfit Graduate Business School</li>
-                <li>Former Software Engineer with experience solving complex operational problems</li>
-                <li>Interested in Strategy, Consulting and Business Analysis</li>
+                <li>Former Software Engineer combining technical execution with business strategy</li>
+                <li>Leveraging analytical systems thinking to drive data-backed operational and commercial decisions</li>
             </ul>
 
             <a href="resume.pdf" class="btn-resume" target="_blank">Download Exec Summary &darr;</a>
@@ -374,6 +448,27 @@
                     <p class="about-text">I combine technical problem-solving with commercial strategy.</p>
                     <p class="about-text">My background in software engineering taught me how to analyse complex systems, identify bottlenecks, and make decisions using data. Today, through my MSc in Management at UCD Smurfit, I apply those same analytical skills to business strategy, market analysis, and organisational decision-making.</p>
                     <p class="about-text">Outside work, I enjoy football, cinema, and writing about business, strategy, and culture.</p>
+                    
+                    <div class="dna-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4rem; border-top: 1px solid var(--gray-text); padding-top: 3rem;">
+                        <div>
+                            <h3 style="font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1rem; color: var(--pure-white); letter-spacing: 1px;">Structured Methodologies</h3>
+                            <ul style="list-style: none; font-size: 1.1rem; color: var(--light-gray);">
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> MECE Problem Structuring (Issue Trees)</li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Hypothesis-Led Analysis</li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> SCQA Situational Mapping</li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Quantitative Financial & Margin Modeling</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1rem; color: var(--pure-white); letter-spacing: 1px;">Tech-Business Bridge</h3>
+                            <ul style="list-style: none; font-size: 1.1rem; color: var(--light-gray);">
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Systems Architecture & Bottleneck Diagnosis</li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Digital Transformation & Cloud Strategy</li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Data Analytics (SQL, Python, Excel modeling)</li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Technical Debt Financial Valuation</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -386,27 +481,27 @@
                         <div class="carousel-track" id="work-track">
                             
                             <div class="carousel-item">
-                                <h3>[Project 1: ]</h3>
-                                <h4>Domain</h4>
-                                <p><strong>Situation:</strong> [Describe the core problem or challenge in one sentence.]</p>
-                                <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
-                                <p><strong>Result:</strong> [State the tangible outcome or key deliverables.]</p>
+                                <h3>[Case Study 1: Strategic Project Title]</h3>
+                                <h4>Domain / Industry Sector</h4>
+                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or challenge.]</p>
+                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you applied to diagnose and solve it.]</p>
+                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or deliverables created.]</p>
                             </div>
 
                             <div class="carousel-item">
-                                <h3>[Project 2: ]</h3>
-                                <h4>Domain</h4>
-                                <p><strong>Situation:</strong> [Describe the core problem or challenge in one sentence.]</p>
-                                <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
-                                <p><strong>Result:</strong> [State the tangible outcome or key deliverables.]</p>
+                                <h3>[Case Study 2: Strategic Project Title]</h3>
+                                <h4>Domain / Industry Sector</h4>
+                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or challenge.]</p>
+                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you applied to diagnose and solve it.]</p>
+                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or deliverables created.]</p>
                             </div>
 
                             <div class="carousel-item">
-                                <h3>[Project 3: ]</h3>
-                                <h4>[Skill 1] • [Skill 2]</h4>
-                                <p><strong>Situation:</strong> [Describe the core problem or challenge in one sentence.]</p>
-                                <p><strong>Action:</strong> [Describe the specific steps you took to analyze the problem and design a solution.]</p>
-                                <p><strong>Result:</strong> [State the tangible outcome or key deliverables.]</p>
+                                <h3>[Case Study 3: Strategic Project Title]</h3>
+                                <h4>Domain / Industry Sector</h4>
+                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or challenge.]</p>
+                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you applied to diagnose and solve it.]</p>
+                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or deliverables created.]</p>
                             </div>
 
                         </div>
@@ -421,52 +516,64 @@
                 <div class="fade-in">
                     <h2>Writing</h2>
                     
-                    <div class="carousel-viewport">
-                        <div class="carousel-track" id="writing-track">
-                            
-                            <div class="carousel-item">
-                                <h3>The real issue with modern movies isn’t technology. It’s —</h3>
-                                <p>A retrospective on why older films felt real, but modern cinema doesn’t.</p>
-                                <a href="https://medium.com/@pranavbharadwajm/the-real-issue-with-modern-movies-isnt-technology-it-s-2404f984f386" target="_blank" class="read-link">Read Article &rarr;</a>
+                    <div class="writing-container">
+                        
+                        <a href="https://medium.com/@pranavbharadwajm/the-real-issue-with-modern-movies-isnt-technology-it-s-2404f984f386" target="_blank" class="writing-row">
+                            <div class="writing-meta">
+                                <h3 class="writing-title">The real issue with modern movies isn’t technology. It’s —</h3>
+                                <p class="writing-desc">A retrospective on why older films felt real, but modern cinema doesn’t.</p>
                             </div>
+                            <span class="writing-arrow">&rarr;</span>
+                        </a>
 
-                            <div class="carousel-item">
-                                <h3>Who Is This Red Light Really Waiting For? 🚦</h3>
-                                <p>The unseen logic behind a moment of frustration</p>
-                                <a href="https://medium.com/@pranavbharadwajm/who-is-this-red-light-really-waiting-for-52f374e266c5" target="_blank" class="read-link">Read Article &rarr;</a>
+                        <a href="https://medium.com/@pranavbharadwajm/who-is-this-red-light-really-waiting-for-52f374e266c5" target="_blank" class="writing-row">
+                            <div class="writing-meta">
+                                <h3 class="writing-title">Who Is This Red Light Really Waiting For? 🚦</h3>
+                                <p class="writing-desc">The unseen logic behind a moment of frustration.</p>
                             </div>
+                            <span class="writing-arrow">&rarr;</span>
+                        </a>
 
-                            <div class="carousel-item">
-                                <h3>Why Profit Doesn’t Guarantee Job Security (What I’m Starting To Understand)</h3>
-                                <p>If a company is making money, why does it still lay people off?</p>
-                                <a href="https://medium.com/@pranavbharadwajm/why-profit-doesnt-guarantee-job-security-what-i-m-starting-to-understand-bb5d0bff4317" target="_blank" class="read-link">Read Article &rarr;</a>
+                        <a href="https://medium.com/@pranavbharadwajm/why-profit-doesnt-guarantee-job-security-what-i-m-starting-to-understand-bb5d0bff4317" target="_blank" class="writing-row">
+                            <div class="writing-meta">
+                                <h3 class="writing-title">Why Profit Doesn’t Guarantee Job Security (What I’m Starting To Understand)</h3>
+                                <p class="writing-desc">If a company is making money, why does it still lay people off?</p>
                             </div>
+                            <span class="writing-arrow">&rarr;</span>
+                        </a>
 
-                            <div class="carousel-item">
-                                <h3>Watching The Sky Fall — The Geminids Meteor Shower</h3>
-                                <p>The cosmic experience of the Geminids meteor shower 2025</p>
-                                <a href="https://medium.com/@pranavbharadwajm/watching-the-sky-fall-the-geminids-meteor-shower-574b16ebb06a" target="_blank" class="read-link">Read Article &rarr;</a>
+                        <a href="https://medium.com/@pranavbharadwajm/watching-the-sky-fall-the-geminids-meteor-shower-574b16ebb06a" target="_blank" class="writing-row">
+                            <div class="writing-meta">
+                                <h3 class="writing-title">Watching The Sky Fall — The Geminids Meteor Shower</h3>
+                                <p class="writing-desc">The cosmic experience of the Geminids meteor shower 2025.</p>
                             </div>
+                            <span class="writing-arrow">&rarr;</span>
+                        </a>
 
-                            <div class="carousel-item">
-                                <h3>Somewhere Along The Way, Subtitles Stopped Being Optional.</h3>
-                                <p>I watch films with subtitles on. Always. Why?</p>
-                                <a href="https://medium.com/@pranavbharadwajm/somewhere-along-the-way-subtitles-stopped-being-optional-7017e74ff66b" target="_blank" class="read-link">Read Article &rarr;</a>
+                        <a href="https://medium.com/@pranavbharadwajm/somewhere-along-the-way-subtitles-stopped-being-optional-7017e74ff66b" target="_blank" class="writing-row">
+                            <div class="writing-meta">
+                                <h3 class="writing-title">Somewhere Along The Way, Subtitles Stopped Being Optional.</h3>
+                                <p class="writing-desc">I watch films with subtitles on. Always. Why?</p>
                             </div>
+                            <span class="writing-arrow">&rarr;</span>
+                        </a>
 
-                            <div class="carousel-item">
-                                <h3>Strategy And Planning Aren’t The Same Thing?</h3>
-                                <p>Planning deals with things we mostly control. Strategy doesn’t.</p>
-                                <a href="https://medium.com/@pranavbharadwajm/strategy-and-planning-arent-the-same-thing-e83b29fcb765" target="_blank" class="read-link">Read Article &rarr;</a>
+                        <a href="https://medium.com/@pranavbharadwajm/strategy-and-planning-arent-the-same-thing-e83b29fcb765" target="_blank" class="writing-row">
+                            <div class="writing-meta">
+                                <h3 class="writing-title">Strategy And Planning Aren’t The Same Thing?</h3>
+                                <p class="writing-desc">Planning deals with things we mostly control. Strategy doesn’t.</p>
                             </div>
+                            <span class="writing-arrow">&rarr;</span>
+                        </a>
 
-                            <div class="carousel-item">
-                                <h3>Numbers to Narrative: Making Sense of Financial Statements</h3>
-                                <p>Do numbers really talk? If so, how?.</p>
-                                <a href="https://medium.com/@pranavbharadwajm/numbers-to-narrative-making-sense-of-financial-statements-65775c8d9c97" target="_blank" class="read-link">Read Article &rarr;</a>
+                        <a href="https://medium.com/@pranavbharadwajm/numbers-to-narrative-making-sense-of-financial-statements-65775c8d9c97" target="_blank" class="writing-row">
+                            <div class="writing-meta">
+                                <h3 class="writing-title">Numbers to Narrative: Making Sense of Financial Statements</h3>
+                                <p class="writing-desc">Do numbers really talk? If so, how?</p>
                             </div>
+                            <span class="writing-arrow">&rarr;</span>
+                        </a>
 
-                        </div>
                     </div>
 
                     <a href="https://medium.com/@pranavbharadwajm" target="_blank" class="btn-resume" style="width: auto;">Read All on Medium &rarr;</a>
@@ -480,8 +587,11 @@
                     <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Currently open for roles in Dublin or remote.</p>
                     <p style="font-size: 1.2rem; margin-bottom: 2rem;">If you are looking for someone who understands both the technical groundwork and the high-level strategy, let's connect.</p>
                     
-                    <a href="mailto:pranavbharadwajm@gmail.com" class="btn-resume" style="width: auto; margin-right: 1rem;">Email Me Directly</a>
-                    <a href="https://linkedin.com/in/pranavbharadwajm" target="_blank" class="btn-resume" style="width: auto; margin-top: 1rem;">Connect on LinkedIn</a>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+                        <a href="mailto:pranavbharadwajm@gmail.com" class="btn-resume" style="width: auto; margin: 0;">Email Me Directly</a>
+                        <a href="https://linkedin.com/in/pranavbharadwajm" target="_blank" class="btn-resume" style="width: auto; margin: 0;">Connect on LinkedIn</a>
+                        <a href="https://github.com/pranavbharadwajm" target="_blank" class="btn-resume" style="width: auto; margin: 0;">View My GitHub</a>
+                    </div>
                 </div>
             </section>
 
@@ -535,7 +645,6 @@
         }
 
         setupCarousel('work-track');
-        setupCarousel('writing-track');
     </script>
 </body>
 </html>
