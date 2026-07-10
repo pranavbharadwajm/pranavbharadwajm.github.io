@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-    content="Pranav Bharadwaj M - Strategy, Consulting and Business Analysis. MSc Management candidate at UCD Smurfit." />
-    
-    <meta property="og:title"
-    content="Pranav Bharadwaj M" />
-    
-    <meta property="og:type"
-    content="website" />
-    
-    <meta property="og:image"
-    content="preview.jpg" />
+        content="Pranav Bharadwaj M - Strategy, Consulting and Business Analysis. MSc Management candidate at UCD Smurfit." />
+
+    <meta property="og:title" content="Pranav Bharadwaj M" />
+
+    <meta property="og:type" content="website" />
+
+    <meta property="og:image" content="preview.jpg" />
     <title>Pranav Bharadwaj M | Strategy & Consulting</title>
     <link rel="icon" type="image/png" href="favicon-p.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
     <style>
         /* Typography & Core Theme */
         :root {
-            --bg-grey: #ebebeb; /* Premium, soft concrete grey */
+            --bg-grey: #ebebeb;
+            /* Premium, soft concrete grey */
             --pure-black: #000000;
-            --pure-white: #ffffff; /* Kept strictly for text inside black sections to maintain contrast */
+            --pure-white: #ffffff;
+            /* Kept strictly for text inside black sections to maintain contrast */
             --gray-text: #555555;
             --light-gray: #cccccc;
         }
@@ -60,23 +61,25 @@
             top: 0;
             height: 100vh;
             overflow-y: auto;
-            padding: 3rem; 
+            padding: 3rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
             border-right: 2px solid var(--pure-black);
             background-color: var(--bg-grey);
-            scrollbar-width: none; 
+            scrollbar-width: none;
             -ms-overflow-style: none;
         }
 
-        .left-anchor::-webkit-scrollbar { display: none; }
+        .left-anchor::-webkit-scrollbar {
+            display: none;
+        }
 
         .profile-img {
             width: 100%;
             max-width: 250px;
             height: auto;
-            margin: 0 auto 2rem auto; 
+            margin: 0 auto 2rem auto;
             display: block;
         }
 
@@ -88,7 +91,7 @@
             text-transform: uppercase;
             letter-spacing: -2px;
             margin-bottom: 0.5rem;
-            text-align: center; 
+            text-align: center;
         }
 
         .location {
@@ -97,7 +100,7 @@
             text-transform: uppercase;
             color: var(--gray-text);
             margin-bottom: 3rem;
-            text-align: center; 
+            text-align: center;
         }
 
         .bluf-list {
@@ -110,7 +113,7 @@
             margin-bottom: 1rem;
             display: flex;
             align-items: flex-start;
-            text-align: left; 
+            text-align: left;
         }
 
         .bluf-list li::before {
@@ -210,9 +213,17 @@
             padding-bottom: 0.5rem;
         }
 
-        .section-black h2 { border-bottom-color: var(--pure-white); }
-        .section-black a:not(.btn-resume) { color: var(--pure-white); }
-        .section-black h4 { color: var(--light-gray); }
+        .section-black h2 {
+            border-bottom-color: var(--pure-white);
+        }
+
+        .section-black a:not(.btn-resume) {
+            color: var(--pure-white);
+        }
+
+        .section-black h4 {
+            color: var(--light-gray);
+        }
 
         .about-text {
             font-size: 1.3rem;
@@ -234,22 +245,26 @@
         }
 
         .carousel-item {
-            min-width: 100%; 
-            max-width: 100%; /* Stops the box from expanding off-screen */
+            min-width: 100%;
+            max-width: 100%;
+            /* Stops the box from expanding off-screen */
             box-sizing: border-box;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            padding-right: 1rem; /* Safety buffer */
+            padding-right: 1rem;
+            /* Safety buffer */
         }
 
         .carousel-item h3 {
-            font-size: 1.6rem; /* Dropped slightly to ensure clean line breaks */
+            font-size: 1.6rem;
+            /* Dropped slightly to ensure clean line breaks */
             font-weight: bold;
             text-transform: uppercase;
             margin-bottom: 0.8rem;
             line-height: 1.4;
-            white-space: normal !important; /* Forces the browser to prioritize wrapping */
+            white-space: normal !important;
+            /* Forces the browser to prioritize wrapping */
             overflow-wrap: break-word;
             word-wrap: break-word;
             display: block;
@@ -267,7 +282,7 @@
             margin-bottom: 1rem;
             max-width: 800px;
         }
-        
+
         .carousel-item a.read-link {
             font-weight: bold;
             text-transform: uppercase;
@@ -299,22 +314,23 @@
             opacity: 1;
             transform: translateY(0);
         }
+
         .site-footer {
             background: var(--pure-black);
             color: var(--pure-white);
             text-align: center;
             padding: 3rem 2rem;
         }
-        
+
         .site-footer p {
             margin-bottom: 0.75rem;
         }
-        
+
         .site-footer a {
             color: var(--pure-white);
             text-decoration: none;
         }
-        
+
         .site-footer a:hover {
             text-decoration: underline;
         }
@@ -378,7 +394,8 @@
             margin-bottom: 0.5rem;
             color: var(--pure-white);
             transition: color 0.3s ease;
-            text-transform: none; /* Keep natural case for titles */
+            text-transform: none;
+            /* Keep natural case for titles */
         }
 
         .writing-desc {
@@ -394,7 +411,10 @@
 
         /* Mobile Adjustments */
         @media (max-width: 900px) {
-            .layout-grid { grid-template-columns: 1fr; }
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+
             .left-anchor {
                 position: relative;
                 height: auto;
@@ -402,27 +422,39 @@
                 border-bottom: 2px solid var(--pure-black);
                 padding: 3rem 2rem;
             }
-            .hero-menu { min-height: 50vh; padding: 4rem 2rem; }
-            .menu-links a { font-size: 2.5rem; }
-            .content-section { padding: 4rem 2rem; }
-            .dna-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+
+            .hero-menu {
+                min-height: 50vh;
+                padding: 4rem 2rem;
+            }
+
+            .menu-links a {
+                font-size: 2.5rem;
+            }
+
+            .content-section {
+                padding: 4rem 2rem;
+            }
+
         }
     </style>
 </head>
+
 <body>
 
     <div class="layout-grid">
-        
+
         <!-- THE LEFT ANCHOR -->
         <div class="left-anchor">
             <img src="profileebebeb.png" alt="Pranav Bharadwaj M - Strategy and Consulting Profile" class="profile-img">
             <h1 class="name-title">PRANAV BHARADWAJ M</h1>
             <div class="location">Dublin, Ireland</div>
-            
+
             <ul class="bluf-list">
                 <li>MSc Management Candidate | UCD Michael Smurfit Graduate Business School</li>
                 <li>Former Software Engineer combining technical execution with business strategy</li>
-                <li>Leveraging analytical systems thinking to drive data-backed operational and commercial decisions</li>
+                <li>Leveraging analytical systems thinking to drive data-backed operational and commercial decisions
+                </li>
             </ul>
 
             <a href="resume.pdf" class="btn-resume" target="_blank">Download Exec Summary &darr;</a>
@@ -430,7 +462,7 @@
 
         <!-- THE RIGHT SCROLL -->
         <div class="right-scroll">
-            
+
             <!-- Initial View: Just the Menu -->
             <div class="hero-menu">
                 <nav class="menu-links fade-in">
@@ -446,34 +478,20 @@
                 <div class="fade-in">
                     <h2>About Me</h2>
                     <p class="about-text">I combine technical problem-solving with commercial strategy.</p>
-                    <p class="about-text">My background in software engineering taught me how to analyse complex systems, identify bottlenecks, and make decisions using data. Today, through my MSc in Management at UCD Smurfit, I apply those same analytical skills to business strategy, market analysis, and organisational decision-making.</p>
-                    <p class="about-text">Outside work, I enjoy football, cinema, and writing about business, strategy, and culture.</p>
-                    
-                    <p class="about-text" style="margin-top: 2rem;">Outside of work, I write deep-dive film critiques. Read all about it from the link below</p>
+                    <p class="about-text">My background in software engineering taught me how to analyse complex
+                        systems, identify bottlenecks, and make decisions using data. Today, through my MSc in
+                        Management at UCD Smurfit, I apply those same analytical skills to business strategy, market
+                        analysis, and organisational decision-making.</p>
+                    <p class="about-text">Outside work, I enjoy football, cinema, and writing about business, strategy,
+                        and culture.</p>
+
+                    <p class="about-text" style="margin-top: 2rem;">My passion for film is best represented through my
+                        review website, AND.. CUT! Check out my deep-dive film critiques from the link below.</p>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; margin-bottom: 2rem;">
-                        <a href="https://andcut.pranavbharadwajm.com" target="_blank" class="btn-resume" style="width: auto; margin: 0;">AND.. CUT!</a>
+                        <a href="https://andcut.pranavbharadwajm.com" target="_blank" class="btn-resume"
+                            style="width: auto; margin: 0;">AND.. CUT!</a>
                     </div>
-                    
-                    <div class="dna-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4rem; border-top: 1px solid var(--gray-text); padding-top: 3rem;">
-                        <div>
-                            <h3 style="font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1rem; color: var(--pure-white); letter-spacing: 1px;">Structured Methodologies</h3>
-                            <ul style="list-style: none; font-size: 1.1rem; color: var(--light-gray);">
-                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> MECE Problem Structuring (Issue Trees)</li>
-                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Hypothesis-Led Analysis</li>
-                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> SCQA Situational Mapping</li>
-                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Quantitative Financial & Margin Modeling</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 style="font-size: 1.4rem; text-transform: uppercase; margin-bottom: 1rem; color: var(--pure-white); letter-spacing: 1px;">Tech-Business Bridge</h3>
-                            <ul style="list-style: none; font-size: 1.1rem; color: var(--light-gray);">
-                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Systems Architecture & Bottleneck Diagnosis</li>
-                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Digital Transformation & Cloud Strategy</li>
-                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Data Analytics (SQL, Python, Excel modeling)</li>
-                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center;"><span style="color: var(--pure-white); margin-right: 8px;">→</span> Technical Debt Financial Valuation</li>
-                            </ul>
-                        </div>
-                    </div>
+
                 </div>
             </section>
 
@@ -481,37 +499,46 @@
             <section id="work" class="content-section section-grey">
                 <div class="fade-in">
                     <h2>Selected Work</h2>
-                    
+
                     <div class="carousel-viewport">
                         <div class="carousel-track" id="work-track">
-                            
+
                             <div class="carousel-item">
                                 <h3>[Case Study 1: Strategic Project Title]</h3>
                                 <h4>Domain / Industry Sector</h4>
-                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or challenge.]</p>
-                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you applied to diagnose and solve it.]</p>
-                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or deliverables created.]</p>
+                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or
+                                    challenge.]</p>
+                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you
+                                    applied to diagnose and solve it.]</p>
+                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or
+                                    deliverables created.]</p>
                             </div>
 
                             <div class="carousel-item">
                                 <h3>[Case Study 2: Strategic Project Title]</h3>
                                 <h4>Domain / Industry Sector</h4>
-                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or challenge.]</p>
-                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you applied to diagnose and solve it.]</p>
-                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or deliverables created.]</p>
+                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or
+                                    challenge.]</p>
+                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you
+                                    applied to diagnose and solve it.]</p>
+                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or
+                                    deliverables created.]</p>
                             </div>
 
                             <div class="carousel-item">
                                 <h3>[Case Study 3: Strategic Project Title]</h3>
                                 <h4>Domain / Industry Sector</h4>
-                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or challenge.]</p>
-                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you applied to diagnose and solve it.]</p>
-                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or deliverables created.]</p>
+                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or
+                                    challenge.]</p>
+                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you
+                                    applied to diagnose and solve it.]</p>
+                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or
+                                    deliverables created.]</p>
                             </div>
 
                         </div>
                     </div>
-                    
+
                     <a href="all-cases.html" class="btn-resume" style="width: auto;">View Full Case Archive &rarr;</a>
                 </div>
             </section>
@@ -520,18 +547,22 @@
             <section id="writing" class="content-section section-black">
                 <div class="fade-in">
                     <h2>Writing</h2>
-                    
+
                     <div class="writing-container">
-                        
-                        <a href="https://medium.com/@pranavbharadwajm/the-real-issue-with-modern-movies-isnt-technology-it-s-2404f984f386" target="_blank" class="writing-row">
+
+                        <a href="https://medium.com/@pranavbharadwajm/the-real-issue-with-modern-movies-isnt-technology-it-s-2404f984f386"
+                            target="_blank" class="writing-row">
                             <div class="writing-meta">
-                                <h3 class="writing-title">The real issue with modern movies isn’t technology. It’s —</h3>
-                                <p class="writing-desc">A retrospective on why older films felt real, but modern cinema doesn’t.</p>
+                                <h3 class="writing-title">The real issue with modern movies isn’t technology. It’s —
+                                </h3>
+                                <p class="writing-desc">A retrospective on why older films felt real, but modern cinema
+                                    doesn’t.</p>
                             </div>
                             <span class="writing-arrow">&rarr;</span>
                         </a>
 
-                        <a href="https://medium.com/@pranavbharadwajm/who-is-this-red-light-really-waiting-for-52f374e266c5" target="_blank" class="writing-row">
+                        <a href="https://medium.com/@pranavbharadwajm/who-is-this-red-light-really-waiting-for-52f374e266c5"
+                            target="_blank" class="writing-row">
                             <div class="writing-meta">
                                 <h3 class="writing-title">Who Is This Red Light Really Waiting For? 🚦</h3>
                                 <p class="writing-desc">The unseen logic behind a moment of frustration.</p>
@@ -539,15 +570,19 @@
                             <span class="writing-arrow">&rarr;</span>
                         </a>
 
-                        <a href="https://medium.com/@pranavbharadwajm/why-profit-doesnt-guarantee-job-security-what-i-m-starting-to-understand-bb5d0bff4317" target="_blank" class="writing-row">
+                        <a href="https://medium.com/@pranavbharadwajm/why-profit-doesnt-guarantee-job-security-what-i-m-starting-to-understand-bb5d0bff4317"
+                            target="_blank" class="writing-row">
                             <div class="writing-meta">
-                                <h3 class="writing-title">Why Profit Doesn’t Guarantee Job Security (What I’m Starting To Understand)</h3>
-                                <p class="writing-desc">If a company is making money, why does it still lay people off?</p>
+                                <h3 class="writing-title">Why Profit Doesn’t Guarantee Job Security (What I’m Starting
+                                    To Understand)</h3>
+                                <p class="writing-desc">If a company is making money, why does it still lay people off?
+                                </p>
                             </div>
                             <span class="writing-arrow">&rarr;</span>
                         </a>
 
-                        <a href="https://medium.com/@pranavbharadwajm/watching-the-sky-fall-the-geminids-meteor-shower-574b16ebb06a" target="_blank" class="writing-row">
+                        <a href="https://medium.com/@pranavbharadwajm/watching-the-sky-fall-the-geminids-meteor-shower-574b16ebb06a"
+                            target="_blank" class="writing-row">
                             <div class="writing-meta">
                                 <h3 class="writing-title">Watching The Sky Fall — The Geminids Meteor Shower</h3>
                                 <p class="writing-desc">The cosmic experience of the Geminids meteor shower 2025.</p>
@@ -555,25 +590,31 @@
                             <span class="writing-arrow">&rarr;</span>
                         </a>
 
-                        <a href="https://medium.com/@pranavbharadwajm/somewhere-along-the-way-subtitles-stopped-being-optional-7017e74ff66b" target="_blank" class="writing-row">
+                        <a href="https://medium.com/@pranavbharadwajm/somewhere-along-the-way-subtitles-stopped-being-optional-7017e74ff66b"
+                            target="_blank" class="writing-row">
                             <div class="writing-meta">
-                                <h3 class="writing-title">Somewhere Along The Way, Subtitles Stopped Being Optional.</h3>
+                                <h3 class="writing-title">Somewhere Along The Way, Subtitles Stopped Being Optional.
+                                </h3>
                                 <p class="writing-desc">I watch films with subtitles on. Always. Why?</p>
                             </div>
                             <span class="writing-arrow">&rarr;</span>
                         </a>
 
-                        <a href="https://medium.com/@pranavbharadwajm/strategy-and-planning-arent-the-same-thing-e83b29fcb765" target="_blank" class="writing-row">
+                        <a href="https://medium.com/@pranavbharadwajm/strategy-and-planning-arent-the-same-thing-e83b29fcb765"
+                            target="_blank" class="writing-row">
                             <div class="writing-meta">
                                 <h3 class="writing-title">Strategy And Planning Aren’t The Same Thing?</h3>
-                                <p class="writing-desc">Planning deals with things we mostly control. Strategy doesn’t.</p>
+                                <p class="writing-desc">Planning deals with things we mostly control. Strategy doesn’t.
+                                </p>
                             </div>
                             <span class="writing-arrow">&rarr;</span>
                         </a>
 
-                        <a href="https://medium.com/@pranavbharadwajm/numbers-to-narrative-making-sense-of-financial-statements-65775c8d9c97" target="_blank" class="writing-row">
+                        <a href="https://medium.com/@pranavbharadwajm/numbers-to-narrative-making-sense-of-financial-statements-65775c8d9c97"
+                            target="_blank" class="writing-row">
                             <div class="writing-meta">
-                                <h3 class="writing-title">Numbers to Narrative: Making Sense of Financial Statements</h3>
+                                <h3 class="writing-title">Numbers to Narrative: Making Sense of Financial Statements
+                                </h3>
                                 <p class="writing-desc">Do numbers really talk? If so, how?</p>
                             </div>
                             <span class="writing-arrow">&rarr;</span>
@@ -581,7 +622,8 @@
 
                     </div>
 
-                    <a href="https://medium.com/@pranavbharadwajm" target="_blank" class="btn-resume" style="width: auto;">Read All on Medium &rarr;</a>
+                    <a href="https://medium.com/@pranavbharadwajm" target="_blank" class="btn-resume"
+                        style="width: auto;">Read All on Medium &rarr;</a>
                 </div>
             </section>
 
@@ -589,13 +631,18 @@
             <section id="contact" class="content-section section-grey">
                 <div class="fade-in">
                     <h2>Let's Talk</h2>
-                    <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Currently open for roles in Dublin or remote.</p>
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">If you are looking for someone who understands both the technical groundwork and the high-level strategy, let's connect.</p>
-                    
+                    <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Currently open for roles in
+                        Dublin or remote.</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">If you are looking for someone who understands
+                        both the technical groundwork and the high-level strategy, let's connect.</p>
+
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                        <a href="mailto:pranavbharadwajm@gmail.com" class="btn-resume" style="width: auto; margin: 0;">Email Me Directly</a>
-                        <a href="https://linkedin.com/in/pranavbharadwajm" target="_blank" class="btn-resume" style="width: auto; margin: 0;">Connect on LinkedIn</a>
-                        <a href="https://github.com/pranavbharadwajm" target="_blank" class="btn-resume" style="width: auto; margin: 0;">View My GitHub</a>
+                        <a href="mailto:pranavbharadwajm@gmail.com" class="btn-resume"
+                            style="width: auto; margin: 0;">Email Me Directly</a>
+                        <a href="https://linkedin.com/in/pranavbharadwajm" target="_blank" class="btn-resume"
+                            style="width: auto; margin: 0;">Connect on LinkedIn</a>
+                        <a href="https://github.com/pranavbharadwajm" target="_blank" class="btn-resume"
+                            style="width: auto; margin: 0;">View My GitHub</a>
                     </div>
                 </div>
             </section>
@@ -610,46 +657,47 @@
                 </p>
             </footer>
 
-    <script>
-        // 1. Smooth fade-in animations for scrolling
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
+            <script>
+                // 1. Smooth fade-in animations for scrolling
+                document.addEventListener('DOMContentLoaded', () => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                            }
+                        });
+                    }, { threshold: 0.1 });
+
+                    document.querySelectorAll('.fade-in').forEach(element => {
+                        observer.observe(element);
+                    });
                 });
-            }, { threshold: 0.1 });
 
-            document.querySelectorAll('.fade-in').forEach(element => {
-                observer.observe(element);
-            });
-        });
+                // 2. Exact 1-Item Carousel Rotation Logic
+                function setupCarousel(trackId) {
+                    const track = document.getElementById(trackId);
+                    if (!track) return;
 
-        // 2. Exact 1-Item Carousel Rotation Logic
-        function setupCarousel(trackId) {
-            const track = document.getElementById(trackId);
-            if (!track) return;
-            
-            setInterval(() => {
-                const items = track.children;
-                if (items.length <= 1) return;
-                
-                const itemWidth = items[0].getBoundingClientRect().width;
-                
-                track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
-                track.style.transform = `translateX(-${itemWidth}px)`;
+                    setInterval(() => {
+                        const items = track.children;
+                        if (items.length <= 1) return;
 
-                setTimeout(() => {
-                    track.style.transition = 'none';
-                    track.appendChild(track.firstElementChild); 
-                    track.style.transform = 'translateX(0)';
-                }, 600);
-                
-            }, 4500); 
-        }
+                        const itemWidth = items[0].getBoundingClientRect().width;
 
-        setupCarousel('work-track');
-    </script>
+                        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+                        track.style.transform = `translateX(-${itemWidth}px)`;
+
+                        setTimeout(() => {
+                            track.style.transition = 'none';
+                            track.appendChild(track.firstElementChild);
+                            track.style.transform = 'translateX(0)';
+                        }, 600);
+
+                    }, 4500);
+                }
+
+                setupCarousel('work-track');
+            </script>
 </body>
+
 </html>
