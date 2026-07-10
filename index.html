@@ -303,6 +303,28 @@
             color: var(--pure-white);
         }
 
+        /* SVG logo animation & stripes handling */
+        .btn-resume svg.btn-logo {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-resume:hover svg.btn-logo {
+            transform: rotate(-10deg);
+        }
+
+        .btn-resume svg.btn-logo line {
+            stroke: #ffffff;
+        }
+
+        .section-black .btn-resume:hover svg.btn-logo line {
+            stroke: #000000;
+        }
+
         /* Fade Animation */
         .fade-in {
             opacity: 0;
@@ -489,7 +511,23 @@
                         review website, AND.. CUT! Check out my deep-dive film critiques from the link below.</p>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; margin-bottom: 2rem;">
                         <a href="https://andcut.pranavbharadwajm.com" target="_blank" class="btn-resume"
-                            style="width: auto; margin: 0;">AND.. CUT!</a>
+                            style="width: auto; margin: 0; display: inline-flex; align-items: center;">
+                            <svg class="btn-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M18 25 L78 12" stroke="currentColor" stroke-width="8" stroke-linecap="round" />
+                              <circle cx="18" cy="28" r="3" fill="currentColor" />
+                              <path d="M78 36 H18 V80 H78 V64 H78 V48 H78 Z" fill="currentColor" />
+                              <line x1="28" y1="24" x2="34" y2="12" stroke-width="2.5" />
+                              <line x1="38" y1="22" x2="44" y2="10" stroke-width="2.5" />
+                              <line x1="48" y1="20" x2="54" y2="8" stroke-width="2.5" />
+                              <line x1="58" y1="18" x2="64" y2="8" stroke-width="2.5" />
+                              <line x1="68" y1="16" x2="74" y2="4" stroke-width="2.5" />
+                              <line x1="22" y1="36" x2="28" y2="28" stroke-width="2.5" />
+                              <line x1="32" y1="36" x2="38" y2="28" stroke-width="2.5" />
+                              <line x1="42" y1="36" x2="48" y2="28" stroke-width="2.5" />
+                              <line x1="52" y1="36" x2="58" y2="28" stroke-width="2.5" />
+                              <line x1="62" y1="36" x2="68" y2="28" stroke-width="2.5" />
+                            </svg>AND.. CUT!
+                        </a>
                     </div>
 
                 </div>
