@@ -1,0 +1,98 @@
+{
+  "about": {
+    "name": "Pranav Bharadwaj M",
+    "description": "Former Software Engineer combining technical execution with business strategy | MSc Management Candidate at UCD Smurfit",
+    "email": "pranavbharadwajm@gmail.com",
+    "bioParagraphs": [
+      "Hi, I'm Pranav, a student at UCD Michael Smurfit Graduate Business School based in Dublin. Currently specializing in Management, combining engineering rigor with business strategy.",
+      "With 3 years of experience as a software engineer, I specialize in combining technical execution with business strategy, analyzing complex systems and driving data-backed decisions.",
+      "I'm interested in working with design-driven, analytical teams that tackle complex business and operational problems. I move fast, care about details, and enjoy writing code.",
+      "If you're looking for someone who understands both the technical groundwork and the high-level strategy, let's talk!"
+    ],
+    "availability": "Open for roles in Dublin & Remote"
+  },
+  "products": [
+    {
+      "id": "andcut",
+      "title": "AND.. CUT!",
+      "category": "Web Design & Front-End",
+      "year": "2024 - 2026",
+      "description": "A deep-dive film critiques and reviews platform, combining media embeds, cinematic styling, and responsive readability layout.",
+      "images": [
+        ""
+      ],
+      "drawerDetails": {
+        "role": "Creator / Developer",
+        "stack": "HTML, CSS, JS",
+        "launch": "2026",
+        "paragraphs": [
+          "This project represents my dual passion for software building and film analysis. It aggregates structured critiques, parses review metadata, and displays movie poster imagery dynamically.",
+          "Designed with absolute responsiveness and editorial typography to keep reading simple, clean, and distraction-free."
+        ],
+        "linkText": "Open Live Website",
+        "linkUrl": "https://andcut.pranavbharadwajm.com"
+      }
+    },
+    {
+      "id": "analyzer",
+      "title": "Portfolio Systems Analyzer",
+      "category": "Automation & Scripting",
+      "year": "2025",
+      "description": "An open-source clean audit script parsing web resources to reduce asset loading latency, optimizing deployment builds.",
+      "images": [
+        "local-assets/profile.png"
+      ],
+      "drawerDetails": {
+        "role": "Developer",
+        "stack": "NodeJS / Shell script",
+        "launch": "Open Source",
+        "paragraphs": [
+          "Built to clean and evaluate resource loading bottlenecks for local deployments. It checks asset bundles and formats local site scripts."
+        ],
+        "linkText": "",
+        "linkUrl": ""
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "accredian",
+      "title": "Accredian EdTech Dashboard",
+      "category": "product",
+      "categoryLabel": "Product Management",
+      "prompt": "Design a student dashboard feature that increases daily active user engagement while consolidating complex course data into a single, digestible view.",
+      "approach": "Information overload was leading to platform abandonment. I mapped the student lifecycle, isolated navigational friction areas, and prioritized immediate deadlines at the primary view level.",
+      "outcome": "Streamlined layout structure to optimize access speed, delivering detailed specification documents for engineering execution.",
+      "pdfUrl": "accredian-case.pdf",
+      "pdfLabel": "Download the full brief PDF"
+    },
+    {
+      "id": "finance",
+      "title": "Corporate Financial Teardown",
+      "category": "finance",
+      "categoryLabel": "Financial Analysis",
+      "prompt": "Conduct an in-depth analysis of company financials from the ground up, identifying key cost centers and potential areas for revenue growth.",
+      "approach": "Reconstructed financial accounts to identify leakage. Built revenue streams models against operations cost lines (SG&A) to highlight segment profitability.",
+      "outcome": "Identified cost optimization areas and presented data-supported recommendations to guide growth.",
+      "pdfUrl": "financial-teardown.pdf",
+      "pdfLabel": "Download the full brief PDF"
+    }
+  ],
+  "publications": [
+    {
+      "title": "The real issue with modern movies isn’t technology. It’s —",
+      "description": "A retrospective on why older films felt real, but modern cinema doesn’t.",
+      "url": "https://medium.com/@pranavbharadwajm/the-real-issue-with-modern-movies-isnt-technology-it-s-2404f984f386"
+    },
+    {
+      "title": "Strategy And Planning Aren’t The Same Thing?",
+      "description": "Planning deals with things we mostly control. Strategy doesn’t.",
+      "url": "https://medium.com/@pranavbharadwajm/strategy-and-planning-arent-the-same-thing-e83b29fcb765"
+    },
+    {
+      "title": "Why Profit Doesn’t Guarantee Job Security",
+      "description": "If a company is making money, why does it still lay people off?",
+      "url": "https://medium.com/@pranavbharadwajm/why-profit-doesnt-guarantee-job-security-what-i-m-starting-to-understand-bb5d0bff4317"
+    }
+  ]
+}

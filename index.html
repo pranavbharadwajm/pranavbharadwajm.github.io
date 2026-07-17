@@ -1,376 +1,645 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Pranav Bharadwaj M - Strategy, Consulting and Business Analysis. MSc Management candidate at UCD Smurfit." />
-
     <meta property="og:title" content="Pranav Bharadwaj M" />
-
     <meta property="og:type" content="website" />
-
     <meta property="og:image" content="preview.jpg" />
     <title>Pranav Bharadwaj M | Strategy & Consulting</title>
-    <link rel="icon" type="image/png" href="favicon-p.png">
+    <link rel="icon" type="image/png" href="local-assets/profilecircle.png">
 
+    <!-- Clean, premium grotesque font matching Jonas's style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        /* Typography & Core Theme */
+        /* Modern Design System & Variables (Strictly Greyscale: Grey, White, Black) */
         :root {
-            --bg-grey: #ebebeb;
-            /* Premium, soft concrete grey */
-            --pure-black: #000000;
-            --pure-white: #ffffff;
-            /* Kept strictly for text inside black sections to maintain contrast */
-            --gray-text: #555555;
-            --light-gray: #cccccc;
+            --bg-neutral: #f9fafb;
+            --bg-card: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --text-light: #9ca3af;
+            --border-color: rgba(0, 0, 0, 0.06);
+            --bg-bubble: rgba(243, 244, 246, 0.8);
+            --accent-bg: #f3f4f6;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Lora', Georgia, serif;
+            font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-main);
+            font-weight: 500;
         }
 
         body {
-            background-color: var(--bg-grey);
-            color: var(--pure-black);
-            line-height: 1.6;
-        }
-
-        /* The Anchor Layout */
-        .layout-grid {
-            display: grid;
-            grid-template-columns: 40% 60%;
-            min-height: 100vh;
-        }
-
-        /* ----------------------------------- */
-        /* LEFT SIDE: Fixed Identity           */
-        /* ----------------------------------- */
-        .left-anchor {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-right: 2px solid var(--pure-black);
-            background-color: var(--bg-grey);
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .left-anchor::-webkit-scrollbar {
-            display: none;
-        }
-
-        .profile-img {
-            width: 100%;
-            max-width: 250px;
-            height: auto;
-            margin: 0 auto 2rem auto;
-            display: block;
-        }
-
-        .name-title {
-            font-family: 'Lora', Georgia, serif;
-            font-size: 2.2rem;
-            font-weight: 800;
-            line-height: 1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .location {
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: var(--gray-text);
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .bluf-list {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .bluf-list li {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-            text-align: left;
-        }
-
-        .bluf-list li::before {
-            content: '→';
-            margin-right: 10px;
-            font-weight: bold;
-        }
-
-        .btn-resume {
-            display: inline-block;
-            padding: 1rem 1.5rem;
-            background-color: var(--pure-black);
-            color: var(--pure-white);
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-align: center;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: 2px solid var(--pure-black);
-            width: 100%;
-            margin-top: auto;
-        }
-
-        .btn-resume:hover {
-            background-color: var(--bg-grey);
-            color: var(--pure-black);
-        }
-
-        /* ----------------------------------- */
-        /* RIGHT SIDE: Scrolling Content       */
-        /* ----------------------------------- */
-        .right-scroll {
-            display: flex;
-            flex-direction: column;
+            background-color: var(--bg-neutral);
+            color: var(--text-main);
+            line-height: 1.5;
             overflow-x: hidden;
+            font-size: 15px;
         }
 
-        /* Initial 100vh Menu View */
-        .hero-menu {
-            min-height: 100vh;
+        /* ----------------------------------- */
+        /* FLOATING NAVIGATION BUBBLE          */
+        /* ----------------------------------- */
+        .nav-bubble {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: var(--bg-bubble);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 9999px;
+            padding: 8px 24px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            padding: 4rem;
-            background-color: var(--bg-grey);
+            width: 90%;
+            max-width: 360px;
+            z-index: 1000;
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
         }
 
-        .menu-links {
+        .nav-bubble.visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .nav-links {
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            gap: 24px;
+            list-style: none;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
         }
 
-        .menu-links a {
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--pure-black);
+        .nav-links a {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-muted);
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            transition: color 0.3s ease, transform 0.3s ease;
-            line-height: 1;
+            transition: color 0.2s ease;
         }
 
-        .menu-links a:hover {
-            color: #aaaaaa;
-            transform: translateX(20px);
+        .nav-links a:hover {
+            color: var(--text-main);
         }
 
-        /* Alternating Sections */
-        .content-section {
-            padding: 6rem 4rem;
-            min-height: 80vh;
+        /* ----------------------------------- */
+        /* HERO SECTION                        */
+        /* ----------------------------------- */
+        .hero {
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: radial-gradient(circle at center, #ffffff 0%, #f9fafb 100%);
+            position: relative;
         }
 
-        .section-black {
-            background-color: var(--pure-black);
-            color: var(--pure-white);
+        .hero-name {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
         }
 
-        .section-grey {
-            background-color: var(--bg-grey);
-            color: var(--pure-black);
+        .hero-desc {
+            font-size: 1.25rem;
+            font-weight: 400;
+            max-width: 580px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2.2rem;
+            letter-spacing: -0.01em;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
+        .hero-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-dark {
+            background-color: var(--text-main);
+            color: #ffffff;
+        }
+
+        .btn-dark:hover {
+            background-color: #374151;
+        }
+
+        .btn-light {
+            background-color: #ffffff;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-light:hover {
+            background-color: var(--bg-neutral);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ----------------------------------- */
+        /* MAIN BODY WRAPPER & SECTIONS        */
+        /* ----------------------------------- */
+        .content-wrapper {
+            background: #ffffff;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.02);
+            position: relative;
+            z-index: 10;
+            padding: 5rem 2rem 2rem 2rem;
+        }
+
+        .section-container {
+            max-width: 860px;
+            margin: 0 auto 7rem auto;
+        }
+
+        /* Heading styled as grey */
+        .section-header {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-light); /* Grey color */
+            margin-bottom: 2rem;
+            text-transform: capitalize;
+        }
+
+        /* ----------------------------------- */
+        /* ABOUT SECTION                       */
+        /* ----------------------------------- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 4rem;
+        }
+
+        .about-left p {
+            font-size: 1rem;
+            color: var(--text-main);
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+        }
+
+        .about-right {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-group h3 {
+            font-size: 0.8rem;
             text-transform: uppercase;
-            margin-bottom: 3rem;
-            border-bottom: 3px solid var(--pure-black);
-            display: inline-block;
-            padding-bottom: 0.5rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
         }
 
-        .section-black h2 {
-            border-bottom-color: var(--pure-white);
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
         }
 
-        .section-black a:not(.btn-resume) {
-            color: var(--pure-white);
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: #10b981;
+            position: relative;
         }
 
-        .section-black h4 {
-            color: var(--light-gray);
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #10b981;
+            animation: pulse 2s infinite;
         }
 
-        .about-text {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin-bottom: 1.5rem;
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.2);
+                opacity: 0;
+            }
         }
 
-        /* Carousel Layout */
-        .carousel-viewport {
+        /* ----------------------------------- */
+        /* HORIZONTAL SLIDER COMPONENTS        */
+        /* ----------------------------------- */
+        .slider-viewport-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-viewport {
             overflow: hidden;
             width: 100%;
-            position: relative;
-            padding-bottom: 2rem;
-            margin-bottom: 2rem;
+            border-radius: 20px;
         }
 
-        .carousel-track {
+        .slider-track {
             display: flex;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
         }
 
-        .carousel-item {
+        .project-card, .case-card {
             min-width: 100%;
-            max-width: 100%;
-            /* Stops the box from expanding off-screen */
             box-sizing: border-box;
-            flex-shrink: 0;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            padding-right: 1rem;
-            /* Safety buffer */
+            gap: 20px;
+            padding: 20px;
         }
 
-        .carousel-item h3 {
-            font-size: 1.6rem;
-            /* Dropped slightly to ensure clean line breaks */
-            font-weight: bold;
+        .slider-arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .slider-arrow-btn:hover {
+            background: #ffffff;
+            color: var(--text-main);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .slider-arrow-left {
+            left: -60px;
+        }
+
+        .slider-arrow-right {
+            right: -60px;
+        }
+
+        @media (max-width: 1024px) {
+            .slider-arrow-left {
+                left: -15px;
+            }
+            .slider-arrow-right {
+                right: -15px;
+            }
+        }
+
+        .project-images-carousel {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1.8 / 1;
+            background-color: var(--bg-neutral);
+        }
+
+        .carousel-images-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .carousel-images-track img {
+            min-width: 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 5px 14px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .carousel-nav-btn {
+            background: transparent;
+            border: none;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+
+        .carousel-nav-btn:hover {
+            color: var(--text-main);
+        }
+
+        .project-details-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-light);
             text-transform: uppercase;
-            margin-bottom: 0.8rem;
-            line-height: 1.4;
-            white-space: normal !important;
-            /* Forces the browser to prioritize wrapping */
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            display: block;
+            letter-spacing: 0.04em;
         }
 
-        .carousel-item h4 {
-            font-size: 1rem;
-            color: var(--gray-text);
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
         }
 
-        .carousel-item p {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            max-width: 800px;
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
         }
 
-        .carousel-item a.read-link {
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 1rem;
-            display: inline-block;
-            text-decoration: underline;
+        /* ----------------------------------- */
+        /* DETAILS DRAWER / SHEET              */
+        /* ----------------------------------- */
+        .details-drawer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2000;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 2.5rem 2rem;
         }
 
-        /* Black Section Button overrides */
-        .section-black .btn-resume {
-            background-color: var(--pure-white);
-            color: var(--pure-black);
-            border-color: var(--pure-white);
-        }
-
-        .section-black .btn-resume:hover {
-            background-color: transparent;
-            color: var(--pure-white);
-        }
-
-        /* SVG logo animation & stripes handling */
-        .btn-resume svg.btn-logo {
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
-            margin-right: 8px;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        .btn-resume:hover svg.btn-logo {
-            transform: rotate(-10deg);
-        }
-
-        .btn-resume svg.btn-logo line {
-            stroke: #ffffff;
-        }
-
-        .section-black .btn-resume:hover svg.btn-logo line {
-            stroke: #000000;
-        }
-
-        /* Fade Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
+        .details-drawer.open {
             transform: translateY(0);
         }
 
-        .site-footer {
-            background: var(--pure-black);
-            color: var(--pure-white);
-            text-align: center;
-            padding: 3rem 2rem;
+        .details-drawer.fullscreen {
+            height: 100vh;
+            max-height: 100vh;
+            top: 0;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .site-footer p {
-            margin-bottom: 0.75rem;
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            z-index: 1999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
         }
 
-        .site-footer a {
-            color: var(--pure-white);
+        .drawer-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer-content {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+            width: 100%;
+        }
+
+        .close-drawer-btn {
+            position: absolute;
+            top: -10px;
+            right: 0;
+            background: var(--accent-bg);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: background 0.2s ease;
+        }
+
+        .close-drawer-btn:hover {
+            background: #e5e7eb;
+            color: var(--text-main);
+        }
+
+        .drawer-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .drawer-body p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+
+        .drawer-meta-list {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.2rem;
+        }
+
+        .drawer-meta-item h4 {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .drawer-meta-item p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        /* ----------------------------------- */
+        /* CASE STUDIES SECTION                */
+        /* ----------------------------------- */
+        .case-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .case-skills-tag {
+            background-color: var(--accent-bg);
+            color: var(--text-main);
+            padding: 3px 10px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .case-quote {
+            background-color: var(--bg-neutral);
+            border-left: 3px solid var(--text-main);
+            padding: 1.2rem;
+            font-size: 1rem;
+            font-style: italic;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .case-sar h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-muted);
+        }
+
+        .case-sar p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .btn-grey-bubble {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
             text-decoration: none;
+            width: fit-content;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        .site-footer a:hover {
-            text-decoration: underline;
+        .btn-grey-bubble:hover {
+            background-color: #e5e7eb;
+            color: var(--text-main);
         }
 
-        /* Editorial Writing Rows */
+        /* ----------------------------------- */
+        /* PUBLICATIONS SECTION                */
+        /* ----------------------------------- */
         .writing-container {
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-            border-top: 1px solid var(--gray-text);
-            max-height: 380px;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            max-height: 280px;
             overflow-y: auto;
             scrollbar-width: thin;
-            scrollbar-color: var(--gray-text) transparent;
-            padding-right: 1rem;
+            scrollbar-color: var(--text-light) transparent;
+            padding-right: 0.75rem;
         }
 
         .writing-container::-webkit-scrollbar {
-            width: 5px;
+            width: 4px;
         }
 
         .writing-container::-webkit-scrollbar-track {
@@ -378,364 +647,573 @@
         }
 
         .writing-container::-webkit-scrollbar-thumb {
-            background-color: var(--gray-text);
+            background-color: var(--text-light);
             border-radius: 10px;
+        }
+
+        .writing-list {
+            display: flex;
+            flex-direction: column;
         }
 
         .writing-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.8rem 0;
-            border-bottom: 1px solid var(--gray-text);
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--border-color);
             text-decoration: none;
-            color: var(--pure-white);
-            transition: all 0.3s ease;
+            transition: background-color 0.2s ease;
         }
 
-        .writing-row:hover {
-            border-bottom-color: var(--pure-white);
-        }
-
-        .writing-row:hover .writing-title {
-            color: #cccccc;
-        }
-
-        .writing-row:hover .writing-arrow {
-            transform: translateX(8px);
-            color: var(--pure-white);
-        }
-
-        .writing-meta {
+        .writing-row-left {
             max-width: 85%;
         }
 
-        .writing-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--pure-white);
-            transition: color 0.3s ease;
-            text-transform: none;
-            /* Keep natural case for titles */
+        .writing-row h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 3px;
+            transition: color 0.2s ease;
         }
 
-        .writing-desc {
-            font-size: 1.05rem;
-            color: var(--light-gray);
+        .writing-row:hover h3 {
+            color: var(--text-muted);
+        }
+
+        .writing-row p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
         }
 
         .writing-arrow {
-            font-size: 1.6rem;
-            color: var(--gray-text);
-            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            transition: transform 0.2s ease;
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 900px) {
-            .layout-grid {
+        .writing-row:hover .writing-arrow {
+            transform: translateX(4px);
+            color: var(--text-main);
+        }
+
+        /* ----------------------------------- */
+        /* FOOTER                              */
+        /* ----------------------------------- */
+        .footer {
+            background-color: #f3f4f6;
+            color: var(--text-muted);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+        }
+
+        .footer-logo {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .footer-desc {
+            color: var(--text-light);
+            font-size: 0.88rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-main);
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .about-grid {
                 grid-template-columns: 1fr;
+                gap: 2.5rem;
             }
-
-            .left-anchor {
-                position: relative;
-                height: auto;
-                border-right: none;
-                border-bottom: 2px solid var(--pure-black);
-                padding: 3rem 2rem;
+            .project-card {
+                padding: 16px;
             }
-
-            .hero-menu {
-                min-height: 50vh;
-                padding: 4rem 2rem;
+            .case-header-row {
+                flex-direction: column;
+                gap: 8px;
             }
-
-            .menu-links a {
-                font-size: 2.5rem;
+            .footer-links {
+                gap: 1.2rem;
             }
-
-            .content-section {
-                padding: 4rem 2rem;
-            }
-
         }
     </style>
 </head>
 
 <body>
 
-    <div class="layout-grid">
+    <!-- FLOATING NAVIGATION BUBBLE -->
+    <nav class="nav-bubble" id="navBubble">
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#products">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-        <!-- THE LEFT ANCHOR -->
-        <div class="left-anchor">
-            <img src="profileebebeb.png" alt="Pranav Bharadwaj M - Strategy and Consulting Profile" class="profile-img">
-            <h1 class="name-title">PRANAV BHARADWAJ M</h1>
-            <div class="location">Dublin, Ireland</div>
-
-            <ul class="bluf-list">
-                <li>MSc Management Candidate | UCD Michael Smurfit Graduate Business School</li>
-                <li>Former Software Engineer combining technical execution with business strategy</li>
-                <li>Leveraging analytical systems thinking to drive data-backed operational and commercial decisions
-                </li>
-            </ul>
-
-            <a href="resume.pdf" class="btn-resume" target="_blank">Download Exec Summary &darr;</a>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-name" id="heroName">Pranav Bharadwaj M</div>
+        <p class="hero-desc" id="heroDesc">Former Software Engineer combining technical execution with business strategy | MSc Management Candidate at UCD Smurfit</p>
+        <div class="hero-buttons">
+            <button class="btn btn-dark" onclick="copyEmail(this)">Copy Email</button>
+            <a href="#about" class="btn btn-light">About Me</a>
         </div>
+        <a href="#about" class="scroll-indicator">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+        </a>
+    </header>
 
-        <!-- THE RIGHT SCROLL -->
-        <div class="right-scroll">
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper">
 
-            <!-- Initial View: Just the Menu -->
-            <div class="hero-menu">
-                <nav class="menu-links fade-in">
-                    <a href="#about">About.</a>
-                    <a href="#work">Case Studies.</a>
-                    <a href="#writing">Writing.</a>
-                    <a href="#contact">Contact.</a>
-                </nav>
-            </div>
-
-            <!-- About Section (Black) -->
-            <section id="about" class="content-section section-black">
-                <div class="fade-in">
-                    <h2>About Me</h2>
-                    <p class="about-text">I combine technical problem-solving with commercial strategy.</p>
-                    <p class="about-text">My background in software engineering taught me how to analyse complex
-                        systems, identify bottlenecks, and make decisions using data. Today, through my MSc in
-                        Management at UCD Smurfit, I apply those same analytical skills to business strategy, market
-                        analysis, and organisational decision-making.</p>
-                    <p class="about-text">Outside work, I enjoy football, cinema, and writing about business, strategy,
-                        and culture.</p>
-
-                    <p class="about-text" style="margin-top: 2rem;">My passion for film is best represented through my
-                        review website, AND.. CUT! Check out my deep-dive film critiques from the link below.</p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; margin-bottom: 2rem;">
-                        <a href="https://andcut.pranavbharadwajm.com" target="_blank" class="btn-resume"
-                            style="width: auto; margin: 0; display: inline-flex; align-items: center;">
-                            <svg class="btn-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M18 25 L78 12" stroke="currentColor" stroke-width="8" stroke-linecap="round" />
-                              <circle cx="18" cy="28" r="3" fill="currentColor" />
-                              <path d="M78 36 H18 V80 H78 V64 H78 V48 H78 Z" fill="currentColor" />
-                              <line x1="28" y1="24" x2="34" y2="12" stroke-width="2.5" />
-                              <line x1="38" y1="22" x2="44" y2="10" stroke-width="2.5" />
-                              <line x1="48" y1="20" x2="54" y2="8" stroke-width="2.5" />
-                              <line x1="58" y1="18" x2="64" y2="8" stroke-width="2.5" />
-                              <line x1="68" y1="16" x2="74" y2="4" stroke-width="2.5" />
-                              <line x1="22" y1="36" x2="28" y2="28" stroke-width="2.5" />
-                              <line x1="32" y1="36" x2="38" y2="28" stroke-width="2.5" />
-                              <line x1="42" y1="36" x2="48" y2="28" stroke-width="2.5" />
-                              <line x1="52" y1="36" x2="58" y2="28" stroke-width="2.5" />
-                              <line x1="62" y1="36" x2="68" y2="28" stroke-width="2.5" />
-                            </svg>AND.. CUT!
-                        </a>
-                    </div>
-
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section-container">
+            <h2 class="section-header">About</h2>
+            <div class="about-grid">
+                <div class="about-left" id="bioParagraphsWrap">
+                    <!-- Loaded dynamically -->
                 </div>
-            </section>
-
-            <!-- Work Section (Grey - Rotating Carousel) -->
-            <section id="work" class="content-section section-grey">
-                <div class="fade-in">
-                    <h2>Selected Work</h2>
-
-                    <div class="carousel-viewport">
-                        <div class="carousel-track" id="work-track">
-
-                            <div class="carousel-item">
-                                <h3>[Case Study 1: Strategic Project Title]</h3>
-                                <h4>Domain / Industry Sector</h4>
-                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or
-                                    challenge.]</p>
-                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you
-                                    applied to diagnose and solve it.]</p>
-                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or
-                                    deliverables created.]</p>
-                            </div>
-
-                            <div class="carousel-item">
-                                <h3>[Case Study 2: Strategic Project Title]</h3>
-                                <h4>Domain / Industry Sector</h4>
-                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or
-                                    challenge.]</p>
-                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you
-                                    applied to diagnose and solve it.]</p>
-                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or
-                                    deliverables created.]</p>
-                            </div>
-
-                            <div class="carousel-item">
-                                <h3>[Case Study 3: Strategic Project Title]</h3>
-                                <h4>Domain / Industry Sector</h4>
-                                <p><strong>Situation:</strong> [One-sentence description of the core business problem or
-                                    challenge.]</p>
-                                <p><strong>Action:</strong> [Specific analytical frameworks and methodologies you
-                                    applied to diagnose and solve it.]</p>
-                                <p><strong>Result:</strong> [Tangible business impact, quantitative outcomes, or
-                                    deliverables created.]</p>
-                            </div>
-
+                <div class="about-right">
+                    <!-- Services removed; Availability moved up -->
+                    <div class="info-group">
+                        <h3>Availability</h3>
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            <span id="availabilityStatus">Open for roles in Dublin & Remote</span>
                         </div>
                     </div>
-
-                    <a href="all-cases.html" class="btn-resume" style="width: auto;">View Full Case Archive &rarr;</a>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Writing Section (Black - Rotating Carousel) -->
-            <section id="writing" class="content-section section-black">
-                <div class="fade-in">
-                    <h2>Writing</h2>
+        <!-- PRODUCTS SECTION -->
+        <section id="products" class="section-container">
+            <h2 class="section-header">Products</h2>
+            
+            <div class="slider-viewport-container">
+                <!-- Navigation Arrows on Either Side -->
+                <button class="slider-arrow-btn slider-arrow-left" onclick="prevSlide('products')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="slider-arrow-btn slider-arrow-right" onclick="nextSlide('products')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
 
-                    <div class="writing-container">
-
-                        <a href="https://medium.com/@pranavbharadwajm/the-real-issue-with-modern-movies-isnt-technology-it-s-2404f984f386"
-                            target="_blank" class="writing-row">
-                            <div class="writing-meta">
-                                <h3 class="writing-title">The real issue with modern movies isn’t technology. It’s —
-                                </h3>
-                                <p class="writing-desc">A retrospective on why older films felt real, but modern cinema
-                                    doesn’t.</p>
-                            </div>
-                            <span class="writing-arrow">&rarr;</span>
-                        </a>
-
-                        <a href="https://medium.com/@pranavbharadwajm/who-is-this-red-light-really-waiting-for-52f374e266c5"
-                            target="_blank" class="writing-row">
-                            <div class="writing-meta">
-                                <h3 class="writing-title">Who Is This Red Light Really Waiting For? 🚦</h3>
-                                <p class="writing-desc">The unseen logic behind a moment of frustration.</p>
-                            </div>
-                            <span class="writing-arrow">&rarr;</span>
-                        </a>
-
-                        <a href="https://medium.com/@pranavbharadwajm/why-profit-doesnt-guarantee-job-security-what-i-m-starting-to-understand-bb5d0bff4317"
-                            target="_blank" class="writing-row">
-                            <div class="writing-meta">
-                                <h3 class="writing-title">Why Profit Doesn’t Guarantee Job Security (What I’m Starting
-                                    To Understand)</h3>
-                                <p class="writing-desc">If a company is making money, why does it still lay people off?
-                                </p>
-                            </div>
-                            <span class="writing-arrow">&rarr;</span>
-                        </a>
-
-                        <a href="https://medium.com/@pranavbharadwajm/watching-the-sky-fall-the-geminids-meteor-shower-574b16ebb06a"
-                            target="_blank" class="writing-row">
-                            <div class="writing-meta">
-                                <h3 class="writing-title">Watching The Sky Fall — The Geminids Meteor Shower</h3>
-                                <p class="writing-desc">The cosmic experience of the Geminids meteor shower 2025.</p>
-                            </div>
-                            <span class="writing-arrow">&rarr;</span>
-                        </a>
-
-                        <a href="https://medium.com/@pranavbharadwajm/somewhere-along-the-way-subtitles-stopped-being-optional-7017e74ff66b"
-                            target="_blank" class="writing-row">
-                            <div class="writing-meta">
-                                <h3 class="writing-title">Somewhere Along The Way, Subtitles Stopped Being Optional.
-                                </h3>
-                                <p class="writing-desc">I watch films with subtitles on. Always. Why?</p>
-                            </div>
-                            <span class="writing-arrow">&rarr;</span>
-                        </a>
-
-                        <a href="https://medium.com/@pranavbharadwajm/strategy-and-planning-arent-the-same-thing-e83b29fcb765"
-                            target="_blank" class="writing-row">
-                            <div class="writing-meta">
-                                <h3 class="writing-title">Strategy And Planning Aren’t The Same Thing?</h3>
-                                <p class="writing-desc">Planning deals with things we mostly control. Strategy doesn’t.
-                                </p>
-                            </div>
-                            <span class="writing-arrow">&rarr;</span>
-                        </a>
-
-                        <a href="https://medium.com/@pranavbharadwajm/numbers-to-narrative-making-sense-of-financial-statements-65775c8d9c97"
-                            target="_blank" class="writing-row">
-                            <div class="writing-meta">
-                                <h3 class="writing-title">Numbers to Narrative: Making Sense of Financial Statements
-                                </h3>
-                                <p class="writing-desc">Do numbers really talk? If so, how?</p>
-                            </div>
-                            <span class="writing-arrow">&rarr;</span>
-                        </a>
-
-                    </div>
-
-                    <a href="https://medium.com/@pranavbharadwajm" target="_blank" class="btn-resume"
-                        style="width: auto;">Read All on Medium &rarr;</a>
-                </div>
-            </section>
-
-            <!-- Contact Section (Grey) -->
-            <section id="contact" class="content-section section-grey">
-                <div class="fade-in">
-                    <h2>Let's Talk</h2>
-                    <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Currently open for roles in
-                        Dublin or remote.</p>
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">If you are looking for someone who understands
-                        both the technical groundwork and the high-level strategy, let's connect.</p>
-
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                        <a href="mailto:pranavbharadwajm@gmail.com" class="btn-resume"
-                            style="width: auto; margin: 0;">Email Me Directly</a>
-                        <a href="https://linkedin.com/in/pranavbharadwajm" target="_blank" class="btn-resume"
-                            style="width: auto; margin: 0;">Connect on LinkedIn</a>
-                        <a href="https://github.com/pranavbharadwajm" target="_blank" class="btn-resume"
-                            style="width: auto; margin: 0;">View My GitHub</a>
+                <div class="slider-viewport">
+                    <div class="slider-track" id="productsTrack">
+                        <!-- Loaded dynamically -->
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <footer class="site-footer">
-                <p>Pranav Bharadwaj M</p>
-                <p>Strategy • Consulting • Business Analysis</p>
-                <p>
-                    <a href="mailto:pranavbharadwajm@gmail.com">
-                        pranavbharadwajm@gmail.com
-                    </a>
-                </p>
-            </footer>
+        <!-- CASE STUDIES SECTION -->
+        <section id="cases" class="section-container">
+            <h2 class="section-header">Case Studies</h2>
+            
+            <div class="slider-viewport-container">
+                <!-- Navigation Arrows on Either Side -->
+                <button class="slider-arrow-btn slider-arrow-left" onclick="prevSlide('cases')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="slider-arrow-btn slider-arrow-right" onclick="nextSlide('cases')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
 
-            <script>
-                // 1. Smooth fade-in animations for scrolling
-                document.addEventListener('DOMContentLoaded', () => {
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('visible');
-                            }
-                        });
-                    }, { threshold: 0.1 });
+                <div class="slider-viewport">
+                    <div class="slider-track" id="casesTrack">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View Case Archive made grey bubble -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="all-cases.html" class="btn-grey-bubble" style="padding: 10px 24px; font-size: 0.9rem;">View Case Archive</a>
+            </div>
+        </section>
 
-                    document.querySelectorAll('.fade-in').forEach(element => {
-                        observer.observe(element);
-                    });
-                });
+        <!-- PUBLICATIONS SECTION -->
+        <section id="writing" class="section-container">
+            <h2 class="section-header">Publications</h2>
+            <div class="writing-container">
+                <div class="writing-list" id="writingListWrap">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </section>
 
-                // 2. Exact 1-Item Carousel Rotation Logic
-                function setupCarousel(trackId) {
-                    const track = document.getElementById(trackId);
-                    if (!track) return;
+    </div>
 
-                    setInterval(() => {
-                        const items = track.children;
-                        if (items.length <= 1) return;
+    <!-- DETAILS DRAWER OVERLAY -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
 
-                        const itemWidth = items[0].getBoundingClientRect().width;
+    <!-- DYNAMIC DETAILS DRAWERS WRAPPER -->
+    <div id="drawersContainer">
+        <!-- Loaded dynamically -->
+    </div>
 
-                        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
-                        track.style.transform = `translateX(-${itemWidth}px)`;
+    <!-- LEGAL NOTICE DRAWER (Fullscreen Popup) -->
+    <div class="details-drawer fullscreen" id="drawer-legal">
+        <div class="drawer-content">
+            <button class="close-drawer-btn" onclick="closeDrawer()">&times;</button>
+            <div class="drawer-body" style="max-width: 460px; margin: 0 auto; text-align: center;">
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; font-size: 1.15rem; font-weight: 500; color: var(--text-main);">
+                    <p>Pranav Bharadwaj M</p>
+                    <p>Dublin, Ireland</p>
+                    <p>pranavbharadwajm@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        setTimeout(() => {
-                            track.style.transition = 'none';
-                            track.appendChild(track.firstElementChild);
-                            track.style.transform = 'translateX(0)';
-                        }, 600);
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact" class="footer">
+        <div class="footer-logo">Pranav Bharadwaj M</div>
+        <p class="footer-desc">Dublin, Ireland | Strategic Operations, Analysis & Product Strategy</p>
+        <ul class="footer-links">
+            <li><a href="mailto:pranavbharadwajm@gmail.com">Email Me</a></li>
+            <li><a href="local-assets/resume.pdf" target="_blank">Download CV (PDF)</a></li>
+            <li><a href="https://linkedin.com/in/pranavbharadwajm" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/pranavbharadwajm" target="_blank">GitHub</a></li>
+            <li><a href="javascript:void(0)" onclick="openDrawer('legal')">Legal Notice</a></li>
+        </ul>
+        <div class="footer-copyright">&copy; 2026 Pranav Bharadwaj M. All rights reserved.</div>
+    </footer>
 
-                    }, 4500);
+    <!-- DYNAMIC DATA LOADING AND INTERACTION SCRIPT -->
+    <script>
+        // 1. Copy Email Script
+        function copyEmail(button) {
+            const email = "pranavbharadwajm@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                const originalText = button.textContent;
+                button.textContent = "Email Copied!";
+                button.style.backgroundColor = "#4b5563"; // grey background
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = ""; // Reset
+                }, 2000);
+            }).catch(err => {
+                alert("Failed to copy email: " + email);
+            });
+        }
+
+        // 2. Floating Navbar Bubble Logic
+        const navBubble = document.getElementById('navBubble');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight * 0.4) {
+                navBubble.classList.add('visible');
+            } else {
+                navBubble.classList.remove('visible');
+            }
+        });
+
+        // Carousel tracking objects
+        const carousels = {};
+        const sliderIndices = {
+            products: 0,
+            cases: 0
+        };
+
+        // Helper to format custom titles (e.g. AND.. CUT! clapperboard logo C)
+        function formatTitle(title) {
+            if (title === "AND.. CUT!") {
+                return `AND.. <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 22px; height: 22px; display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M18 25 L78 12" stroke="currentColor" stroke-width="8" stroke-linecap="round" /><circle cx="18" cy="28" r="3" fill="currentColor" /><path d="M78 36 H18 V80 H78 V64 H78 V48 H78 Z" fill="currentColor" /><line x1="28" y1="24" x2="34" y2="12" stroke="#050505" stroke-width="2.5" /><line x1="38" y1="22" x2="44" y2="10" stroke="#050505" stroke-width="2.5" /><line x1="48" y1="20" x2="54" y2="8" stroke="#050505" stroke-width="2.5" /><line x1="58" y1="18" x2="64" y2="8" stroke="#050505" stroke-width="2.5" /><line x1="68" y1="16" x2="74" y2="4" stroke="#050505" stroke-width="2.5" /><line x1="22" y1="36" x2="28" y2="28" stroke="#050505" stroke-width="2.5" /><line x1="32" y1="36" x2="38" y2="28" stroke="#050505" stroke-width="2.5" /><line x1="42" y1="36" x2="48" y2="28" stroke="#050505" stroke-width="2.5" /><line x1="52" y1="36" x2="58" y2="28" stroke="#050505" stroke-width="2.5" /><line x1="62" y1="36" x2="68" y2="28" stroke="#050505" stroke-width="2.5" /></svg>UT!`;
+            }
+            return title;
+        }
+
+        // Fetch portfolio JSON data on load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    populatePortfolio(data);
+                })
+                .catch(err => console.error('Error loading data.json:', err));
+        });
+
+        function populatePortfolio(data) {
+            // Bio & Profile Data
+            document.getElementById('heroName').textContent = data.about.name;
+            document.getElementById('heroDesc').textContent = data.about.description;
+            
+            const bioHTML = data.about.bioParagraphs.map(p => `<p>${p}</p>`).join('');
+            document.getElementById('bioParagraphsWrap').innerHTML = bioHTML;
+            document.getElementById('availabilityStatus').textContent = data.about.availability;
+
+            // Products Slider Track
+            const productsHTML = data.products.map(p => {
+                const imgsHTML = p.images.map(img => `<img src="${img}" alt="${p.title}">`).join('');
+                carousels[p.id] = { index: 0, total: p.images.length, playing: p.images.length > 1 };
+
+                return `
+                <div class="project-card">
+                    <div class="project-images-carousel" id="${p.id}Carousel">
+                        <div class="carousel-images-track">
+                            ${imgsHTML}
+                        </div>
+                        <div class="carousel-controls" style="${p.images.length <= 1 ? 'display:none;' : ''}">
+                            <button class="carousel-nav-btn" onclick="prevCarouselSlide('${p.id}Carousel', event)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-play-pause-btn" onclick="toggleCarouselPlay('${p.id}Carousel', event)" style="background:none; border:none; cursor:pointer;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 19V5M17 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-nav-btn" onclick="nextCarouselSlide('${p.id}Carousel', event)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-details-wrap">
+                        <h3 class="project-title" style="margin-top: 10px;">${formatTitle(p.title)}</h3>
+                        <p class="project-desc">${p.description}</p>
+                        <div>
+                            <button class="btn-grey-bubble" onclick="openDrawer('${p.id}')">View Project</button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+            document.getElementById('productsTrack').innerHTML = productsHTML;
+
+            // Initialize auto-rotation for product sub-carousels
+            Object.keys(carousels).forEach(startCarouselInterval);
+
+            // Case Studies Slider Track
+            const casesHTML = data.cases.map(c => `
+                <div class="case-card">
+                    <div class="case-header-row">
+                        <h3 class="project-title">${formatTitle(c.title)}</h3>
+                        <span class="case-skills-tag">${c.categoryLabel}</span>
+                    </div>
+                    <div class="case-quote">
+                        <strong>Problem Statement:</strong> ${c.prompt}
+                    </div>
+                    <div class="case-sar">
+                        <h4>Situation & Action</h4>
+                        <p>${c.approach}</p>
+                    </div>
+                    <div>
+                        <a href="all-cases.html" class="btn-grey-bubble">Read Case Study</a>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('casesTrack').innerHTML = casesHTML;
+
+            // Publications List
+            const publicationsHTML = data.publications.map(pub => `
+                <a href="${pub.url}" target="_blank" class="writing-row">
+                    <div class="writing-row-left">
+                        <h3>${pub.title}</h3>
+                        <p>${pub.description}</p>
+                    </div>
+                    <span class="writing-arrow">&rarr;</span>
+                </a>
+            `).join('');
+            document.getElementById('writingListWrap').innerHTML = publicationsHTML;
+
+            // Build Drawers for Products and Cases
+            const productDrawersHTML = data.products.map(p => `
+                <div class="details-drawer" id="drawer-${p.id}">
+                    <div class="drawer-content">
+                        <button class="close-drawer-btn" onclick="closeDrawer()">&times;</button>
+                        <div class="drawer-body">
+                            <h3>${formatTitle(p.drawerDetails.title || p.title)}</h3>
+                            <div class="drawer-meta-list">
+                                <div class="drawer-meta-item">
+                                    <h4>Category</h4>
+                                    <p>${p.category}</p>
+                                </div>
+                                <div class="drawer-meta-item">
+                                    <h4>Year</h4>
+                                    <p>${p.year}</p>
+                                </div>
+                                <div class="drawer-meta-item">
+                                    <h4>Role</h4>
+                                    <p>${p.drawerDetails.role}</p>
+                                </div>
+                                <div class="drawer-meta-item">
+                                    <h4>Stack</h4>
+                                    <p>${p.drawerDetails.stack}</p>
+                                </div>
+                            </div>
+                            ${p.drawerDetails.paragraphs.map(para => `<p>${para}</p>`).join('')}
+                            ${p.drawerDetails.linkUrl ? `<div style="margin-top: 2rem;"><a href="${p.drawerDetails.linkUrl}" target="_blank" class="btn btn-dark">${p.drawerDetails.linkText} &rarr;</a></div>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('drawersContainer').innerHTML = productDrawersHTML;
+        }
+
+        // Horizontal Slider Navigation (Slide Track by Index Cyclic)
+        function nextSlide(sectionId) {
+            const track = document.getElementById(sectionId + 'Track');
+            const totalSlides = track.children.length;
+            sliderIndices[sectionId] = (sliderIndices[sectionId] + 1) % totalSlides;
+            updateSliderTransform(sectionId, track);
+        }
+
+        // Prev Slide
+        function prevSlide(sectionId) {
+            const track = document.getElementById(sectionId + 'Track');
+            const totalSlides = track.children.length;
+            sliderIndices[sectionId] = (sliderIndices[sectionId] - 1 + totalSlides) % totalSlides;
+            updateSliderTransform(sectionId, track);
+        }
+
+        function updateSliderTransform(sectionId, track) {
+            const offset = -sliderIndices[sectionId] * 100;
+            track.style.transform = `translateX(${offset}%)`;
+        }
+
+        // Carousel Auto-Play Loop Functionality
+        function startCarouselInterval(carouselId) {
+            const c = carousels[carouselId];
+            if (!c || c.total <= 1) return;
+            c.intervalId = setInterval(() => {
+                if (c.playing) {
+                    c.index = (c.index + 1) % c.total;
+                    setCarouselSlide(carouselId, c.index);
                 }
+            }, 3000);
+        }
 
-                setupCarousel('work-track');
-            </script>
+        function nextCarouselSlide(carouselId, event) {
+            if (event) {
+                event.stopPropagation();
+                pauseCarousel(carouselId);
+            }
+            const c = carousels[carouselId.replace('Carousel', '')];
+            c.index = (c.index + 1) % c.total;
+            setCarouselSlide(carouselId.replace('Carousel', ''), c.index);
+        }
+
+        function prevCarouselSlide(carouselId, event) {
+            if (event) {
+                event.stopPropagation();
+                pauseCarousel(carouselId);
+            }
+            const c = carousels[carouselId.replace('Carousel', '')];
+            c.index = (c.index - 1 + c.total) % c.total;
+            setCarouselSlide(carouselId.replace('Carousel', ''), c.index);
+        }
+
+        function setCarouselSlide(carouselId, slideIndex) {
+            const carousel = document.getElementById(carouselId + 'Carousel');
+            const track = carousel.querySelector('.carousel-images-track');
+            const offset = -slideIndex * 100;
+            track.style.transform = `translateX(${offset}%)`;
+        }
+
+        function pauseCarousel(carouselId) {
+            const realId = carouselId.replace('Carousel', '');
+            const c = carousels[realId];
+            c.playing = false;
+            const carousel = document.getElementById(carouselId);
+            const playBtn = carousel.querySelector('.carousel-play-pause-btn');
+            if (playBtn) {
+                playBtn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="5 3 19 12 5 21 5 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polygon>
+                    </svg>
+                `;
+            }
+        }
+
+        function toggleCarouselPlay(carouselId, event) {
+            if (event) event.stopPropagation();
+            const realId = carouselId.replace('Carousel', '');
+            const c = carousels[realId];
+            c.playing = !c.playing;
+            const carousel = document.getElementById(carouselId);
+            const playBtn = carousel.querySelector('.carousel-play-pause-btn');
+            if (playBtn) {
+                if (c.playing) {
+                    playBtn.innerHTML = `
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 19V5M17 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    `;
+                } else {
+                    playBtn.innerHTML = `
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="5 3 19 12 5 21 5 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polygon>
+                        </svg>
+                    `;
+                }
+            }
+        }
+
+        // Drawer Actions
+        function openDrawer(drawerId) {
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.getElementById('drawer-' + drawerId).classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            document.getElementById('drawerOverlay').classList.remove('active');
+            const drawers = document.querySelectorAll('.details-drawer');
+            drawers.forEach(drawer => drawer.classList.remove('open'));
+            document.body.style.overflow = '';
+        }
+    </script>
 </body>
 
 </html>

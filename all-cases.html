@@ -1,324 +1,643 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Studies | Pranav Bharadwaj M</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Case Archive | Pranav Bharadwaj M</title>
+    <link rel="icon" type="image/png" href="local-assets/profilecircle.png">
     
+    <!-- Premium Google Fonts pairing (Matches index.html) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
+        /* Strict Greyscale Design System matching index.html */
         :root {
-            --bg-grey: #ebebeb; 
-            --pure-black: #000000;
-            --pure-white: #ffffff; 
-            --gray-text: #555555;
-            --light-gray: #cccccc;
+            --bg-neutral: #f9fafb;
+            --bg-card: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --text-light: #9ca3af;
+            --border-color: rgba(0, 0, 0, 0.06);
+            --accent-bg: #f3f4f6;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Lora', Georgia, serif;
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            background-color: var(--bg-grey);
-            color: var(--pure-black);
-            line-height: 1.6;
-        }
-
-        .layout-grid {
-            display: grid;
-            grid-template-columns: 40% 60%;
+            background-color: var(--bg-neutral);
+            color: var(--text-main);
+            line-height: 1.5;
             min-height: 100vh;
+            padding: 5rem 2rem;
+            font-size: 15px;
         }
 
-        /* Filter Menu Styles */
-        .filter-menu {
-            margin-bottom: 3rem;
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .header-section {
             display: flex;
-            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
             flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .filter-btn {
-            background-color: transparent;
-            border: 2px solid var(--pure-black);
-            color: var(--gray-text);
-            padding: 0.5rem 1.2rem;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .page-title {
+            font-size: 1.35rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
         }
 
-        .filter-btn:hover {
-            color: var(--pure-black);
-        }
-
-        .filter-btn.active {
-            background-color: var(--pure-black);
-            color: var(--pure-white);
-        }
-
-        /* The class JavaScript will use to hide items */
-        .hide-case {
-            display: none !important;
-        }
-
-        /* LEFT SIDE */
-        .left-anchor {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            padding: 5vh 3rem 3rem 3rem; 
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start; 
-            border-right: 2px solid var(--pure-black);
-            background-color: var(--bg-grey);
-            scrollbar-width: none; 
-            -ms-overflow-style: none;
-        }
-
-        .left-anchor::-webkit-scrollbar { display: none; }
-
-        .profile-img {
-            width: 100%;
-            max-width: 220px;
-            height: auto;
-            margin: 0 auto 2rem auto; 
-            display: block;
-            flex-shrink: 0;
-        }
-
-        .name-title {
-            font-family: 'Lora', Georgia, serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            line-height: 1.2;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-            text-align: center; 
-            white-space: nowrap;
-        }
-
-        .location {
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: var(--gray-text);
-            margin-bottom: 3rem;
-            text-align: center; 
-        }
-
-        .btn-resume {
-            display: inline-block;
-            padding: 1rem 1.5rem;
-            background-color: var(--pure-black);
-            color: var(--pure-white);
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 500;
             text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-align: center;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: 2px solid var(--pure-black);
+            background-color: var(--bg-card);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent-bg);
+            color: var(--text-main);
+        }
+
+        /* ----------------------------------- */
+        /* MAIN CASE CAROUSEL SECTION          */
+        /* ----------------------------------- */
+        .slider-viewport-container {
+            position: relative;
             width: 100%;
-            margin-top: auto; 
+            display: flex;
+            align-items: center;
+            margin-bottom: 3.5rem;
         }
 
-        .btn-resume:hover {
-            background-color: var(--bg-grey);
-            color: var(--pure-black);
+        .slider-viewport {
+            overflow: hidden;
+            width: 100%;
+            border-radius: 20px;
         }
 
-        /* RIGHT SIDE - FULL CASE STUDIES */
-        .right-scroll {
+        .slider-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+        }
+
+        /* Sized like products section on homepage */
+        .case-card {
+            min-width: 100%;
+            box-sizing: border-box;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            padding: 6rem 4rem;
+            gap: 20px;
+            justify-content: space-between;
         }
 
-        .page-header {
-            font-size: 3rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 4rem;
-            border-bottom: 4px solid var(--pure-black);
-            display: inline-block;
-            padding-bottom: 0.5rem;
+        /* Cyclic slider navigation arrows on either side */
+        .slider-arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
         }
 
-        .case-block {
-            margin-bottom: 6rem;
-            background-color: var(--pure-white);
-            padding: 3rem;
-            border: 1px solid var(--light-gray);
+        .slider-arrow-btn:hover {
+            background: #ffffff;
+            color: var(--text-main);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .slider-arrow-left {
+            left: -60px;
+        }
+
+        .slider-arrow-right {
+            right: -60px;
+        }
+
+        @media (max-width: 1024px) {
+            .slider-arrow-left {
+                left: -15px;
+            }
+            .slider-arrow-right {
+                right: -15px;
+            }
+        }
+
+        .case-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
         .case-title {
-            font-size: 2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .case-skills {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: var(--gray-text);
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            letter-spacing: 1px;
-        }
-
-        .case-question {
-            background-color: var(--bg-grey);
-            padding: 1.5rem;
-            border-left: 4px solid var(--pure-black);
-            margin-bottom: 2rem;
-            font-size: 1.2rem;
-            font-style: italic;
-        }
-
-        .case-analysis {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        .case-analysis h4 {
             font-size: 1.3rem;
-            text-transform: uppercase;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
         }
 
-        .case-image {
-            width: 100%;
-            height: auto;
-            border: 1px solid var(--light-gray);
+        .case-tag {
+            font-size: 0.75rem;
+            background-color: var(--accent-bg);
+            color: var(--text-muted);
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-weight: 500;
+        }
+
+        .case-preview-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* ----------------------------------- */
+        /* SEARCH CONTROLS                     */
+        /* ----------------------------------- */
+        .search-wrap {
             margin-bottom: 2rem;
-            display: block;
         }
 
-        .pdf-button {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background-color: transparent;
-            color: var(--pure-black);
+        .search-bar {
+            width: 100%;
+            padding: 12px 18px;
+            border-radius: 9999px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .search-bar:focus {
+            border-color: var(--text-muted);
+        }
+
+        /* ----------------------------------- */
+        /* LIST OF CASE STUDIES                */
+        /* ----------------------------------- */
+        .case-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+
+        .case-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--border-color);
             text-decoration: none;
-            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .case-row-left {
+            max-width: 80%;
+        }
+
+        .case-row h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .case-row p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .case-arrow {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            transition: transform 0.2s ease;
+        }
+
+        .case-row:hover .case-arrow {
+            transform: translateX(4px);
+            color: var(--text-main);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        /* Grey bubble buttons matching homepage */
+        .btn-grey-bubble {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            width: fit-content;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-grey-bubble:hover {
+            background-color: #e5e7eb;
+            color: var(--text-main);
+        }
+
+        /* ----------------------------------- */
+        /* DETAILS DRAWER / SHEET (Fullscreen) */
+        /* ----------------------------------- */
+        .details-drawer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2.5rem 2rem;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(100%);
+            height: 100vh;
+            max-height: 100vh;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .details-drawer.open {
+            transform: translateY(0);
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            z-index: 1999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer-content {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+            width: 100%;
+        }
+
+        .close-drawer-btn {
+            position: absolute;
+            top: -30px;
+            right: 0;
+            background: var(--accent-bg);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: background 0.2s ease;
+        }
+
+        .close-drawer-btn:hover {
+            background: #e5e7eb;
+            color: var(--text-main);
+        }
+
+        .drawer-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+        }
+
+        .drawer-meta-list {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.2rem;
+        }
+
+        .drawer-meta-item h4 {
+            font-size: 0.75rem;
+            color: var(--text-light);
             text-transform: uppercase;
-            font-size: 0.8rem;
-            border: 2px solid var(--pure-black);
-            transition: all 0.3s ease;
+            margin-bottom: 2px;
         }
 
-        .pdf-button:hover {
-            background-color: var(--pure-black);
-            color: var(--pure-white);
+        .drawer-meta-item p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            font-weight: 500;
         }
 
-        @media (max-width: 900px) {
-            .layout-grid { grid-template-columns: 1fr; }
-            .left-anchor {
-                position: relative;
-                height: auto;
-                border-right: none;
-                border-bottom: 2px solid var(--pure-black);
-                padding: 3rem 2rem;
-            }
-            .right-scroll { padding: 4rem 2rem; }
-            .case-block { padding: 2rem; }
+        .case-quote {
+            background-color: var(--accent-bg);
+            border-left: 3px solid var(--text-main);
+            padding: 1.2rem;
+            font-size: 1rem;
+            font-style: italic;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-sar h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-muted);
+        }
+
+        .case-sar p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .hide-case {
+            display: none !important;
         }
     </style>
 </head>
+
 <body>
 
-    <div class="layout-grid">
+    <div class="container">
         
-        <!-- THE LEFT ANCHOR -->
-        <div class="left-anchor">
-            <img src="profileebebeb.png" alt="Profile Sketch" class="profile-img">
-            <h1 class="name-title">PRANAV BHARADWAJ M</h1>
-            <div class="location">Dublin, Ireland</div>
-            
-            <p style="margin-bottom: 2rem; font-size: 1.1rem; font-weight: bold;">
-                MSc Management Student at UCD Smurfit leveraging engineering rigor to drive data-backed operational and commercial decisions.
-            </p>
+        <header class="header-section">
+            <h1 class="page-title">Case Archive</h1>
+            <a href="index.html" class="btn-back">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back
+            </a>
+        </header>
 
-            <!-- Changed to a Back Button -->
-            <a href="index.html" class="btn-resume">&larr; Back to Main Site</a>
+        <!-- MAIN CYCLIC AUTO-ROTATING CAROUSEL -->
+        <div class="slider-viewport-container">
+            <button class="slider-arrow-btn slider-arrow-left" onclick="prevSlide()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button class="slider-arrow-btn slider-arrow-right" onclick="nextSlide()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+
+            <div class="slider-viewport">
+                <div class="slider-track" id="casesTrack">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
         </div>
 
-        <!-- THE RIGHT SCROLL - CASE ARCHIVE -->
-        <div class="right-scroll">
-            
-            <h1 class="page-header">Case Archive</h1>
-
-            <!-- THE FILTER MENU -->
-            <div class="filter-menu">
-                <button class="filter-btn active" onclick="filterSelection('all')">All</button>
-                <button class="filter-btn" onclick="filterSelection('product')">Product Management</button>
-                <button class="filter-btn" onclick="filterSelection('finance')">Financial Analysis</button>
-            </div>
-
-            <!-- CASE STUDY 1: Notice the data-category attribute -->
-            <div class="case-block" data-category="product">
-                <h2 class="case-title">Accredian EdTech Dashboard</h2>
-                <div class="case-skills">Skills Applied: Product Management • User Experience • Data Structuring</div>
-                
-                <div class="case-question">
-                    <strong>The Prompt:</strong> "Design a student dashboard feature that increases daily active user engagement while consolidating complex course data into a single, digestible view."
-                </div>
-
-                <div class="case-analysis">
-                    <p>When approaching the dashboard architecture, the primary bottleneck was information overload. Students were abandoning the platform because finding specific modules required too many clicks.</p>
-                    
-                    <h4>The Approach</h4>
-                    <p>I applied a systems-thinking framework to map the exact user journey. By restructuring the data hierarchy, I prioritized immediate actionable items like upcoming deadlines at the top level.</p>
-                </div>
-
-                <div class="case-analysis">
-                    <h4>The Outcome</h4>
-                    <p>The revised structural plan significantly reduced navigational friction, providing a clear blueprint for the engineering team to execute the build.</p>
-                </div>
-
-                <a href="accredian-case.pdf" target="_blank" class="pdf-button">Download Full Brief (PDF) &darr;</a>
-            </div>
-
-            <!-- CASE STUDY 2: Notice the data-category attribute -->
-            <div class="case-block" data-category="finance">
-                <h2 class="case-title">Corporate Financial Teardown</h2>
-                <div class="case-skills">Skills Applied: Financial Analysis • Market Research • Cost Optimization</div>
-                
-                <div class="case-question">
-                    <strong>The Prompt:</strong> "Conduct an in-depth analysis of company financials from the ground up, identifying key cost centers and potential areas for revenue growth."
-                </div>
-
-                <div class="case-analysis">
-                    <p>This project required stripping back the high-level reporting to understand the raw mechanics of how the business actually generated and spent capital.</p>
-                    
-                    <h4>The Approach</h4>
-                    <p>Starting with zero prior assumptions, I modeled the core revenue streams against operating expenses to isolate the most profitable segments of the organization.</p>
-                </div>
-
-                <a href="financial-teardown.pdf" target="_blank" class="pdf-button">Download Full Analysis (PDF) &darr;</a>
-            </div>
-
+        <!-- SEARCH BAR CONTAINER -->
+        <div class="search-wrap">
+            <input type="text" id="searchBar" class="search-bar" placeholder="Search cases by title, skills, tags, keywords or phrases..." onkeyup="filterCases()">
         </div>
+
+        <!-- CASES LIST SECTION -->
+        <main class="case-list" id="caseList">
+            <!-- Dynamic rendering -->
+        </main>
+
+        <div class="no-results" id="noResults">No matching case studies found.</div>
+
     </div>
 
+    <!-- DETAILS DRAWER OVERLAY -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+    <!-- DETAILS DRAWERS CONTAINER -->
+    <div id="drawersContainer">
+        <!-- Dynamic rendering -->
+    </div>
+
+    <script>
+        let sliderIndex = 0;
+        let totalSlides = 0;
+        let autoRotation;
+
+        // Helper to format custom titles (e.g. AND.. CUT! clapperboard logo C)
+        function formatTitle(title) {
+            if (title === "AND.. CUT!") {
+                return `AND.. <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 22px; height: 22px; display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M18 25 L78 12" stroke="currentColor" stroke-width="8" stroke-linecap="round" /><circle cx="18" cy="28" r="3" fill="currentColor" /><path d="M78 36 H18 V80 H78 V64 H78 V48 H78 Z" fill="currentColor" /><line x1="28" y1="24" x2="34" y2="12" stroke="#050505" stroke-width="2.5" /><line x1="38" y1="22" x2="44" y2="10" stroke="#050505" stroke-width="2.5" /><line x1="48" y1="20" x2="54" y2="8" stroke="#050505" stroke-width="2.5" /><line x1="58" y1="18" x2="64" y2="8" stroke="#050505" stroke-width="2.5" /><line x1="68" y1="16" x2="74" y2="4" stroke="#050505" stroke-width="2.5" /><line x1="22" y1="36" x2="28" y2="28" stroke="#050505" stroke-width="2.5" /><line x1="32" y1="36" x2="38" y2="28" stroke="#050505" stroke-width="2.5" /><line x1="42" y1="36" x2="48" y2="28" stroke="#050505" stroke-width="2.5" /><line x1="52" y1="36" x2="58" y2="28" stroke="#050505" stroke-width="2.5" /><line x1="62" y1="36" x2="68" y2="28" stroke="#050505" stroke-width="2.5" /></svg>UT!`;
+            }
+            return title;
+        }
+
+        // Fetch data from data.json
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    populateCases(data.cases);
+                })
+                .catch(err => console.error('Error fetching data.json:', err));
+        });
+
+        function populateCases(cases) {
+            totalSlides = cases.length;
+
+            // Render Carousel Items
+            const carouselHTML = cases.map(c => `
+                <div class="case-card">
+                    <div class="case-header-row">
+                        <h2 class="case-title">${formatTitle(c.title)}</h2>
+                        <span class="case-tag">${c.categoryLabel}</span>
+                    </div>
+                    <p class="case-preview-desc">${c.prompt}</p>
+                    <div>
+                        <button class="btn-grey-bubble" onclick="openDrawer('${c.id}')">Read Case Study</button>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('casesTrack').innerHTML = carouselHTML;
+
+            // Render List Items
+            const listHTML = cases.map(c => `
+                <div class="case-row" data-category="${c.category}" onclick="openDrawer('${c.id}')">
+                    <div class="case-row-left">
+                        <h3>${formatTitle(c.title)}</h3>
+                        <p>${c.categoryLabel}</p>
+                    </div>
+                    <div style="display:flex; align-items:center; gap: 12px;">
+                        <span class="case-tag">${c.categoryLabel}</span>
+                        <span class="case-arrow">&rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('caseList').innerHTML = listHTML;
+
+            // Render Full Screen Drawers
+            const drawersHTML = cases.map(c => `
+                <div class="details-drawer" id="drawer-${c.id}">
+                    <div class="drawer-content">
+                        <button class="close-drawer-btn" onclick="closeDrawer()">&times;</button>
+                        <div class="drawer-body">
+                            <h3>${formatTitle(c.title)}</h3>
+                            <div class="drawer-meta-list">
+                                <div class="drawer-meta-item">
+                                    <h4>Domain</h4>
+                                    <p>${c.categoryLabel}</p>
+                                </div>
+                            </div>
+                            <div class="case-quote">
+                                <strong>Question / Issue:</strong> ${c.prompt}
+                            </div>
+                            <div class="case-sar">
+                                <h4>The Approach</h4>
+                                <p>${c.approach}</p>
+                                <h4>The Outcome</h4>
+                                <p>${c.outcome}</p>
+                            </div>
+                            <a href="${c.pdfUrl}" target="_blank" class="btn-grey-bubble" style="margin-top: 1.5rem;">${c.pdfLabel}</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('drawersContainer').innerHTML = drawersHTML;
+
+            // Start Auto-Rotation
+            autoRotation = setInterval(nextSlide, 3000);
+        }
+
+        // Cyclic case slider navigation
+        function nextSlide() {
+            if (totalSlides === 0) return;
+            sliderIndex = (sliderIndex + 1) % totalSlides;
+            updateSliderTransform();
+        }
+
+        function prevSlide() {
+            if (totalSlides === 0) return;
+            sliderIndex = (sliderIndex - 1 + totalSlides) % totalSlides;
+            updateSliderTransform();
+        }
+
+        function updateSliderTransform() {
+            const track = document.getElementById('casesTrack');
+            const offset = -sliderIndex * 100;
+            track.style.transform = `translateX(${offset}%)`;
+        }
+
+        // Pause rotation on hover
+        const sliderContainer = document.querySelector('.slider-viewport-container');
+        sliderContainer.addEventListener('mouseenter', () => clearInterval(autoRotation));
+        sliderContainer.addEventListener('mouseleave', () => {
+            clearInterval(autoRotation);
+            autoRotation = setInterval(nextSlide, 3000);
+        });
+
+        // Live Search filter logic
+        function filterCases() {
+            const searchQuery = document.getElementById('searchBar').value.toLowerCase();
+            const rows = document.querySelectorAll('.case-row');
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const title = row.querySelector('h3').textContent.toLowerCase();
+                const desc = row.querySelector('p').textContent.toLowerCase();
+                const matches = title.includes(searchQuery) || desc.includes(searchQuery);
+
+                if (matches) {
+                    row.classList.remove('hide-case');
+                    visibleCount++;
+                } else {
+                    row.classList.add('hide-case');
+                }
+            });
+
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        // Drawer Actions
+        function openDrawer(drawerId) {
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.getElementById('drawer-' + drawerId).classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            document.getElementById('drawerOverlay').classList.remove('active');
+            const drawers = document.querySelectorAll('.details-drawer');
+            drawers.forEach(drawer => drawer.classList.remove('open'));
+            document.body.style.overflow = '';
+        }
+    </script>
+
 </body>
+
 </html>
