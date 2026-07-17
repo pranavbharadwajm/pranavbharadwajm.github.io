@@ -17,9 +17,11 @@
       "title": "AND.. CUT!",
       "category": "Web Design & Front-End",
       "year": "2024 - 2026",
-      "description": "A deep-dive film critiques and reviews platform, combining media embeds, cinematic styling, and responsive readability layout.",
+      "description": "A premium, editorial movie criticism and review portfolio platform designed with a high-end cinematic dark aesthetic.",
       "images": [
-        ""
+        "local-assets/andcut-home.png",
+        "local-assets/andcut-archive.png",
+        "local-assets/andcut-cineframe.png"
       ],
       "drawerDetails": {
         "role": "Creator / Developer",
