@@ -209,6 +209,18 @@
             margin: 0 auto 7rem auto;
         }
 
+        #products.section-container {
+            max-width: 1088px;
+            width: 100%;
+        }
+
+        #products .section-header {
+            max-width: 860px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0;
+        }
+
         /* Heading styled as grey */
         .section-header {
             font-size: 0.95rem;
@@ -308,17 +320,29 @@
             width: 100%;
         }
 
-        .project-card, .case-card {
+        .case-card {
             min-width: 100%;
             box-sizing: border-box;
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
+            background: transparent;
+            border: none;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            padding: 20px;
+            padding: 0;
+        }
+
+        .project-card {
+            min-width: 100%;
+            box-sizing: border-box;
+            background: transparent;
+            border: none;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0;
+            margin-bottom: 2rem;
         }
 
         .slider-arrow-btn {
@@ -367,7 +391,7 @@
             position: relative;
             border-radius: 12px;
             overflow: hidden;
-            aspect-ratio: 1.8 / 1;
+            aspect-ratio: 1.4 / 1;
             background-color: var(--bg-neutral);
         }
 
@@ -389,15 +413,25 @@
             position: absolute;
             bottom: 12px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateY(8px);
             display: flex;
             align-items: center;
             gap: 12px;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             padding: 5px 14px;
             border-radius: 9999px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-images-carousel:hover .carousel-controls {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
         }
 
         .carousel-nav-btn {
@@ -417,7 +451,57 @@
             color: var(--text-main);
         }
 
+        /* Subtle highlighted link style */
+        .highlight-link {
+            color: var(--text-main);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(31, 41, 55, 0.25);
+            font-weight: 500;
+            transition: border-bottom-color 0.2s ease, color 0.2s ease;
+            display: inline;
+        }
+
+        .highlight-link:hover {
+            border-bottom-color: var(--text-main);
+        }
+
+        /* Large centered showcase images in details drawer */
+        .drawer-images-list {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90vw;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .drawer-images-list img {
+            width: 100%;
+            height: auto;
+            border: none !important;
+            border-radius: 8px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            object-fit: cover;
+        }
+
+        /* Subtle section divider lines */
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 0 auto 7rem auto;
+            max-width: 800px;
+            width: 90%;
+        }
+
         .project-details-wrap {
+            max-width: 860px;
+            width: 100%;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -757,7 +841,7 @@
                 gap: 2.5rem;
             }
             .project-card {
-                padding: 16px;
+                padding: 0;
             }
             .case-header-row {
                 flex-direction: column;
@@ -775,8 +859,8 @@
     <!-- FLOATING NAVIGATION BUBBLE -->
     <nav class="nav-bubble" id="navBubble">
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
             <li><a href="#products">Work</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -787,9 +871,9 @@
         <p class="hero-desc" id="heroDesc">Former Software Engineer combining technical execution with business strategy | MSc Management Candidate at UCD Smurfit</p>
         <div class="hero-buttons">
             <button class="btn btn-dark" onclick="copyEmail(this)">Copy Email</button>
-            <a href="#about" class="btn btn-light">About Me</a>
+            <a href="#products" class="btn btn-light">View Work</a>
         </div>
-        <a href="#about" class="scroll-indicator">
+        <a href="#products" class="scroll-indicator">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -801,29 +885,9 @@
     <!-- CONTENT WRAPPER -->
     <div class="content-wrapper">
 
-        <!-- ABOUT SECTION -->
-        <section id="about" class="section-container">
-            <h2 class="section-header">About</h2>
-            <div class="about-grid">
-                <div class="about-left" id="bioParagraphsWrap">
-                    <!-- Loaded dynamically -->
-                </div>
-                <div class="about-right">
-                    <!-- Services removed; Availability moved up -->
-                    <div class="info-group">
-                        <h3>Availability</h3>
-                        <div class="status-badge">
-                            <span class="status-dot"></span>
-                            <span id="availabilityStatus">Open for roles in Dublin & Remote</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- PRODUCTS SECTION -->
         <section id="products" class="section-container">
-            <h2 class="section-header">Products</h2>
+            
             
             <div class="slider-viewport-container">
                 <!-- Navigation Arrows on Either Side -->
@@ -848,9 +912,11 @@
             </div>
         </section>
 
+        <hr class="section-divider">
+
         <!-- CASE STUDIES SECTION -->
         <section id="cases" class="section-container">
-            <h2 class="section-header">Case Studies</h2>
+            
             
             <div class="slider-viewport-container">
                 <!-- Navigation Arrows on Either Side -->
@@ -880,12 +946,36 @@
             </div>
         </section>
 
+        <hr class="section-divider">
+
         <!-- PUBLICATIONS SECTION -->
         <section id="writing" class="section-container">
-            <h2 class="section-header">Publications</h2>
+            
             <div class="writing-container">
                 <div class="writing-list" id="writingListWrap">
                     <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section-container">
+            <h2 class="section-header">About</h2>
+            <div class="about-grid">
+                <div class="about-left" id="bioParagraphsWrap">
+                    <!-- Loaded dynamically -->
+                </div>
+                <div class="about-right">
+                    <!-- Services removed; Availability moved up -->
+                    <div class="info-group">
+                        <h3>Availability</h3>
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            <span id="availabilityStatus">Open for roles in Dublin & Remote</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1069,8 +1159,8 @@
             // Build Drawers for Products and Cases
             const productDrawersHTML = data.products.map(p => {
                 const imagesHTML = p.images && p.images.length > 0 && p.images[0] !== ""
-                    ? `<div class="drawer-images-list" style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; width: 100%;">
-                        ${p.images.map(img => `<img src="${img}" alt="${p.title}" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border-color); object-fit: cover;">`).join('')}
+                    ? `<div class="drawer-images-list">
+                        ${p.images.map(img => `<img src="${img}" alt="${p.title}">`).join('')}
                        </div>`
                     : '';
 

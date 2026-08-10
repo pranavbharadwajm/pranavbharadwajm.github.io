@@ -4,7 +4,7 @@
     "description": "Former Software Engineer combining technical execution with business strategy | MSc Management Candidate at UCD Smurfit",
     "email": "pranavbharadwajm@gmail.com",
     "bioParagraphs": [
-      "Hi, I'm Pranav, a student at UCD Michael Smurfit Graduate Business School based in Dublin. Currently specializing in Management, combining engineering rigor with business strategy.",
+      "Hi, I'm Pranav, a student at <a href=\"https://www.smurfitschool.ie\" target=\"_blank\" class=\"highlight-link\">UCD Michael Smurfit Graduate Business School</a> based in Dublin. Currently specializing in Management, combining engineering rigor with business strategy.",
       "With 3 years of experience as a software engineer, I specialize in combining technical execution with business strategy, analyzing complex systems and driving data-backed decisions.",
       "I'm interested in working with design-driven, analytical teams that tackle complex business and operational problems. I move fast, care about details, and enjoy writing code.",
       "If you're looking for someone who understands both the technical groundwork and the high-level strategy, let's talk!"
@@ -12,6 +12,29 @@
     "availability": "Open for roles in Dublin & Remote"
   },
   "products": [
+    {
+      "id": "visatracker",
+      "title": "Irish Visa Status Tracker & Queue Analytics Platform",
+      "category": "Web Design & Front-End",
+      "year": "2026",
+      "description": "A full-stack, zero-cost automated platform tracking Irish immigration decisions and queue analytics instantly.",
+      "images": [
+        "local-assets/visatracker-home.png",
+        "local-assets/visatracker-tracked.png",
+        "local-assets/visatracker-stats.png"
+      ],
+      "drawerDetails": {
+        "role": "Creator / Developer",
+        "stack": "Javascript, CSS,HTML",
+        "launch": "2026",
+        "paragraphs": [
+          "The Irish Visa Status Tracker is an automated web platform built to eliminate the friction of tracking Irish visa applications. Instead of forcing applicants to manually download and search through weekly decision spreadsheets published by the Embassy of Ireland in New Delhi, the dashboard allows users to type in their 8-digit reference number for an instant status check. To give pending applicants immediate context, it also displays the outcomes of neighboring reference numbers, helping them see if their specific application batch is currently active.",
+          "Beyond basic lookups, the platform turns raw government reports into clear, actionable queue analytics. It estimates an applicant's relative position in line compared to the lowest pending reference number and measures the exact completion percentage of their reference cohort block. A dedicated statistics hub provides deeper transparency into overall approval rates, decision volumes, and daily processing speeds using interactive charts and a fully searchable, filterable database explorer."
+        ],
+        "linkText": "Open Live Website",
+        "linkUrl": "https://visatracker.pranavbharadwajm.com"
+      }
+    },
     {
       "id": "andcut",
       "title": "AND.. CUT!",
