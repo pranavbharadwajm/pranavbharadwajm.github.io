@@ -1421,7 +1421,7 @@
                             ${s.drawerDetails.paragraphs.map(para => `<p>${para}</p>`).join('')}
                             ${imagesHTML}
                             ${s.pricePaise
-                                ? `<div style="margin-top: 2rem;"><button onclick="startRazorpayCheckout('${s.id}', ${s.pricePaise}, '${s.title}')" class="btn btn-dark" style="cursor: pointer;">${s.drawerDetails.linkText} &rarr;</button></div>`
+                                ? `<div style="margin-top: 2rem;"><button onclick="startRazorpayCheckout('${s.id}', ${s.pricePaise}, '${s.currency || 'INR'}', '${s.title}')" class="btn btn-dark" style="cursor: pointer;">${s.drawerDetails.linkText} &rarr;</button></div>`
                                 : (s.linkUrl ? `<div style="margin-top: 2rem;"><a href="${s.linkUrl}" ${s.linkUrl.startsWith('mailto:') ? '' : 'target="_blank"'} class="btn btn-dark">${s.drawerDetails.linkText} &rarr;</a></div>` : '')
                             }
                         </div>
@@ -1545,7 +1545,7 @@
             document.body.style.overflow = '';
         }
 
-        async function startRazorpayCheckout(serviceId, amount, serviceTitle) {
+        async function startRazorpayCheckout(serviceId, amount, currency, serviceTitle) {
             try {
                 // Show loading state
                 const originalText = event.target.innerHTML;
@@ -1560,7 +1560,7 @@
                     },
                     body: JSON.stringify({
                         amount: amount,
-                        currency: "INR",
+                        currency: currency,
                         receipt: `receipt_${serviceId}_${Date.now()}`
                     })
                 });
