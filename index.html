@@ -1546,10 +1546,12 @@
         }
 
         async function startRazorpayCheckout(serviceId, amount, currency, serviceTitle) {
+            let button;
+            let originalText = "Subscribe &rarr;";
             try {
                 // Show loading state
-                const originalText = event.target.innerHTML;
-                const button = event.target;
+                button = event.target;
+                originalText = button.innerHTML;
                 button.disabled = true;
                 button.innerHTML = "Processing...";
 
@@ -1629,10 +1631,9 @@
 
             } catch (error) {
                 alert("Checkout error: " + error.message);
-                const button = document.querySelector(`button[onclick*="${serviceId}"]`);
                 if (button) {
                     button.disabled = false;
-                    button.innerHTML = "Pay & Subscribe with Razorpay &rarr;";
+                    button.innerHTML = originalText;
                 }
             }
         }

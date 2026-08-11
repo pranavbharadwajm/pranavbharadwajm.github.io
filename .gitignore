@@ -1,3 +1,5 @@
 /local-assets/
 /deploy.sh
 .dev.vars
+.wrangler/
+.wrangler
