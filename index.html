@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 
     <style>
         /* Modern Design System & Variables (Strictly Greyscale: Grey, White, Black) */
@@ -1419,7 +1420,10 @@
                             </div>
                             ${s.drawerDetails.paragraphs.map(para => `<p>${para}</p>`).join('')}
                             ${imagesHTML}
-                            ${s.linkUrl ? `<div style="margin-top: 2rem;"><a href="${s.linkUrl}" ${s.linkUrl.startsWith('mailto:') ? '' : 'target="_blank"'} class="btn btn-dark">${s.drawerDetails.linkText} &rarr;</a></div>` : ''}
+                            ${s.pricePaise
+                                ? `<div style="margin-top: 2rem;"><button onclick="startRazorpayCheckout('${s.id}', ${s.pricePaise}, '${s.title}')" class="btn btn-dark" style="cursor: pointer;">${s.drawerDetails.linkText} &rarr;</button></div>`
+                                : (s.linkUrl ? `<div style="margin-top: 2rem;"><a href="${s.linkUrl}" ${s.linkUrl.startsWith('mailto:') ? '' : 'target="_blank"'} class="btn btn-dark">${s.drawerDetails.linkText} &rarr;</a></div>` : '')
+                            }
                         </div>
                     </div>
                 </div>`;
@@ -1539,6 +1543,98 @@
             const drawers = document.querySelectorAll('.details-drawer');
             drawers.forEach(drawer => drawer.classList.remove('open'));
             document.body.style.overflow = '';
+        }
+
+        async function startRazorpayCheckout(serviceId, amount, serviceTitle) {
+            try {
+                // Show loading state
+                const originalText = event.target.innerHTML;
+                const button = event.target;
+                button.disabled = true;
+                button.innerHTML = "Processing...";
+
+                const orderResponse = await fetch("/api/create-order", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        amount: amount,
+                        currency: "INR",
+                        receipt: `receipt_${serviceId}_${Date.now()}`
+                    })
+                });
+
+                const orderData = await orderResponse.json();
+                
+                if (!orderResponse.ok) {
+                    throw new Error(orderData.error || "Failed to create checkout order.");
+                }
+
+                const options = {
+                    key: orderData.key_id,
+                    amount: orderData.amount,
+                    currency: orderData.currency,
+                    name: "Pranav Bharadwaj M",
+                    description: serviceTitle,
+                    order_id: orderData.order_id,
+                    handler: async function (response) {
+                        try {
+                            button.innerHTML = "Verifying payment...";
+                            const verificationResponse = await fetch("/api/verify-payment", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_signature: response.razorpay_signature
+                                })
+                            });
+
+                            const verificationData = await verificationResponse.json();
+
+                            if (verificationResponse.ok && verificationData.status === "success") {
+                                alert("Success! Your payment was verified. I will reach out to you shortly with access details.");
+                                closeDrawer();
+                            } else {
+                                throw new Error(verificationData.error || "Signature verification failed.");
+                            }
+                        } catch (err) {
+                            alert("Payment verification error: " + err.message);
+                        } finally {
+                            button.disabled = false;
+                            button.innerHTML = originalText;
+                        }
+                    },
+                    modal: {
+                        ondismiss: function () {
+                            button.disabled = false;
+                            button.innerHTML = originalText;
+                        }
+                    },
+                    theme: {
+                        color: "#1f2937"
+                    }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.on('payment.failed', function (response) {
+                    alert("Payment failed: " + response.error.description);
+                    button.disabled = false;
+                    button.innerHTML = originalText;
+                });
+                rzp.open();
+
+            } catch (error) {
+                alert("Checkout error: " + error.message);
+                const button = document.querySelector(`button[onclick*="${serviceId}"]`);
+                if (button) {
+                    button.disabled = false;
+                    button.innerHTML = "Pay & Subscribe with Razorpay &rarr;";
+                }
+            }
         }
     </script>
 </body>
