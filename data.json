@@ -119,5 +119,39 @@
       "description": "If a company is making money, why does it still lay people off?",
       "url": "https://medium.com/@pranavbharadwajm/why-profit-doesnt-guarantee-job-security-what-i-m-starting-to-understand-bb5d0bff4317"
     }
+  ],
+  "services": [
+    {
+      "id": "irish-visa-analytics",
+      "title": "Irish Visa Tracker & Analytics Subscription",
+      "subtitle": "Immigration Cohort Intelligence",
+      "description": "Premium data-access subscription for corporate relocation firms and individuals tracking critical timeline queues. Gain full access to a centralized, weekly automated database processing historical application blocks, success metrics, and queue position projections.",
+      "deliverables": [
+        "Instant reference status check & neighbor tracking",
+        "Estimated queue line positions & completion metrics",
+        "Cohort approval volumes & weekly trends hub",
+        "Flexible 1-month rolling access subscription"
+      ],
+      "role": "Data Subscription",
+      "stack": "Weekly Automated Updates",
+      "ctaText": "Subscribe & Get Access",
+      "linkUrl": "https://buy.stripe.com/placeholder-payment-link",
+      "images": [
+        "local-assets/visatracker-home.png",
+        "local-assets/visatracker-tracked.png",
+        "local-assets/visatracker-stats.png"
+      ],
+      "drawerDetails": {
+        "role": "Creator & Service Provider",
+        "stack": "Automated Scrapers, Cohort Analytics API",
+        "launch": "Active Subscription",
+        "paragraphs": [
+          "The Irish Visa Tracker Premium Analytics Subscription offers relocation agents, corporate HR departments, and individual applicants a powerful edge in tracking and navigating the immigration process. By subscribing to the service, you gain full, unthrottled access to the queue estimation engines, searchable cohort explorer databases, and real-time historical decision analytics charts.",
+          "Our automated backend runs scheduled scrapers that immediately parse official embassy releases. Instead of manually downloading complex spreadsheets and tracking batches, the subscription compiles this into a clean, searchable interface. Subscribers get access to batch completion speed reports, success metrics, and next-in-line approximations. This gives you foresight on exact active cohorts, enabling better travel planning and corporate resource scheduling."
+        ],
+        "linkText": "Purchase 1-Month Premium Access",
+        "linkUrl": "https://buy.stripe.com/placeholder-payment-link"
+      }
+    }
   ]
 }
