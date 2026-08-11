@@ -135,7 +135,7 @@
       "role": "Data Subscription",
       "stack": "Weekly Automated Updates",
       "ctaText": "Subscribe & Get Access",
-      "linkUrl": "https://buy.stripe.com/placeholder-payment-link",
+      "linkUrl": "mailto:pranavbharadwajm@gmail.com?subject=Requesting Access to Irish Visa Tracker & Analytics",
       "images": [
         "local-assets/visatracker-home.png",
         "local-assets/visatracker-tracked.png",
@@ -149,8 +149,8 @@
           "The Irish Visa Tracker Premium Analytics Subscription offers relocation agents, corporate HR departments, and individual applicants a powerful edge in tracking and navigating the immigration process. By subscribing to the service, you gain full, unthrottled access to the queue estimation engines, searchable cohort explorer databases, and real-time historical decision analytics charts.",
           "Our automated backend runs scheduled scrapers that immediately parse official embassy releases. Instead of manually downloading complex spreadsheets and tracking batches, the subscription compiles this into a clean, searchable interface. Subscribers get access to batch completion speed reports, success metrics, and next-in-line approximations. This gives you foresight on exact active cohorts, enabling better travel planning and corporate resource scheduling."
         ],
-        "linkText": "Purchase 1-Month Premium Access",
-        "linkUrl": "https://buy.stripe.com/placeholder-payment-link"
+        "linkText": "Email for Access",
+        "linkUrl": "mailto:pranavbharadwajm@gmail.com?subject=Requesting Access to Irish Visa Tracker & Analytics"
       }
     }
   ]

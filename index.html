@@ -1419,7 +1419,7 @@
                             </div>
                             ${s.drawerDetails.paragraphs.map(para => `<p>${para}</p>`).join('')}
                             ${imagesHTML}
-                            ${s.linkUrl ? `<div style="margin-top: 2rem;"><a href="${s.linkUrl}" target="_blank" class="btn btn-dark">${s.drawerDetails.linkText} &rarr;</a></div>` : ''}
+                            ${s.linkUrl ? `<div style="margin-top: 2rem;"><a href="${s.linkUrl}" ${s.linkUrl.startsWith('mailto:') ? '' : 'target="_blank"'} class="btn btn-dark">${s.drawerDetails.linkText} &rarr;</a></div>` : ''}
                         </div>
                     </div>
                 </div>`;
