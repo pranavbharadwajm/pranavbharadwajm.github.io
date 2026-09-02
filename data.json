@@ -63,20 +63,20 @@
       "title": "SpotMate",
       "category": "Mobile & Web Application",
       "year": "2026",
-      "description": "A smart parking and spot-finding platform designed to streamline vehicle spot reservations and availability tracking.",
+      "description": "SpotMate is a premium, comprehensive mobile fitness and nutrition companion app built with React Native and Expo. It provides an offline-capable, responsive dashboard with custom SVG visualizations, a highly configurable workout routine/cycle manager, meal/macro logging, and seamless real-time cloud synchronization using Supabase.",
       "images": [
-        "local-assets/spotmate.png"
+        "local-assets/spotmate-home.png"
       ],
       "drawerDetails": {
         "role": "Creator / Developer",
         "stack": "React Native / Expo, TypeScript, Supabase",
-        "launch": "Coming Soon",
+        "launch": "2026",
         "paragraphs": [
-          "SpotMate is an upcoming parking management and spot reservation platform designed to simplify finding and reserving parking spots in real-time.",
-          "More detailed architecture notes, live demo links, and project showcases will be updated once deployment is live."
+          "SpotMate is a comprehensive mobile fitness and nutrition companion app built with React Native and Expo. It provides an offline-capable, responsive dashboard with custom SVG visualizations, a highly configurable workout routine/cycle manager, meal/macro logging, and seamless real-time cloud synchronization using Supabase.",
+          "The app is engineered to deliver a polished, responsive user experience with zero load times for core features. It incorporates robust error handling and utilizes secure passwordless authentication via magic links and OAuth (Google, GitHub), ensuring data integrity and user privacy throughout the fitness journey."
         ],
-        "linkText": "Coming Soon",
-        "linkUrl": ""
+        "linkText": "Open Live Website",
+        "linkUrl": "https://spotmate.pranavbharadwajm.com"
       }
     }
   ],
