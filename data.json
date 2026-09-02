@@ -57,6 +57,27 @@
         "linkText": "Open Live Website",
         "linkUrl": "https://andcut.pranavbharadwajm.com"
       }
+    },
+    {
+      "id": "spotmate",
+      "title": "SpotMate",
+      "category": "Mobile & Web Application",
+      "year": "2026",
+      "description": "A smart parking and spot-finding platform designed to streamline vehicle spot reservations and availability tracking.",
+      "images": [
+        "local-assets/spotmate.png"
+      ],
+      "drawerDetails": {
+        "role": "Creator / Developer",
+        "stack": "React Native / Expo, TypeScript, Supabase",
+        "launch": "Coming Soon",
+        "paragraphs": [
+          "SpotMate is an upcoming parking management and spot reservation platform designed to simplify finding and reserving parking spots in real-time.",
+          "More detailed architecture notes, live demo links, and project showcases will be updated once deployment is live."
+        ],
+        "linkText": "Coming Soon",
+        "linkUrl": ""
+      }
     }
   ],
   "cases": [
