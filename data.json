@@ -31,7 +31,7 @@
           "The Irish Visa Status Tracker is an automated web platform built to eliminate the friction of tracking Irish visa applications. Instead of forcing applicants to manually download and search through weekly decision spreadsheets published by the Embassy of Ireland in New Delhi, the dashboard allows users to type in their 8-digit reference number for an instant status check. To give pending applicants immediate context, it also displays the outcomes of neighboring reference numbers, helping them see if their specific application batch is currently active.",
           "Beyond basic lookups, the platform turns raw government reports into clear, actionable queue analytics. It estimates an applicant's relative position in line compared to the lowest pending reference number and measures the exact completion percentage of their reference cohort block. A dedicated statistics hub provides deeper transparency into overall approval rates, decision volumes, and daily processing speeds using interactive charts and a fully searchable, filterable database explorer."
         ],
-        "linkText": "Open Live Website",
+        "linkText": "Open Live Tool",
         "linkUrl": "https://visatracker.pranavbharadwajm.com"
       }
     },
@@ -123,36 +123,34 @@
   "services": [
     {
       "id": "irish-visa-analytics",
-      "title": "Irish Visa Tracker & Analytics Subscription",
+      "title": "Irish Visa Tracker & Analytics Platform",
       "subtitle": "Immigration Cohort Intelligence",
-      "description": "Premium data-access subscription for corporate relocation firms and individuals tracking critical timeline queues. Gain full access to a centralized, weekly automated database processing historical application blocks, success metrics, and queue position projections.",
+      "description": "Free data-access and analytics platform for applicants and relocation teams tracking critical timeline queues. Gain instant access to a centralized, weekly automated database processing historical application blocks, success metrics, and queue position projections.",
       "deliverables": [
         "Instant reference status check & neighbor tracking",
         "Estimated queue line positions & completion metrics",
         "Cohort approval volumes & weekly trends hub",
-        "Flexible 1-month rolling access subscription"
+        "Open, free community-driven access"
       ],
-      "role": "Data Subscription",
+      "role": "Free Web Platform",
       "stack": "Weekly Automated Updates",
-      "ctaText": "Subscribe & Get Access",
-      "linkUrl": "#",
-      "pricePaise": 50000,
-      "currency": "INR",
+      "ctaText": "Open Live Tool",
+      "linkUrl": "https://visatracker.pranavbharadwajm.com",
       "images": [
         "local-assets/visatracker-home.png",
         "local-assets/visatracker-tracked.png",
         "local-assets/visatracker-stats.png"
       ],
       "drawerDetails": {
-        "role": "Creator & Service Provider",
+        "role": "Creator & Maintainer",
         "stack": "Automated Scrapers, Cohort Analytics API",
-        "launch": "Active Subscription",
+        "launch": "Live & Free to Use",
         "paragraphs": [
-          "The Irish Visa Tracker Premium Analytics Subscription offers relocation agents, corporate HR departments, and individual applicants a powerful edge in tracking and navigating the immigration process. By subscribing to the service, you gain full, unthrottled access to the queue estimation engines, searchable cohort explorer databases, and real-time historical decision analytics charts.",
-          "Our automated backend runs scheduled scrapers that immediately parse official embassy releases. Instead of manually downloading complex spreadsheets and tracking batches, the subscription compiles this into a clean, searchable interface. Subscribers get access to batch completion speed reports, success metrics, and next-in-line approximations. This gives you foresight on exact active cohorts, enabling better travel planning and corporate resource scheduling."
+          "The Irish Visa Tracker & Analytics Platform offers applicants, relocation agents, and corporate teams a powerful edge in tracking and navigating the immigration process with zero paywalls. You gain full, unthrottled access to queue estimation engines, searchable cohort explorer databases, and real-time historical decision analytics charts.",
+          "Our automated backend runs scheduled scrapers that immediately parse official embassy releases. Instead of manually downloading complex spreadsheets and tracking batches, the tool compiles this into a clean, searchable interface with batch completion speed reports, success metrics, and next-in-line approximations."
         ],
-        "linkText": "Subscribe",
-        "linkUrl": "#"
+        "linkText": "Open Live Platform",
+        "linkUrl": "https://visatracker.pranavbharadwajm.com"
       }
     }
   ]
