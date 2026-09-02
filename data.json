@@ -57,26 +57,6 @@
         "linkText": "Open Live Website",
         "linkUrl": "https://andcut.pranavbharadwajm.com"
       }
-    },
-    {
-      "id": "analyzer",
-      "title": "Portfolio Systems Analyzer",
-      "category": "Automation & Scripting",
-      "year": "2025",
-      "description": "An open-source clean audit script parsing web resources to reduce asset loading latency, optimizing deployment builds.",
-      "images": [
-        "local-assets/profile.png"
-      ],
-      "drawerDetails": {
-        "role": "Developer",
-        "stack": "NodeJS / Shell script",
-        "launch": "Open Source",
-        "paragraphs": [
-          "Built to clean and evaluate resource loading bottlenecks for local deployments. It checks asset bundles and formats local site scripts."
-        ],
-        "linkText": "",
-        "linkUrl": ""
-      }
     }
   ],
   "cases": [
