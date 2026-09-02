@@ -1274,8 +1274,9 @@
                     <div class="project-details-wrap">
                         <h3 class="project-title" style="margin-top: 10px;">${formatTitle(p.title)}</h3>
                         <p class="project-desc">${p.description}</p>
-                        <div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
                             <button class="btn-grey-bubble" onclick="openDrawer('${p.id}')">View Project</button>
+                            ${p.drawerDetails && p.drawerDetails.linkUrl ? `<a href="${p.drawerDetails.linkUrl}" target="_blank" class="btn-grey-bubble" style="text-decoration: none;">${p.drawerDetails.linkText || 'Open Live Tool'} &rarr;</a>` : ''}
                         </div>
                     </div>
                 </div>`;
@@ -1322,6 +1323,9 @@
             if (data.services && data.services.length > 0) {
                 const servicesHTML = data.services.map(s => {
                     const deliverablesHTML = s.deliverables.map(d => `<li>${d}</li>`).join('');
+                    const directLink = (s.drawerDetails && s.drawerDetails.linkUrl) || s.linkUrl;
+                    const directLinkText = (s.drawerDetails && s.drawerDetails.linkText) || s.ctaText || 'Open Live Tool';
+
                     return `
                     <div class="service-card">
                         <div class="service-header-row">
@@ -1338,7 +1342,10 @@
                         </div>
                         <div class="service-footer">
                             <span class="service-stack"><strong>Frequency:</strong> ${s.stack}</span>
-                            <button class="btn btn-dark" onclick="openDrawer('${s.id}')">View Details &rarr;</button>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                                <button class="btn btn-dark" onclick="openDrawer('${s.id}')">View Details &rarr;</button>
+                                ${directLink && directLink !== '#' ? `<a href="${directLink}" target="_blank" class="btn btn-light" style="text-decoration: none;">${directLinkText} &rarr;</a>` : ''}
+                            </div>
                         </div>
                     </div>`;
                 }).join('');
