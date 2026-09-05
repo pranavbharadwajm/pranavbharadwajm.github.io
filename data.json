@@ -120,39 +120,5 @@
       "description": "If a company is making money, why does it still lay people off?",
       "url": "https://medium.com/@pranavbharadwajm/why-profit-doesnt-guarantee-job-security-what-i-m-starting-to-understand-bb5d0bff4317"
     }
-  ],
-  "services": [
-    {
-      "id": "irish-visa-analytics",
-      "title": "Irish Visa Tracker & Analytics Platform",
-      "subtitle": "Immigration Cohort Intelligence",
-      "description": "Free data-access and analytics platform for applicants and relocation teams tracking critical timeline queues. Gain instant access to a centralized, weekly automated database processing historical application blocks, success metrics, and queue position projections.",
-      "deliverables": [
-        "Instant reference status check & neighbor tracking",
-        "Estimated queue line positions & completion metrics",
-        "Cohort approval volumes & weekly trends hub",
-        "Open, free community-driven access"
-      ],
-      "role": "Free Web Platform",
-      "stack": "Weekly Automated Updates",
-      "ctaText": "Open Live Tool",
-      "linkUrl": "https://visatracker.pranavbharadwajm.com",
-      "images": [
-        "local-assets/visatracker-home.png",
-        "local-assets/visatracker-tracked.png",
-        "local-assets/visatracker-stats.png"
-      ],
-      "drawerDetails": {
-        "role": "Creator & Maintainer",
-        "stack": "Automated Scrapers, Cohort Analytics API",
-        "launch": "Live & Free to Use",
-        "paragraphs": [
-          "The Irish Visa Tracker & Analytics Platform offers applicants, relocation agents, and corporate teams a powerful edge in tracking and navigating the immigration process with zero paywalls. You gain full, unthrottled access to queue estimation engines, searchable cohort explorer databases, and real-time historical decision analytics charts.",
-          "Our automated backend runs scheduled scrapers that immediately parse official embassy releases. Instead of manually downloading complex spreadsheets and tracking batches, the tool compiles this into a clean, searchable interface with batch completion speed reports, success metrics, and next-in-line approximations."
-        ],
-        "linkText": "Open Live Platform",
-        "linkUrl": "https://visatracker.pranavbharadwajm.com"
-      }
-    }
   ]
 }

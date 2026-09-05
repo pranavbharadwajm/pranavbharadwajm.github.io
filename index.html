@@ -416,143 +416,8 @@
             object-fit: cover;
         }
 
+        /* CAROUSEL CONTROLS                   */
         /* ----------------------------------- */
-        /* SERVICES SECTION                    */
-        /* ----------------------------------- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
-        }
-
-        .service-card:hover {
-            border-color: rgba(0, 0, 0, 0.12);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-            transform: translateY(-2px);
-        }
-
-        .service-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .service-card-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .service-role-tag {
-            font-size: 0.78rem;
-            font-weight: 500;
-            background-color: var(--accent-bg);
-            color: var(--text-muted);
-            padding: 4px 12px;
-            border-radius: 9999px;
-            white-space: nowrap;
-        }
-
-        .service-subtitle {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
-        }
-
-        .service-desc {
-            font-size: 0.98rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-details {
-            margin-bottom: 2rem;
-        }
-
-        .service-details h4 {
-            font-size: 0.82rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-light);
-            margin-bottom: 0.75rem;
-        }
-
-        .service-deliverables {
-            list-style: none;
-            padding-left: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .service-deliverables li {
-            font-size: 0.92rem;
-            color: var(--text-main);
-            position: relative;
-            padding-left: 1.25rem;
-        }
-
-        .service-deliverables li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--text-light);
-            font-weight: bold;
-        }
-
-        .service-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1.5rem;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .service-stack {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        @media (max-width: 640px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .service-card {
-                padding: 1.5rem;
-            }
-
-            .service-header-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .service-footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-        }
-
         .carousel-controls {
             position: absolute;
             bottom: 12px;
@@ -1007,7 +872,6 @@
     <nav class="nav-bubble" id="navBubble">
         <ul class="nav-links">
             <li><a href="#products">Work</a></li>
-            <li><a href="#services">Services</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1058,16 +922,6 @@
                         <!-- Loaded dynamically -->
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <hr class="section-divider">
-
-        <!-- SERVICES SECTION -->
-        <section id="services" class="section-container">
-            <h2 class="section-header">Services</h2>
-            <div class="services-grid" id="servicesListWrap">
-                <!-- Loaded dynamically -->
             </div>
         </section>
 
@@ -1318,42 +1172,7 @@
             `).join('');
             document.getElementById('writingListWrap').innerHTML = publicationsHTML;
 
-            // Services List dynamic rendering
-            if (data.services && data.services.length > 0) {
-                const servicesHTML = data.services.map(s => {
-                    const deliverablesHTML = s.deliverables.map(d => `<li>${d}</li>`).join('');
-                    const directLink = (s.drawerDetails && s.drawerDetails.linkUrl) || s.linkUrl;
-                    const directLinkText = (s.drawerDetails && s.drawerDetails.linkText) || s.ctaText || 'Open Live Tool';
-
-                    return `
-                    <div class="service-card">
-                        <div class="service-header-row">
-                            <h3 class="service-card-title">${s.title}</h3>
-                            <span class="service-role-tag">${s.role}</span>
-                        </div>
-                        <p class="service-subtitle">${s.subtitle}</p>
-                        <p class="service-desc">${s.description}</p>
-                        <div class="service-details">
-                            <h4>Service Includes</h4>
-                            <ul class="service-deliverables">
-                                ${deliverablesHTML}
-                            </ul>
-                        </div>
-                        <div class="service-footer">
-                            <span class="service-stack"><strong>Frequency:</strong> ${s.stack}</span>
-                            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-                                <button class="btn btn-dark" onclick="openDrawer('${s.id}')">View Details &rarr;</button>
-                                ${directLink && directLink !== '#' ? `<a href="${directLink}" target="_blank" class="btn btn-light" style="text-decoration: none;">${directLinkText} &rarr;</a>` : ''}
-                            </div>
-                        </div>
-                    </div>`;
-                }).join('');
-                document.getElementById('servicesListWrap').innerHTML = servicesHTML;
-            } else {
-                document.getElementById('services').style.display = 'none';
-            }
-
-            // Build Drawers for Products, Cases, and Services
+            // Build Drawers for Products and Cases
             const productDrawersHTML = data.products.map(p => {
                 const imagesHTML = p.images && p.images.length > 0 && p.images[0] !== ""
                     ? `<div class="drawer-images-list">
@@ -1393,46 +1212,7 @@
                 </div>`;
             }).join('');
 
-            const serviceDrawersHTML = (data.services || []).map(s => {
-                const imagesHTML = s.images && s.images.length > 0 && s.images[0] !== ""
-                    ? `<div class="drawer-images-list">
-                        ${s.images.map(img => `<img src="${img}" alt="${s.title}">`).join('')}
-                       </div>`
-                    : '';
-
-                return `
-                <div class="details-drawer fullscreen" id="drawer-${s.id}">
-                    <div class="drawer-content">
-                        <button class="close-drawer-btn" onclick="closeDrawer()">&times;</button>
-                        <div class="drawer-body">
-                            <h3>${s.title}</h3>
-                            <div class="drawer-meta-list">
-                                <div class="drawer-meta-item">
-                                    <h4>Service Model</h4>
-                                    <p>${s.role}</p>
-                                </div>
-                                <div class="drawer-meta-item">
-                                    <h4>Update Cycle</h4>
-                                    <p>${s.stack}</p>
-                                </div>
-                                <div class="drawer-meta-item">
-                                    <h4>Launch Details</h4>
-                                    <p>${s.drawerDetails.launch}</p>
-                                </div>
-                                <div class="drawer-meta-item">
-                                    <h4>Capabilities</h4>
-                                    <p>${s.drawerDetails.stack}</p>
-                                </div>
-                            </div>
-                            ${s.drawerDetails.paragraphs.map(para => `<p>${para}</p>`).join('')}
-                            ${imagesHTML}
-                            ${s.linkUrl ? `<div style="margin-top: 2rem;"><a href="${s.linkUrl}" ${s.linkUrl.startsWith('mailto:') ? '' : 'target="_blank"'} class="btn btn-dark">${s.drawerDetails.linkText || 'Open Platform'} &rarr;</a></div>` : ''}
-                        </div>
-                    </div>
-                </div>`;
-            }).join('');
-
-            document.getElementById('drawersContainer').innerHTML = productDrawersHTML + serviceDrawersHTML;
+            document.getElementById('drawersContainer').innerHTML = productDrawersHTML;
         }
 
         // Horizontal Slider Navigation (Slide Track by Index Cyclic)
