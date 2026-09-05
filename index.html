@@ -304,8 +304,76 @@
         }
 
         /* ----------------------------------- */
-        /* HORIZONTAL SLIDER COMPONENTS        */
+        /* PROJECTS & CASE SLIDER COMPONENTS   */
         /* ----------------------------------- */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            width: 100%;
+        }
+
+        .project-card {
+            width: 100%;
+            box-sizing: border-box;
+            background: transparent;
+            border: none;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0;
+        }
+
+        .project-card.project-hidden {
+            display: none;
+        }
+
+        .project-show-more-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .btn-show-more {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 9999px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-main);
+            background: rgba(243, 244, 246, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .btn-show-more:hover {
+            background: rgba(229, 231, 235, 0.9);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+            color: #111827;
+        }
+
+        .btn-show-more:active {
+            transform: scale(0.97);
+        }
+
+        .btn-show-more svg {
+            width: 15px;
+            height: 15px;
+            transition: transform 0.25s ease;
+        }
+
         .slider-viewport-container {
             position: relative;
             width: 100%;
@@ -335,19 +403,6 @@
             flex-direction: column;
             gap: 20px;
             padding: 0;
-        }
-
-        .project-card {
-            min-width: 100%;
-            box-sizing: border-box;
-            background: transparent;
-            border: none;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 0;
-            margin-bottom: 2rem;
         }
 
         .slider-arrow-btn {
@@ -900,28 +955,16 @@
 
         <!-- PRODUCTS SECTION -->
         <section id="products" class="section-container">
-
-
-            <div class="slider-viewport-container">
-                <!-- Navigation Arrows on Either Side -->
-                <button class="slider-arrow-btn slider-arrow-left" onclick="prevSlide('products')">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
+            <div class="projects-list" id="productsList">
+                <!-- Loaded dynamically -->
+            </div>
+            <div class="project-show-more-wrap" id="projectShowMoreWrap">
+                <button class="btn-show-more" id="toggleProjectsBtn" onclick="toggleMoreProjects()">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
+                    <span>Show more</span>
                 </button>
-                <button class="slider-arrow-btn slider-arrow-right" onclick="nextSlide('products')">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </button>
-
-                <div class="slider-viewport">
-                    <div class="slider-track" id="productsTrack">
-                        <!-- Loaded dynamically -->
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -964,7 +1007,7 @@
 
         <!-- PUBLICATIONS SECTION -->
         <section id="writing" class="section-container">
-
+            <h2 class="section-header">Perspectives & Industry Notes</h2>
             <div class="writing-container">
                 <div class="writing-list" id="writingListWrap">
                     <!-- Loaded dynamically -->
@@ -1086,6 +1129,9 @@
                 .catch(err => console.error('Error loading data.json:', err));
         });
 
+        let allProjects = [];
+        let projectsExpanded = false;
+
         function populatePortfolio(data) {
             // Bio & Profile Data
             document.getElementById('heroName').textContent = data.about.name;
@@ -1095,13 +1141,16 @@
             document.getElementById('bioParagraphsWrap').innerHTML = bioHTML;
             document.getElementById('availabilityStatus').textContent = data.about.availability;
 
-            // Products Slider Track
-            const productsHTML = data.products.map(p => {
+            // Products Vertical List
+            allProjects = data.products || [];
+            const productsHTML = allProjects.map((p, index) => {
                 const imgsHTML = p.images.map(img => `<img src="${img}" alt="${p.title}">`).join('');
                 carousels[p.id] = { index: 0, total: p.images.length, playing: p.images.length > 1 };
 
+                const isHiddenClass = index > 0 ? 'project-hidden' : '';
+
                 return `
-                <div class="project-card">
+                <div class="project-card ${isHiddenClass}" id="project-card-${p.id}">
                     <div class="project-images-carousel" id="${p.id}Carousel">
                         <div class="carousel-images-track">
                             ${imgsHTML}
@@ -1134,7 +1183,13 @@
                     </div>
                 </div>`;
             }).join('');
-            document.getElementById('productsTrack').innerHTML = productsHTML;
+            document.getElementById('productsList').innerHTML = productsHTML;
+
+            // Show/Hide Show More button based on count
+            const showMoreWrap = document.getElementById('projectShowMoreWrap');
+            if (allProjects.length <= 1) {
+                showMoreWrap.style.display = 'none';
+            }
 
             // Initialize auto-rotation for product sub-carousels
             Object.keys(carousels).forEach(startCarouselInterval);
@@ -1213,6 +1268,41 @@
             }).join('');
 
             document.getElementById('drawersContainer').innerHTML = productDrawersHTML;
+        }
+
+        // Toggle More Projects
+        function toggleMoreProjects() {
+            projectsExpanded = !projectsExpanded;
+            const projectCards = document.querySelectorAll('#productsList .project-card');
+            const toggleBtn = document.getElementById('toggleProjectsBtn');
+
+            projectCards.forEach((card, idx) => {
+                if (idx > 0) {
+                    if (projectsExpanded) {
+                        card.classList.remove('project-hidden');
+                    } else {
+                        card.classList.add('project-hidden');
+                    }
+                }
+            });
+
+            if (projectsExpanded) {
+                toggleBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <span>Show less</span>
+                `;
+            } else {
+                toggleBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <span>Show more</span>
+                `;
+                // Scroll back smoothly to the top of products
+                document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         // Horizontal Slider Navigation (Slide Track by Index Cyclic)
