@@ -73,7 +73,7 @@
             align-items: center;
             justify-content: center;
             width: 90%;
-            max-width: 360px;
+            max-width: 420px;
             z-index: 1000;
             opacity: 0;
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
@@ -304,7 +304,7 @@
         }
 
         /* ----------------------------------- */
-        /* PROJECTS & CASE SLIDER COMPONENTS   */
+        /* PROJECTS LIST & PEEK GRADIENT       */
         /* ----------------------------------- */
         .projects-list {
             display: flex;
@@ -325,16 +325,45 @@
             padding: 0;
         }
 
-        .project-card.project-hidden {
-            display: none;
+        /* Expandable container with peek & gradient */
+        .projects-expandable-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            transition: max-height 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .project-show-more-wrap {
+        .projects-expandable-wrapper.collapsed {
+            max-height: 220px;
+        }
+
+        .projects-expandable-wrapper.expanded {
+            max-height: 5000px;
+        }
+
+        .project-gradient-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 220px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 45%, #ffffff 90%);
             display: flex;
+            align-items: flex-end;
             justify-content: center;
-            align-items: center;
+            padding-bottom: 2rem;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 20;
+        }
+
+        .project-gradient-overlay.hidden {
+            position: relative;
+            height: auto;
+            background: none;
+            padding-bottom: 0;
             margin-top: 2rem;
-            width: 100%;
+            pointer-events: auto;
         }
 
         .btn-show-more {
@@ -342,25 +371,26 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: 9999px;
             font-size: 0.88rem;
             font-weight: 500;
             color: var(--text-main);
-            background: rgba(243, 244, 246, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(229, 231, 235, 0.8);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            background: rgba(243, 244, 246, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(229, 231, 235, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
             cursor: pointer;
             transition: all 0.25s ease;
             text-decoration: none;
+            pointer-events: auto;
         }
 
         .btn-show-more:hover {
-            background: rgba(229, 231, 235, 0.9);
+            background: rgba(229, 231, 235, 0.95);
             transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
             color: #111827;
         }
 
@@ -927,6 +957,7 @@
     <nav class="nav-bubble" id="navBubble">
         <ul class="nav-links">
             <li><a href="#products">Work</a></li>
+            <li><a href="local-assets/resume.pdf" target="_blank">CV</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -939,7 +970,7 @@
             | MSc Management Candidate at UCD Smurfit</p>
         <div class="hero-buttons">
             <button class="btn btn-dark" onclick="copyEmail(this)">Copy Email</button>
-            <a href="#products" class="btn btn-light">View Work</a>
+            <a href="local-assets/resume.pdf" target="_blank" class="btn btn-light">Download CV</a>
         </div>
         <a href="#products" class="scroll-indicator">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -955,27 +986,30 @@
 
         <!-- PRODUCTS SECTION -->
         <section id="products" class="section-container">
-            <div class="projects-list" id="productsList">
-                <!-- Loaded dynamically -->
-            </div>
-            <div class="project-show-more-wrap" id="projectShowMoreWrap">
-                <button class="btn-show-more" id="toggleProjectsBtn" onclick="toggleMoreProjects()">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    <span>Show more</span>
-                </button>
+            <!-- First project always visible -->
+            <div id="firstProjectWrap"></div>
+
+            <!-- Remaining projects in expandable wrapper with peek & gradient -->
+            <div class="projects-expandable-wrapper collapsed" id="projectsExpandableWrapper">
+                <div class="projects-list" id="remainingProjectsList" style="margin-top: 4rem;">
+                    <!-- Loaded dynamically -->
+                </div>
+                <div class="project-gradient-overlay" id="projectGradientOverlay">
+                    <button class="btn-show-more" id="toggleProjectsBtn" onclick="toggleMoreProjects()">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <span>Show more</span>
+                    </button>
+                </div>
             </div>
         </section>
 
         <hr class="section-divider">
 
-        <!-- CASE STUDIES SECTION -->
+        <!-- CASE STUDIES SECTION (Standby / Commented Out)
         <section id="cases" class="section-container">
-
-
             <div class="slider-viewport-container">
-                <!-- Navigation Arrows on Either Side -->
                 <button class="slider-arrow-btn slider-arrow-left" onclick="prevSlide('cases')">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -991,19 +1025,17 @@
 
                 <div class="slider-viewport">
                     <div class="slider-track" id="casesTrack">
-                        <!-- Loaded dynamically -->
                     </div>
                 </div>
             </div>
 
-            <!-- View Case Archive made grey bubble -->
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="all-cases.html" class="btn-grey-bubble" style="padding: 10px 24px; font-size: 0.9rem;">View
-                    Case Archive</a>
+                <a href="all-cases.html" class="btn-grey-bubble" style="padding: 10px 24px; font-size: 0.9rem;">View Case Archive</a>
             </div>
         </section>
 
         <hr class="section-divider">
+        -->
 
         <!-- PUBLICATIONS SECTION -->
         <section id="writing" class="section-container">
@@ -1141,16 +1173,14 @@
             document.getElementById('bioParagraphsWrap').innerHTML = bioHTML;
             document.getElementById('availabilityStatus').textContent = data.about.availability;
 
-            // Products Vertical List
             allProjects = data.products || [];
-            const productsHTML = allProjects.map((p, index) => {
+
+            function renderProjectCard(p) {
                 const imgsHTML = p.images.map(img => `<img src="${img}" alt="${p.title}">`).join('');
                 carousels[p.id] = { index: 0, total: p.images.length, playing: p.images.length > 1 };
 
-                const isHiddenClass = index > 0 ? 'project-hidden' : '';
-
                 return `
-                <div class="project-card ${isHiddenClass}" id="project-card-${p.id}">
+                <div class="project-card" id="project-card-${p.id}">
                     <div class="project-images-carousel" id="${p.id}Carousel">
                         <div class="carousel-images-track">
                             ${imgsHTML}
@@ -1182,38 +1212,48 @@
                         </div>
                     </div>
                 </div>`;
-            }).join('');
-            document.getElementById('productsList').innerHTML = productsHTML;
+            }
 
-            // Show/Hide Show More button based on count
-            const showMoreWrap = document.getElementById('projectShowMoreWrap');
-            if (allProjects.length <= 1) {
-                showMoreWrap.style.display = 'none';
+            if (allProjects.length > 0) {
+                // First project
+                document.getElementById('firstProjectWrap').innerHTML = renderProjectCard(allProjects[0]);
+
+                // Remaining projects (2nd, 3rd, etc.)
+                if (allProjects.length > 1) {
+                    const remainingHTML = allProjects.slice(1).map(renderProjectCard).join('');
+                    document.getElementById('remainingProjectsList').innerHTML = remainingHTML;
+                    document.getElementById('projectsExpandableWrapper').style.display = 'block';
+                } else {
+                    document.getElementById('projectsExpandableWrapper').style.display = 'none';
+                }
             }
 
             // Initialize auto-rotation for product sub-carousels
             Object.keys(carousels).forEach(startCarouselInterval);
 
-            // Case Studies Slider Track
-            const casesHTML = data.cases.map(c => `
-                <div class="case-card">
-                    <div class="case-header-row">
-                        <h3 class="project-title">${formatTitle(c.title)}</h3>
-                        <span class="case-skills-tag">${c.categoryLabel}</span>
+            // Case Studies Slider Track (if present)
+            const casesTrack = document.getElementById('casesTrack');
+            if (casesTrack && data.cases) {
+                const casesHTML = data.cases.map(c => `
+                    <div class="case-card">
+                        <div class="case-header-row">
+                            <h3 class="project-title">${formatTitle(c.title)}</h3>
+                            <span class="case-skills-tag">${c.categoryLabel}</span>
+                        </div>
+                        <div class="case-quote">
+                            <strong>Problem Statement:</strong> ${c.prompt}
+                        </div>
+                        <div class="case-sar">
+                            <h4>Situation & Action</h4>
+                            <p>${c.approach}</p>
+                        </div>
+                        <div>
+                            <a href="all-cases.html" class="btn-grey-bubble">Read Case Study</a>
+                        </div>
                     </div>
-                    <div class="case-quote">
-                        <strong>Problem Statement:</strong> ${c.prompt}
-                    </div>
-                    <div class="case-sar">
-                        <h4>Situation & Action</h4>
-                        <p>${c.approach}</p>
-                    </div>
-                    <div>
-                        <a href="all-cases.html" class="btn-grey-bubble">Read Case Study</a>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('casesTrack').innerHTML = casesHTML;
+                `).join('');
+                casesTrack.innerHTML = casesHTML;
+            }
 
             // Publications List
             const publicationsHTML = data.publications.map(pub => `
@@ -1273,20 +1313,14 @@
         // Toggle More Projects
         function toggleMoreProjects() {
             projectsExpanded = !projectsExpanded;
-            const projectCards = document.querySelectorAll('#productsList .project-card');
+            const expandableWrapper = document.getElementById('projectsExpandableWrapper');
+            const gradientOverlay = document.getElementById('projectGradientOverlay');
             const toggleBtn = document.getElementById('toggleProjectsBtn');
 
-            projectCards.forEach((card, idx) => {
-                if (idx > 0) {
-                    if (projectsExpanded) {
-                        card.classList.remove('project-hidden');
-                    } else {
-                        card.classList.add('project-hidden');
-                    }
-                }
-            });
-
             if (projectsExpanded) {
+                expandableWrapper.classList.remove('collapsed');
+                expandableWrapper.classList.add('expanded');
+                gradientOverlay.classList.add('hidden');
                 toggleBtn.innerHTML = `
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -1294,13 +1328,16 @@
                     <span>Show less</span>
                 `;
             } else {
+                expandableWrapper.classList.remove('expanded');
+                expandableWrapper.classList.add('collapsed');
+                gradientOverlay.classList.remove('hidden');
                 toggleBtn.innerHTML = `
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                     <span>Show more</span>
                 `;
-                // Scroll back smoothly to the top of products
+                // Smoothly scroll back to the top of products section
                 document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
             }
         }
