@@ -504,25 +504,24 @@
             object-fit: cover;
         }
 
-        /* CAROUSEL CONTROLS                   */
+        /* CAROUSEL CONTROLS (Exact Jonas Brinkhoff Specs) */
         /* ----------------------------------- */
         .carousel-controls {
             position: absolute;
-            bottom: 12px;
+            bottom: 24px;
             left: 50%;
-            transform: translateX(-50%) translateY(8px);
+            transform: translateX(-50%) translateY(12px);
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 5px 14px;
+            padding: 4px;
             border-radius: 9999px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            background: linear-gradient(0deg, rgba(32, 32, 32, 0.1) 0%, rgba(32, 32, 32, 0.1) 100%), rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
+            z-index: 10;
         }
 
         .project-images-carousel:hover .carousel-controls {
@@ -531,21 +530,34 @@
             pointer-events: auto;
         }
 
-        .carousel-nav-btn {
+        .carousel-ctrl-btn {
             background: transparent;
             border: none;
-            width: 24px;
-            height: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 9999px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
-            transition: color 0.2s ease;
+            color: #202020;
+            transition: background-color 0.15s ease, color 0.15s ease;
+            padding: 0;
         }
 
-        .carousel-nav-btn:hover {
-            color: var(--text-main);
+        .carousel-ctrl-btn:hover {
+            background-color: rgba(32, 32, 32, 0.08);
+            color: #000000;
+        }
+
+        .carousel-ctrl-btn:active {
+            background-color: rgba(32, 32, 32, 0.14);
+        }
+
+        .carousel-ctrl-btn svg {
+            width: 15px;
+            height: 15px;
+            stroke-width: 2;
         }
 
         /* Subtle highlighted link style */
@@ -1189,18 +1201,18 @@
                             ${imgsHTML}
                         </div>
                         <div class="carousel-controls" style="${p.images.length <= 1 ? 'display:none;' : ''}">
-                            <button class="carousel-nav-btn" onclick="prevCarouselSlide('${p.id}Carousel', event)">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <button class="carousel-ctrl-btn" onclick="prevCarouselSlide('${p.id}Carousel', event)" aria-label="Previous image">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </button>
-                            <button class="carousel-play-pause-btn" onclick="toggleCarouselPlay('${p.id}Carousel', event)" style="background:none; border:none; cursor:pointer;">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <button class="carousel-ctrl-btn carousel-play-pause-btn" onclick="toggleCarouselPlay('${p.id}Carousel', event)" aria-label="Pause or play slideshow">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M7 19V5M17 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </button>
-                            <button class="carousel-nav-btn" onclick="nextCarouselSlide('${p.id}Carousel', event)">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <button class="carousel-ctrl-btn" onclick="nextCarouselSlide('${p.id}Carousel', event)" aria-label="Next image">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </button>
@@ -1413,8 +1425,8 @@
             const playBtn = carousel.querySelector('.carousel-play-pause-btn');
             if (playBtn) {
                 playBtn.innerHTML = `
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="5 3 19 12 5 21 5 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polygon>
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 4.98951C5 4.01835 5 3.53277 5.20249 3.2651C5.37889 3.03191 5.64852 2.88761 5.9404 2.87018C6.27544 2.85017 6.67946 3.11953 7.48752 3.65823L18.0031 10.6686C18.6708 11.1137 19.0046 11.3363 19.123 11.6095C19.2265 11.8484 19.2265 12.1516 19.123 12.3905C19.0046 12.6637 18.6708 12.8863 18.0031 13.3314L7.48752 20.3418C6.67946 20.8805 6.27544 21.1498 5.9404 21.1298C5.64852 21.1124 5.37889 20.9681 5.20249 20.7349C5 20.4672 5 19.9816 5 19.0105V4.98951Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
                     </svg>
                 `;
             }
@@ -1430,14 +1442,14 @@
             if (playBtn) {
                 if (c.playing) {
                     playBtn.innerHTML = `
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7 19V5M17 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     `;
                 } else {
                     playBtn.innerHTML = `
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="5 3 19 12 5 21 5 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polygon>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 4.98951C5 4.01835 5 3.53277 5.20249 3.2651C5.37889 3.03191 5.64852 2.88761 5.9404 2.87018C6.27544 2.85017 6.67946 3.11953 7.48752 3.65823L18.0031 10.6686C18.6708 11.1137 19.0046 11.3363 19.123 11.6095C19.2265 11.8484 19.2265 12.1516 19.123 12.3905C19.0046 12.6637 18.6708 12.8863 18.0031 13.3314L7.48752 20.3418C6.67946 20.8805 6.27544 21.1498 5.9404 21.1298C5.64852 21.1124 5.37889 20.9681 5.20249 20.7349C5 20.4672 5 19.9816 5 19.0105V4.98951Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
                         </svg>
                     `;
                 }
