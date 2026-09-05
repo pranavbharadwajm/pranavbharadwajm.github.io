@@ -1189,21 +1189,6 @@
                 </div>
                 <div class="about-right">
                     <div class="info-group">
-                        <h3>Trajectory</h3>
-                        <div class="experience-timeline">
-                            <div class="experience-item">
-                                <span class="experience-period">2025 – Present</span>
-                                <span class="experience-role">MSc in Management Candidate</span>
-                                <span class="experience-org">UCD Michael Smurfit Graduate Business School</span>
-                            </div>
-                            <div class="experience-item">
-                                <span class="experience-period">2022 – 2025</span>
-                                <span class="experience-role">Software Engineer</span>
-                                <span class="experience-org">Front-End & Full-Stack Systems</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-group">
                         <h3>Availability</h3>
                         <div class="status-badge">
                             <span class="status-dot"></span>
@@ -1442,15 +1427,18 @@
                        </div>`
                     : '';
 
-                const psHTML = p.drawerDetails && p.drawerDetails.problemSolution
+                const prob = p.drawerDetails && (p.drawerDetails.problem || (p.drawerDetails.problemSolution && p.drawerDetails.problemSolution.problem));
+                const sol = p.drawerDetails && (p.drawerDetails.solution || (p.drawerDetails.problemSolution && p.drawerDetails.problemSolution.solution));
+
+                const psHTML = (prob && sol)
                     ? `<div class="drawer-problem-solution">
                         <div class="ps-row">
                             <span class="ps-tag">Problem</span>
-                            <span class="ps-text">${p.drawerDetails.problemSolution.problem}</span>
+                            <span class="ps-text">${prob}</span>
                         </div>
                         <div class="ps-row">
                             <span class="ps-tag">Solution</span>
-                            <span class="ps-text">${p.drawerDetails.problemSolution.solution}</span>
+                            <span class="ps-text">${sol}</span>
                         </div>
                        </div>`
                     : '';

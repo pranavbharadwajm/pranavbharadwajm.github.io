@@ -27,10 +27,8 @@
         "role": "Creator / Developer",
         "stack": "Javascript, CSS,HTML",
         "launch": "2026",
-        "problemSolution": {
-          "problem": "Manual lookups across disparate weekly government spreadsheets caused high friction and lack of queue visibility for visa applicants.",
-          "solution": "Engineered an automated ingestion pipeline with instant 8-digit status checks and cohort queue analytics at zero operational cost."
-        },
+        "problem": "Manual lookups across disparate weekly government spreadsheets caused high friction and lack of queue visibility for visa applicants.",
+        "solution": "Engineered an automated ingestion pipeline with instant 8-digit status checks and cohort queue analytics at zero operational cost.",
         "paragraphs": [
           "The Irish Visa Status Tracker is an automated web platform built to eliminate the friction of tracking Irish visa applications. Instead of forcing applicants to manually download and search through weekly decision spreadsheets published by the Embassy of Ireland in New Delhi, the dashboard allows users to type in their 8-digit reference number for an instant status check. To give pending applicants immediate context, it also displays the outcomes of neighboring reference numbers, helping them see if their specific application batch is currently active.",
           "Beyond basic lookups, the platform turns raw government reports into clear, actionable queue analytics. It estimates an applicant's relative position in line compared to the lowest pending reference number and measures the exact completion percentage of their reference cohort block. A dedicated statistics hub provides deeper transparency into overall approval rates, decision volumes, and daily processing speeds using interactive charts and a fully searchable, filterable database explorer."
@@ -54,10 +52,8 @@
         "role": "Creator / Developer",
         "stack": "HTML, CSS, JS",
         "launch": "2026",
-        "problemSolution": {
-          "problem": "Standard movie platforms are heavily bloated with ads, algorithm-driven feeds, and noisy user interfaces that detract from in-depth critical analysis.",
-          "solution": "Built a refined, distraction-free editorial archive with dynamic metadata parsing and custom cinematic typography."
-        },
+        "problem": "Standard movie platforms are heavily bloated with ads, algorithm-driven feeds, and noisy user interfaces that detract from in-depth critical analysis.",
+        "solution": "Built a refined, distraction-free editorial archive with dynamic metadata parsing and custom cinematic typography.",
         "paragraphs": [
           "This project represents my dual passion for software building and film analysis. It aggregates structured critiques, parses review metadata, and displays movie poster imagery dynamically.",
           "Designed with absolute responsiveness and editorial typography to keep reading simple, clean, and distraction-free."
@@ -79,10 +75,8 @@
         "role": "Creator / Developer",
         "stack": "React Native / Expo, TypeScript, Supabase",
         "launch": "2026",
-        "problemSolution": {
-          "problem": "Most fitness tracking applications require constant network connectivity, suffer from slow cold starts, and lock routine customization behind subscriptions.",
-          "solution": "Developed an offline-first mobile companion featuring zero-latency interactions, custom cycle managers, and encrypted cloud sync."
-        },
+        "problem": "Most fitness tracking applications require constant network connectivity, suffer from slow cold starts, and lock routine customization behind subscriptions.",
+        "solution": "Developed an offline-first mobile companion featuring zero-latency interactions, custom cycle managers, and encrypted cloud sync.",
         "paragraphs": [
           "SpotMate is a comprehensive mobile fitness and nutrition companion app built with React Native and Expo. It provides an offline-capable, responsive dashboard with custom SVG visualizations, a highly configurable workout routine/cycle manager, meal/macro logging, and seamless real-time cloud synchronization using Supabase.",
           "The app is engineered to deliver a polished, responsive user experience with zero load times for core features. It incorporates robust error handling and utilizes secure passwordless authentication via magic links and OAuth (Google, GitHub), ensuring data integrity and user privacy throughout the fitness journey."
