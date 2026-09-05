@@ -488,6 +488,11 @@
             aspect-ratio: 1.4 / 1;
             background-color: var(--bg-neutral);
             border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .project-images-carousel:active {
+            cursor: grabbing;
         }
 
         .carousel-images-track {
@@ -495,6 +500,7 @@
             width: 100%;
             height: 100%;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            user-select: none;
         }
 
         .carousel-images-track img {
@@ -502,6 +508,48 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            pointer-events: none;
+        }
+
+        /* Back-to-Top Floating Button */
+        .btn-back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            z-index: 900;
+        }
+
+        .btn-back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .btn-back-to-top:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-back-to-top:active {
+            transform: scale(0.95);
         }
 
         /* CAROUSEL CONTROLS (Exact Jonas Brinkhoff Specs) */
@@ -1123,6 +1171,13 @@
         <div class="footer-copyright">&copy; 2026 Pranav Bharadwaj M. All rights reserved.</div>
     </footer>
 
+    <!-- BACK TO TOP FLOATING BUTTON -->
+    <button class="btn-back-to-top" id="btnBackToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </button>
+
     <!-- DYNAMIC DATA LOADING AND INTERACTION SCRIPT -->
     <script>
         // 1. Copy Email Script
@@ -1141,15 +1196,28 @@
             });
         }
 
-        // 2. Floating Navbar Bubble Logic
+        // 2. Floating Navbar Bubble & Back-to-Top Logic
         const navBubble = document.getElementById('navBubble');
+        const btnBackToTop = document.getElementById('btnBackToTop');
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > window.innerHeight * 0.4) {
+            const scrollY = window.scrollY;
+            if (scrollY > window.innerHeight * 0.4) {
                 navBubble.classList.add('visible');
             } else {
                 navBubble.classList.remove('visible');
             }
+
+            if (scrollY > window.innerHeight * 0.8) {
+                btnBackToTop.classList.add('visible');
+            } else {
+                btnBackToTop.classList.remove('visible');
+            }
         });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         // Carousel tracking objects
         const carousels = {};
@@ -1178,6 +1246,7 @@
 
         let allProjects = [];
         let projectsExpanded = false;
+        let activeHoveredCarousel = null;
 
         function populatePortfolio(data) {
             // Bio & Profile Data
@@ -1196,11 +1265,11 @@
 
                 return `
                 <div class="project-card" id="project-card-${p.id}">
-                    <div class="project-images-carousel" id="${p.id}Carousel">
+                    <div class="project-images-carousel" id="${p.id}Carousel" onmouseenter="activeHoveredCarousel='${p.id}'" onmouseleave="activeHoveredCarousel=null" onclick="openDrawer('${p.id}')">
                         <div class="carousel-images-track">
                             ${imgsHTML}
                         </div>
-                        <div class="carousel-controls" style="${p.images.length <= 1 ? 'display:none;' : ''}">
+                        <div class="carousel-controls" style="${p.images.length <= 1 ? 'display:none;' : ''}" onclick="event.stopPropagation()">
                             <button class="carousel-ctrl-btn" onclick="prevCarouselSlide('${p.id}Carousel', event)" aria-label="Previous image">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -1396,6 +1465,7 @@
                 pauseCarousel(carouselId);
             }
             const c = carousels[carouselId.replace('Carousel', '')];
+            if (!c) return;
             c.index = (c.index + 1) % c.total;
             setCarouselSlide(carouselId.replace('Carousel', ''), c.index);
         }
@@ -1406,13 +1476,16 @@
                 pauseCarousel(carouselId);
             }
             const c = carousels[carouselId.replace('Carousel', '')];
+            if (!c) return;
             c.index = (c.index - 1 + c.total) % c.total;
             setCarouselSlide(carouselId.replace('Carousel', ''), c.index);
         }
 
         function setCarouselSlide(carouselId, slideIndex) {
             const carousel = document.getElementById(carouselId + 'Carousel');
+            if (!carousel) return;
             const track = carousel.querySelector('.carousel-images-track');
+            if (!track) return;
             const offset = -slideIndex * 100;
             track.style.transform = `translateX(${offset}%)`;
         }
@@ -1420,8 +1493,10 @@
         function pauseCarousel(carouselId) {
             const realId = carouselId.replace('Carousel', '');
             const c = carousels[realId];
+            if (!c) return;
             c.playing = false;
             const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
             const playBtn = carousel.querySelector('.carousel-play-pause-btn');
             if (playBtn) {
                 playBtn.innerHTML = `
@@ -1436,8 +1511,10 @@
             if (event) event.stopPropagation();
             const realId = carouselId.replace('Carousel', '');
             const c = carousels[realId];
+            if (!c) return;
             c.playing = !c.playing;
             const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
             const playBtn = carousel.querySelector('.carousel-play-pause-btn');
             if (playBtn) {
                 if (c.playing) {
@@ -1459,7 +1536,11 @@
         // Drawer Actions
         function openDrawer(drawerId) {
             document.getElementById('drawerOverlay').classList.add('active');
-            document.getElementById('drawer-' + drawerId).classList.add('open');
+            const target = document.getElementById('drawer-' + drawerId);
+            if (target) {
+                target.classList.add('open');
+                target.scrollTop = 0;
+            }
             document.body.style.overflow = 'hidden';
         }
 
@@ -1469,6 +1550,21 @@
             drawers.forEach(drawer => drawer.classList.remove('open'));
             document.body.style.overflow = '';
         }
+
+        // 3. Global Keyboard Shortcuts (Esc to close drawers, Left/Right arrows for carousels)
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeDrawer();
+            } else if (e.key === 'ArrowLeft') {
+                if (activeHoveredCarousel) {
+                    prevCarouselSlide(activeHoveredCarousel + 'Carousel');
+                }
+            } else if (e.key === 'ArrowRight') {
+                if (activeHoveredCarousel) {
+                    nextCarouselSlide(activeHoveredCarousel + 'Carousel');
+                }
+            }
+        });
     </script>
 </body>
 
