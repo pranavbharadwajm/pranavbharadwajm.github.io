@@ -141,5 +141,41 @@
       "url": "https://medium.com/@pranavbharadwajm/somewhere-along-the-way-subtitles-stopped-being-optional-7017e74ff66b"
     }
   ],
-  "certificates": []
+  "certificates": [
+    {
+      "id": "sample-certificate-online",
+      "title": "Certificate Title (Online with Verification Link)",
+      "issuer": "Issuing Institution / Organization",
+      "issueDate": "Month Year",
+      "image": "local-assets/profilecircle.png",
+      "description": "Short 1-2 sentence description explaining the key concepts and focus area of this certification.",
+      "skills": ["Skill 1", "Skill 2", "Skill 3"],
+      "hasVerification": true,
+      "credentialUrl": "https://verify-link-example.com",
+      "credentialId": "CERT-ID-12345",
+      "drawerDetails": {
+        "paragraphs": [
+          "Detailed paragraph covering what was learned, projects completed, or methodologies studied.",
+          "Additional context on the practical application or key takeaways."
+        ]
+      }
+    },
+    {
+      "id": "sample-certificate-physical",
+      "title": "Certificate Title (Physical / Old without Online Link)",
+      "issuer": "University / Awarding Body",
+      "issueDate": "Month Year",
+      "image": "local-assets/profilecircle.png",
+      "description": "Short description of the offline, physical, or legacy credential.",
+      "skills": ["Management", "Leadership"],
+      "hasVerification": false,
+      "credentialUrl": "",
+      "credentialId": "Physical Credential",
+      "drawerDetails": {
+        "paragraphs": [
+          "Detailed paragraph explaining this certification or awarded degree/diploma."
+        ]
+      }
+    }
+  ]
 }

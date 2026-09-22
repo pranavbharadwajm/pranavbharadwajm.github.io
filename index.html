@@ -1432,6 +1432,7 @@
 
             function renderCertificateCard(cert) {
                 const skillsHTML = cert.skills ? cert.skills.map(s => `<span class="cert-skill-tag">${s}</span>`).join('') : '';
+                const showVerifyBtn = cert.hasVerification !== false && cert.credentialUrl && cert.credentialUrl.trim() !== "";
                 return `
                 <div class="certificate-card" onclick="openDrawer('${cert.id}')">
                     <div class="certificate-preview-wrap">
@@ -1447,7 +1448,7 @@
                         </div>
                         <div class="certificate-actions">
                             <button class="btn-grey-bubble" onclick="event.stopPropagation(); openDrawer('${cert.id}')">View Credential</button>
-                            ${cert.credentialUrl ? `<a href="${cert.credentialUrl}" target="_blank" class="btn-grey-bubble" onclick="event.stopPropagation()" style="text-decoration: none;">Verify &rarr;</a>` : ''}
+                            ${showVerifyBtn ? `<a href="${cert.credentialUrl}" target="_blank" class="btn-grey-bubble" onclick="event.stopPropagation()" style="text-decoration: none;">Verify &rarr;</a>` : ''}
                         </div>
                     </div>
                 </div>`;
@@ -1553,6 +1554,8 @@
                         <img src="${cert.image}" alt="${cert.title}" style="border: 1px solid var(--border-color) !important; border-radius: 12px !important;">
                     </div>` : '';
 
+                const showVerifyBtn = cert.hasVerification !== false && cert.credentialUrl && cert.credentialUrl.trim() !== "";
+
                 return `
                 <div class="details-drawer fullscreen" id="drawer-${cert.id}">
                     <div class="drawer-content">
@@ -1571,13 +1574,13 @@
                                 </div>
                                 <div class="drawer-meta-item">
                                     <h4>Credential ID</h4>
-                                    <p>${cert.credentialId || 'Verified'}</p>
+                                    <p>${cert.credentialId || 'Physical / Non-digital Credential'}</p>
                                 </div>
                             </div>
                             <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-main); margin-bottom: 1.2rem;">${cert.description}</p>
                             ${cert.drawerDetails && cert.drawerDetails.paragraphs ? cert.drawerDetails.paragraphs.map(para => `<p>${para}</p>`).join('') : ''}
                             ${certImgHTML}
-                            ${cert.credentialUrl ? `<div style="margin-top: 2rem;"><a href="${cert.credentialUrl}" target="_blank" class="btn btn-dark">Verify on Official Site &rarr;</a></div>` : ''}
+                            ${showVerifyBtn ? `<div style="margin-top: 2rem;"><a href="${cert.credentialUrl}" target="_blank" class="btn btn-dark">Verify on Official Site &rarr;</a></div>` : ''}
                         </div>
                     </div>
                 </div>`;
